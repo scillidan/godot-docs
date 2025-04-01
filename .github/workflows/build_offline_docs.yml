@@ -66,24 +66,40 @@ jobs:
           # This makes it more likely to have at least one successful build available at all times.
           retention-days: 15
 
-      - name: Sphinx - Build ePub
+      # - name: Sphinx - Build ePub
+      #   run: |
+      #     # Convert WebP images to PNG and replace references, so that ePub readers can display those images.
+      #     # The ePub 3.0 specification has WebP support, but it's not widely supported by apps and e-readers yet.
+      #     shopt -s globstar nullglob
+      #     parallel --will-cite convert {} {.}.png ::: {about,community,contributing,getting_started,img,tutorials}/**/*.webp
+      #     parallel --will-cite sed -i "s/\\.webp$/\\.png/g" ::: {about,community,contributing,getting_started,tutorials}/**/*.rst
+
+      #     # Remove banners at the top of each page when building `latest`.
+      #     sed -i 's/"godot_is_latest": True/"godot_is_latest": False/' conf.py
+      #     sed -i 's/"godot_show_article_status": True/"godot_show_article_status": False/' conf.py
+
+      #     make SPHINXOPTS='--color -j 4' epub
+
+      # - uses: actions/upload-artifact@v4
+      #   with:
+      #     name: godot-docs-epub-${{ matrix.branch }}
+      #     path: _build/epub/GodotEngine.epub
+      #     # Keep the current build and the previous build (in case a scheduled build failed).
+      #     # This makes it more likely to have at least one successful build available at all times.
+      #     retention-days: 15
+
+      - name: Generate docset
         run: |
-          # Convert WebP images to PNG and replace references, so that ePub readers can display those images.
-          # The ePub 3.0 specification has WebP support, but it's not widely supported by apps and e-readers yet.
-          shopt -s globstar nullglob
-          parallel --will-cite convert {} {.}.png ::: {about,community,contributing,getting_started,img,tutorials}/**/*.webp
-          parallel --will-cite sed -i "s/\\.webp$/\\.png/g" ::: {about,community,contributing,getting_started,tutorials}/**/*.rst
-
-          # Remove banners at the top of each page when building `latest`.
-          sed -i 's/"godot_is_latest": True/"godot_is_latest": False/' conf.py
-          sed -i 's/"godot_show_article_status": True/"godot_show_article_status": False/' conf.py
-
-          make SPHINXOPTS='--color -j 4' epub
+          python -m pip install doc2dash
+          doc2dash --name godot -f _build/html
+          curl -o godot/icon.png https://github.com/Kapeli/Dash-User-Contributions/blob/master/docsets/Godot/icon.png
+          curl -o godot/icon@2x.png https://github.com/Kapeli/Dash-User-Contributions/blob/master/docsets/Godot/icon@2x.png
+          tar --exclude='.DS_Store' -cvzf godot-${{ matrix.branch }}.tgz godot.docset
 
       - uses: actions/upload-artifact@v4
         with:
-          name: godot-docs-epub-${{ matrix.branch }}
-          path: _build/epub/GodotEngine.epub
+          name: godot-docset-${{ matrix.branch }}
+          path: ./godot-${{ matrix.branch }}.tgz
           # Keep the current build and the previous build (in case a scheduled build failed).
           # This makes it more likely to have at least one successful build available at all times.
           retention-days: 15
