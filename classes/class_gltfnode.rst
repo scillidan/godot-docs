@@ -65,6 +65,8 @@ Properties
    +-------------------------------------------------+-------------------------------------------------------------+-----------------------------------------------------+
    | :ref:`int<class_int>`                           | :ref:`skin<class_GLTFNode_property_skin>`                   | ``-1``                                              |
    +-------------------------------------------------+-------------------------------------------------------------+-----------------------------------------------------+
+   | :ref:`bool<class_bool>`                         | :ref:`visible<class_GLTFNode_property_visible>`             | ``true``                                            |
+   +-------------------------------------------------+-------------------------------------------------------------+-----------------------------------------------------+
    | :ref:`Transform3D<class_Transform3D>`           | :ref:`xform<class_GLTFNode_property_xform>`                 | ``Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)`` |
    +-------------------------------------------------+-------------------------------------------------------------+-----------------------------------------------------+
 
@@ -106,7 +108,7 @@ Property Descriptions
 - |void| **set_camera**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_camera**\ (\ )
 
-If this glTF node is a camera, the index of the :ref:`GLTFCamera<class_GLTFCamera>` in the :ref:`GLTFState<class_GLTFState>` that describes the camera's properties. If -1, this node is not a camera.
+If this glTF node is a camera, the index of the :ref:`GLTFCamera<class_GLTFCamera>` in the :ref:`GLTFState<class_GLTFState>` that describes the camera's properties. If ``-1``, this node is not a camera.
 
 .. rst-class:: classref-item-separator
 
@@ -301,6 +303,23 @@ If this glTF node has a skin, the index of the :ref:`GLTFSkin<class_GLTFSkin>` i
 
 ----
 
+.. _class_GLTFNode_property_visible:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **visible** = ``true`` :ref:`🔗<class_GLTFNode_property_visible>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_visible**\ (\ value\: :ref:`bool<class_bool>`\ )
+- :ref:`bool<class_bool>` **get_visible**\ (\ )
+
+If ``true``, the GLTF node is visible. If ``false``, the GLTF node is not visible. This is translated to the :ref:`Node3D.visible<class_Node3D_property_visible>` property in the Godot scene, and is exported to ``KHR_node_visibility`` when ``false``.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_GLTFNode_property_xform:
 
 .. rst-class:: classref-property
@@ -374,6 +393,7 @@ Sets additional arbitrary data in this **GLTFNode** instance. This can be used t
 The first argument should be the :ref:`GLTFDocumentExtension<class_GLTFDocumentExtension>` name (does not have to match the extension name in the glTF file), and the second argument can be anything you want.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

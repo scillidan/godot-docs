@@ -32,6 +32,8 @@ Methods
    :widths: auto
 
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`SceneState<class_SceneState>`               | :ref:`get_base_scene_state<class_SceneState_method_get_base_scene_state>`\ (\ ) |const|                                                                      |
+   +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Array<class_Array>`                         | :ref:`get_connection_binds<class_SceneState_method_get_connection_binds>`\ (\ idx\: :ref:`int<class_int>`\ ) |const|                                         |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`get_connection_count<class_SceneState_method_get_connection_count>`\ (\ ) |const|                                                                      |
@@ -71,6 +73,8 @@ Methods
    | :ref:`Variant<class_Variant>`                     | :ref:`get_node_property_value<class_SceneState_method_get_node_property_value>`\ (\ idx\: :ref:`int<class_int>`, prop_idx\: :ref:`int<class_int>`\ ) |const| |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`StringName<class_StringName>`               | :ref:`get_node_type<class_SceneState_method_get_node_type>`\ (\ idx\: :ref:`int<class_int>`\ ) |const|                                                       |
+   +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                       | :ref:`get_path<class_SceneState_method_get_path>`\ (\ ) |const|                                                                                              |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`is_node_instance_placeholder<class_SceneState_method_is_node_instance_placeholder>`\ (\ idx\: :ref:`int<class_int>`\ ) |const|                         |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -136,6 +140,18 @@ If passed to :ref:`PackedScene.instantiate()<class_PackedScene_method_instantiat
 
 Method Descriptions
 -------------------
+
+.. _class_SceneState_method_get_base_scene_state:
+
+.. rst-class:: classref-method
+
+:ref:`SceneState<class_SceneState>` **get_base_scene_state**\ (\ ) |const| :ref:`🔗<class_SceneState_method_get_base_scene_state>`
+
+Returns the **SceneState** of the scene that this scene inherits from, or ``null`` if it doesn't inherit from any scene.
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_SceneState_method_get_connection_binds:
 
@@ -385,6 +401,18 @@ Returns the type of the node at ``idx``.
 
 ----
 
+.. _class_SceneState_method_get_path:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **get_path**\ (\ ) |const| :ref:`🔗<class_SceneState_method_get_path>`
+
+Returns the resource path to the represented :ref:`PackedScene<class_PackedScene>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_SceneState_method_is_node_instance_placeholder:
 
 .. rst-class:: classref-method
@@ -394,6 +422,7 @@ Returns the type of the node at ``idx``.
 Returns ``true`` if the node at ``idx`` is an :ref:`InstancePlaceholder<class_InstancePlaceholder>`.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

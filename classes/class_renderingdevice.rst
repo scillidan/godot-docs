@@ -239,7 +239,7 @@ Methods
    +------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`RID<class_RID>`                                      | :ref:`texture_create<class_RenderingDevice_method_texture_create>`\ (\ format\: :ref:`RDTextureFormat<class_RDTextureFormat>`, view\: :ref:`RDTextureView<class_RDTextureView>`, data\: :ref:`Array<class_Array>`\[:ref:`PackedByteArray<class_PackedByteArray>`\] = []\ )                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
    +------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`RID<class_RID>`                                      | :ref:`texture_create_from_extension<class_RenderingDevice_method_texture_create_from_extension>`\ (\ type\: :ref:`TextureType<enum_RenderingDevice_TextureType>`, format\: :ref:`DataFormat<enum_RenderingDevice_DataFormat>`, samples\: :ref:`TextureSamples<enum_RenderingDevice_TextureSamples>`, usage_flags\: |bitfield|\[:ref:`TextureUsageBits<enum_RenderingDevice_TextureUsageBits>`\], image\: :ref:`int<class_int>`, width\: :ref:`int<class_int>`, height\: :ref:`int<class_int>`, depth\: :ref:`int<class_int>`, layers\: :ref:`int<class_int>`\ )                                                                                                                                                                                                                                                                                                                                                                                                                  |
+   | :ref:`RID<class_RID>`                                      | :ref:`texture_create_from_extension<class_RenderingDevice_method_texture_create_from_extension>`\ (\ type\: :ref:`TextureType<enum_RenderingDevice_TextureType>`, format\: :ref:`DataFormat<enum_RenderingDevice_DataFormat>`, samples\: :ref:`TextureSamples<enum_RenderingDevice_TextureSamples>`, usage_flags\: |bitfield|\[:ref:`TextureUsageBits<enum_RenderingDevice_TextureUsageBits>`\], image\: :ref:`int<class_int>`, width\: :ref:`int<class_int>`, height\: :ref:`int<class_int>`, depth\: :ref:`int<class_int>`, layers\: :ref:`int<class_int>`, mipmaps\: :ref:`int<class_int>` = 1\ )                                                                                                                                                                                                                                                                                                                                                                             |
    +------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`RID<class_RID>`                                      | :ref:`texture_create_shared<class_RenderingDevice_method_texture_create_shared>`\ (\ view\: :ref:`RDTextureView<class_RDTextureView>`, with_texture\: :ref:`RID<class_RID>`\ )                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
    +------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -845,7 +845,7 @@ Alpha/red/green/blue channel data format with 1 bit of alpha, 5 bits of red, 6 b
 
 :ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_R8G8B8_SRGB** = ``28``
 
-8-bit-per-channel unsigned floating-point red/green/blue/blue channel data format with normalized value and non-linear sRGB encoding. Values are in the ``[0.0, 1.0]`` range.
+8-bit-per-channel unsigned floating-point red/green/blue channel data format with normalized value and non-linear sRGB encoding. Values are in the ``[0.0, 1.0]`` range.
 
 .. _class_RenderingDevice_constant_DATA_FORMAT_B8G8R8_UNORM:
 
@@ -2359,11 +2359,179 @@ VRAM-compressed unsigned floating-point data format with normalized value and no
 
 16-bit-per-channel unsigned floating-point green/blue/red channel data with normalized value, plus 6 unused bits after each channel. Stored across 3 separate planes (green + blue + red). Values are in the ``[0.0, 1.0]`` range.
 
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_4x4_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_4x4_SFLOAT_BLOCK** = ``218``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_5x4_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_5x4_SFLOAT_BLOCK** = ``219``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_5x5_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_5x5_SFLOAT_BLOCK** = ``220``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_6x5_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_6x5_SFLOAT_BLOCK** = ``221``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_6x6_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_6x6_SFLOAT_BLOCK** = ``222``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x5_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x5_SFLOAT_BLOCK** = ``223``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x6_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x6_SFLOAT_BLOCK** = ``224``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_8x8_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_8x8_SFLOAT_BLOCK** = ``225``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x5_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x5_SFLOAT_BLOCK** = ``226``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x6_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x6_SFLOAT_BLOCK** = ``227``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x8_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x8_SFLOAT_BLOCK** = ``228``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_10x10_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_10x10_SFLOAT_BLOCK** = ``229``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_12x10_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_12x10_SFLOAT_BLOCK** = ``230``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
+.. _class_RenderingDevice_constant_DATA_FORMAT_ASTC_12x12_SFLOAT_BLOCK:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_ASTC_12x12_SFLOAT_BLOCK** = ``231``
+
+.. container:: contribute
+
+	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
+
+
+
 .. _class_RenderingDevice_constant_DATA_FORMAT_MAX:
 
 .. rst-class:: classref-enumeration-constant
 
-:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_MAX** = ``218``
+:ref:`DataFormat<enum_RenderingDevice_DataFormat>` **DATA_FORMAT_MAX** = ``232``
 
 Represents the size of the :ref:`DataFormat<enum_RenderingDevice_DataFormat>` enum.
 
@@ -3027,10 +3195,10 @@ Optionally, set this flag if you wish to use :ref:`buffer_get_device_address()<c
  .. code-tab:: gdscript
 
     rd = RenderingServer.get_rendering_device()
-    
+
     if rd.has_feature(RenderingDevice.SUPPORTS_BUFFER_DEVICE_ADDRESS):
-          storage_buffer = rd.storage_buffer_create(bytes.size(), bytes, RenderingDevice.STORAGE_BUFFER_USAGE_SHADER_DEVICE_ADDRESS):
-          storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
+        storage_buffer = rd.storage_buffer_create(bytes.size(), bytes, RenderingDevice.STORAGE_BUFFER_USAGE_SHADER_DEVICE_ADDRESS)
+        storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
 
 
 
@@ -3210,7 +3378,7 @@ Triangle list rendering primitive. Triangles are drawn separated from each other
 
 `Triangle list rendering primitive with adjacency. <https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists-with-adjacency>`__\ 
 
- **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
+\ **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
 
 .. _class_RenderingDevice_constant_RENDER_PRIMITIVE_TRIANGLE_STRIPS:
 
@@ -4268,6 +4436,22 @@ Floating-point specialization constant.
 
 enum **Features**: :ref:`🔗<enum_RenderingDevice_Features>`
 
+.. _class_RenderingDevice_constant_SUPPORTS_METALFX_SPATIAL:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`Features<enum_RenderingDevice_Features>` **SUPPORTS_METALFX_SPATIAL** = ``3``
+
+Support for MetalFX spatial upscaling.
+
+.. _class_RenderingDevice_constant_SUPPORTS_METALFX_TEMPORAL:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`Features<enum_RenderingDevice_Features>` **SUPPORTS_METALFX_TEMPORAL** = ``4``
+
+Support for MetalFX temporal upscaling.
+
 .. _class_RenderingDevice_constant_SUPPORTS_BUFFER_DEVICE_ADDRESS:
 
 .. rst-class:: classref-enumeration-constant
@@ -4652,11 +4836,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **NONE** = ``0``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+No breadcrumb marker will be added.
 
 .. _class_RenderingDevice_constant_REFLECTION_PROBES:
 
@@ -4664,11 +4844,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **REFLECTION_PROBES** = ``65536``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"REFLECTION_PROBES"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_SKY_PASS:
 
@@ -4676,11 +4852,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **SKY_PASS** = ``131072``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"SKY_PASS"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_LIGHTMAPPER_PASS:
 
@@ -4688,11 +4860,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **LIGHTMAPPER_PASS** = ``196608``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"LIGHTMAPPER_PASS"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_SHADOW_PASS_DIRECTIONAL:
 
@@ -4700,11 +4868,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **SHADOW_PASS_DIRECTIONAL** = ``262144``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"SHADOW_PASS_DIRECTIONAL"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_SHADOW_PASS_CUBE:
 
@@ -4712,11 +4876,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **SHADOW_PASS_CUBE** = ``327680``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"SHADOW_PASS_CUBE"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_OPAQUE_PASS:
 
@@ -4724,11 +4884,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **OPAQUE_PASS** = ``393216``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"OPAQUE_PASS"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_ALPHA_PASS:
 
@@ -4736,11 +4892,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **ALPHA_PASS** = ``458752``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"ALPHA_PASS"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_TRANSPARENT_PASS:
 
@@ -4748,11 +4900,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **TRANSPARENT_PASS** = ``524288``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"TRANSPARENT_PASS"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_POST_PROCESSING_PASS:
 
@@ -4760,11 +4908,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **POST_PROCESSING_PASS** = ``589824``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"POST_PROCESSING_PASS"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_BLIT_PASS:
 
@@ -4772,11 +4916,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **BLIT_PASS** = ``655360``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"BLIT_PASS"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_UI_PASS:
 
@@ -4784,11 +4924,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **UI_PASS** = ``720896``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"UI_PASS"`` for added context as to when the crash occurred.
 
 .. _class_RenderingDevice_constant_DEBUG_PASS:
 
@@ -4796,11 +4932,7 @@ enum **BreadcrumbMarker**: :ref:`🔗<enum_RenderingDevice_BreadcrumbMarker>`
 
 :ref:`BreadcrumbMarker<enum_RenderingDevice_BreadcrumbMarker>` **DEBUG_PASS** = ``786432``
 
-.. container:: contribute
-
-	There is currently no description for this enum. Please help us by :ref:`contributing one <doc_updating_the_class_reference>`!
-
-
+During a GPU crash in dev or debug mode, Godot's error message will include ``"DEBUG_PASS"`` for added context as to when the crash occurred.
 
 .. rst-class:: classref-item-separator
 
@@ -5148,9 +5280,9 @@ Asynchronous version of :ref:`buffer_get_data()<class_RenderingDevice_method_buf
 
     func _buffer_get_data_callback(array):
         value = array.decode_u32(0)
-    
+
     ...
-    
+
     rd.buffer_get_data_async(buffer, _buffer_get_data_callback)
 
 .. rst-class:: classref-item-separator
@@ -5231,16 +5363,16 @@ A simple compute operation might look like this (code is not a complete example)
 
     var rd = RenderingDevice.new()
     var compute_list = rd.compute_list_begin()
-    
+
     rd.compute_list_bind_compute_pipeline(compute_list, compute_shader_dilate_pipeline)
     rd.compute_list_bind_uniform_set(compute_list, compute_base_uniform_set, 0)
     rd.compute_list_bind_uniform_set(compute_list, dilate_uniform_set, 1)
-    
+
     for i in atlas_slices:
         rd.compute_list_set_push_constant(compute_list, push_constant, push_constant.size())
         rd.compute_list_dispatch(compute_list, group_size.x, group_size.y, group_size.z)
         # No barrier, let them run all together.
-    
+
     rd.compute_list_end()
 
 .. rst-class:: classref-item-separator
@@ -5414,7 +5546,7 @@ A simple drawing operation might look like this (code is not a complete example)
     var rd = RenderingDevice.new()
     var clear_colors = PackedColorArray([Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0)])
     var draw_list = rd.draw_list_begin(framebuffers[i], RenderingDevice.CLEAR_COLOR_ALL, clear_colors, true, 1.0f, true, 0, Rect2(), RenderingDevice.OPAQUE_PASS)
-    
+
     # Draw opaque.
     rd.draw_list_bind_render_pipeline(draw_list, raster_pipeline)
     rd.draw_list_bind_uniform_set(draw_list, raster_base_uniform, 0)
@@ -5425,7 +5557,7 @@ A simple drawing operation might look like this (code is not a complete example)
     rd.draw_list_bind_uniform_set(draw_list, raster_base_uniform, 0)
     rd.draw_list_set_push_constant(draw_list, raster_push_constant, raster_push_constant.size())
     rd.draw_list_draw(draw_list, false, 1, slice_triangle_count[i] * 3)
-    
+
     rd.draw_list_end()
 
 The ``draw_flags`` indicates if the texture attachments of the framebuffer should be cleared or ignored. Only one of the two flags can be used for each individual attachment. Ignoring an attachment means that any contents that existed before the draw list will be completely discarded, reducing the memory bandwidth used by the render pass but producing garbage results if the pixels aren't replaced. The default behavior allows the engine to figure out the right operation to use if the texture is discardable, which can result in increased performance. See :ref:`RDTextureFormat<class_RDTextureFormat>` or :ref:`texture_set_discardable()<class_RenderingDevice_method_texture_set_discardable>`.
@@ -6014,7 +6146,7 @@ This is only used by Vulkan in debug builds and can return 0 when this informati
 
 :ref:`int<class_int>` **get_driver_resource**\ (\ resource\: :ref:`DriverResource<enum_RenderingDevice_DriverResource>`, rid\: :ref:`RID<class_RID>`, index\: :ref:`int<class_int>`\ ) :ref:`🔗<class_RenderingDevice_method_get_driver_resource>`
 
-Returns the unique identifier of the driver ``resource`` for the specified ``rid``. Some driver resource types ignore the specified ``rid`` (see :ref:`DriverResource<enum_RenderingDevice_DriverResource>` descriptions). ``index`` is always ignored but must be specified anyway.
+Returns the unique identifier of the driver ``resource`` for the specified ``rid``. Some driver resource types ignore the specified ``rid``. ``index`` is always ignored but must be specified anyway.
 
 .. rst-class:: classref-item-separator
 
@@ -6102,7 +6234,7 @@ This is only used by Vulkan in debug builds. Godot must also be started with the
 
 :ref:`int<class_int>` **get_tracked_object_type_count**\ (\ ) |const| :ref:`🔗<class_RenderingDevice_method_get_tracked_object_type_count>`
 
-Returns how many types of trackable objects are.
+Returns how many types of trackable objects there are.
 
 This is only used by Vulkan in debug builds. Godot must also be started with the ``--extra-gpu-memory-tracking`` :doc:`command line argument <../tutorials/editor/command_line_tutorial>`.
 
@@ -6458,6 +6590,8 @@ Creates a new texture. It can be accessed with the RID that is returned.
 
 Once finished with your RID, you will want to free the RID using the RenderingDevice's :ref:`free_rid()<class_RenderingDevice_method_free_rid>` method.
 
+\ **Note:** ``data`` takes an :ref:`Array<class_Array>` of :ref:`PackedByteArray<class_PackedByteArray>`\ s. For :ref:`TEXTURE_TYPE_1D<class_RenderingDevice_constant_TEXTURE_TYPE_1D>`, :ref:`TEXTURE_TYPE_2D<class_RenderingDevice_constant_TEXTURE_TYPE_2D>`, and :ref:`TEXTURE_TYPE_3D<class_RenderingDevice_constant_TEXTURE_TYPE_3D>` types, this array should only have one element, a :ref:`PackedByteArray<class_PackedByteArray>` containing all the data for the texture. For ``_ARRAY`` and ``_CUBE`` types, the length should be the same as the number of :ref:`RDTextureFormat.array_layers<class_RDTextureFormat_property_array_layers>` in ``format``.
+
 \ **Note:** Not to be confused with :ref:`RenderingServer.texture_2d_create()<class_RenderingServer_method_texture_2d_create>`, which creates the Godot-specific :ref:`Texture2D<class_Texture2D>` resource as opposed to the graphics API's own texture type.
 
 .. rst-class:: classref-item-separator
@@ -6468,9 +6602,9 @@ Once finished with your RID, you will want to free the RID using the RenderingDe
 
 .. rst-class:: classref-method
 
-:ref:`RID<class_RID>` **texture_create_from_extension**\ (\ type\: :ref:`TextureType<enum_RenderingDevice_TextureType>`, format\: :ref:`DataFormat<enum_RenderingDevice_DataFormat>`, samples\: :ref:`TextureSamples<enum_RenderingDevice_TextureSamples>`, usage_flags\: |bitfield|\[:ref:`TextureUsageBits<enum_RenderingDevice_TextureUsageBits>`\], image\: :ref:`int<class_int>`, width\: :ref:`int<class_int>`, height\: :ref:`int<class_int>`, depth\: :ref:`int<class_int>`, layers\: :ref:`int<class_int>`\ ) :ref:`🔗<class_RenderingDevice_method_texture_create_from_extension>`
+:ref:`RID<class_RID>` **texture_create_from_extension**\ (\ type\: :ref:`TextureType<enum_RenderingDevice_TextureType>`, format\: :ref:`DataFormat<enum_RenderingDevice_DataFormat>`, samples\: :ref:`TextureSamples<enum_RenderingDevice_TextureSamples>`, usage_flags\: |bitfield|\[:ref:`TextureUsageBits<enum_RenderingDevice_TextureUsageBits>`\], image\: :ref:`int<class_int>`, width\: :ref:`int<class_int>`, height\: :ref:`int<class_int>`, depth\: :ref:`int<class_int>`, layers\: :ref:`int<class_int>`, mipmaps\: :ref:`int<class_int>` = 1\ ) :ref:`🔗<class_RenderingDevice_method_texture_create_from_extension>`
 
-Returns an RID for an existing ``image`` (``VkImage``) with the given ``type``, ``format``, ``samples``, ``usage_flags``, ``width``, ``height``, ``depth``, and ``layers``. This can be used to allow Godot to render onto foreign images.
+Returns an RID for an existing ``image`` (``VkImage``) with the given ``type``, ``format``, ``samples``, ``usage_flags``, ``width``, ``height``, ``depth``, ``layers``, and ``mipmaps``. This can be used to allow Godot to render onto foreign images.
 
 .. rst-class:: classref-item-separator
 
@@ -6538,9 +6672,9 @@ Asynchronous version of :ref:`texture_get_data()<class_RenderingDevice_method_te
 
     func _texture_get_data_callback(array):
         value = array.decode_u32(0)
-    
+
     ...
-    
+
     rd.texture_get_data_async(texture, 0, _texture_get_data_callback)
 
 .. rst-class:: classref-item-separator
@@ -6741,7 +6875,7 @@ Creates a vertex array based on the specified buffers. Optionally, ``offsets`` (
 
 :ref:`RID<class_RID>` **vertex_buffer_create**\ (\ size_bytes\: :ref:`int<class_int>`, data\: :ref:`PackedByteArray<class_PackedByteArray>` = PackedByteArray(), creation_bits\: |bitfield|\[:ref:`BufferCreationBits<enum_RenderingDevice_BufferCreationBits>`\] = 0\ ) :ref:`🔗<class_RenderingDevice_method_vertex_buffer_create>`
 
-It can be accessed with the RID that is returned.
+Creates a new vertex buffer. It can be accessed with the RID that is returned.
 
 Once finished with your RID, you will want to free the RID using the RenderingDevice's :ref:`free_rid()<class_RenderingDevice_method_free_rid>` method.
 
@@ -6758,6 +6892,7 @@ Once finished with your RID, you will want to free the RID using the RenderingDe
 Creates a new vertex format with the specified ``vertex_descriptions``. Returns a unique vertex format ID corresponding to the newly created vertex format.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

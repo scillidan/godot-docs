@@ -55,6 +55,8 @@ Methods
    :widths: auto
 
    +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                            | :ref:`add_logger<class_OS_method_add_logger>`\ (\ logger\: :ref:`Logger<class_Logger>`\ )                                                                                                                                                                                                                                                                                                   |
+   +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                            | :ref:`alert<class_OS_method_alert>`\ (\ text\: :ref:`String<class_String>`, title\: :ref:`String<class_String>` = "Alert!"\ )                                                                                                                                                                                                                                                               |
    +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                            | :ref:`close_midi_inputs<class_OS_method_close_midi_inputs>`\ (\ )                                                                                                                                                                                                                                                                                                                           |
@@ -179,9 +181,13 @@ Methods
    +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                            | :ref:`open_midi_inputs<class_OS_method_open_midi_inputs>`\ (\ )                                                                                                                                                                                                                                                                                                                             |
    +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`PackedByteArray<class_PackedByteArray>`     | :ref:`read_buffer_from_stdin<class_OS_method_read_buffer_from_stdin>`\ (\ buffer_size\: :ref:`int<class_int>`\ )                                                                                                                                                                                                                                                                            |
+   | :ref:`Error<enum_@GlobalScope_Error>`             | :ref:`open_with_program<class_OS_method_open_with_program>`\ (\ program_path\: :ref:`String<class_String>`, paths\: :ref:`PackedStringArray<class_PackedStringArray>`\ )                                                                                                                                                                                                                    |
    +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`                       | :ref:`read_string_from_stdin<class_OS_method_read_string_from_stdin>`\ (\ buffer_size\: :ref:`int<class_int>`\ )                                                                                                                                                                                                                                                                            |
+   | :ref:`PackedByteArray<class_PackedByteArray>`     | :ref:`read_buffer_from_stdin<class_OS_method_read_buffer_from_stdin>`\ (\ buffer_size\: :ref:`int<class_int>` = 1024\ )                                                                                                                                                                                                                                                                     |
+   +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                       | :ref:`read_string_from_stdin<class_OS_method_read_string_from_stdin>`\ (\ buffer_size\: :ref:`int<class_int>` = 1024\ )                                                                                                                                                                                                                                                                     |
+   +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                            | :ref:`remove_logger<class_OS_method_remove_logger>`\ (\ logger\: :ref:`Logger<class_Logger>`\ )                                                                                                                                                                                                                                                                                             |
    +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`request_permission<class_OS_method_request_permission>`\ (\ name\: :ref:`String<class_String>`\ )                                                                                                                                                                                                                                                                                     |
    +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -445,6 +451,18 @@ The amount of sleeping between frames when the low-processor usage mode is enabl
 
 Method Descriptions
 -------------------
+
+.. _class_OS_method_add_logger:
+
+.. rst-class:: classref-method
+
+|void| **add_logger**\ (\ logger\: :ref:`Logger<class_Logger>`\ ) :ref:`🔗<class_OS_method_add_logger>`
+
+Add a custom logger to intercept the internal message stream.
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_OS_method_alert:
 
@@ -789,7 +807,7 @@ Returns the command-line user arguments passed to the engine. User arguments are
 
     # Godot has been executed with the following command:
     # godot --fullscreen -- --level=2 --hardcore
-    
+
     OS.get_cmdline_args()      # Returns ["--fullscreen", "--level=2", "--hardcore"]
     OS.get_cmdline_user_args() # Returns ["--level=2", "--hardcore"]
 
@@ -919,7 +937,7 @@ Returns the file path to the current engine executable.
 
 On Android devices: Returns the list of dangerous permissions that have been granted.
 
-On macOS: Returns the list of user selected folders accessible to the application (sandboxed applications only). Use the native file dialog to request folder access permission.
+On macOS: Returns the list of granted permissions and user selected folders accessible to the application (sandboxed applications only). Use the native file dialog to request folder access permission.
 
 .. rst-class:: classref-item-separator
 
@@ -1149,7 +1167,7 @@ Returns ``-1`` if the ``pid`` is not a PID of a spawned child process, the proce
 
 Returns the number used by the host machine to uniquely identify this application.
 
-\ **Note:** This method is implemented on Android, iOS, Linux, macOS, and Windows.
+\ **Note:** On Web, this method always returns ``0``.
 
 .. rst-class:: classref-item-separator
 
@@ -1223,7 +1241,9 @@ Returns the amount of static memory being used by the program in bytes. Only wor
 
 :ref:`StdHandleType<enum_OS_StdHandleType>` **get_stderr_type**\ (\ ) |const| :ref:`🔗<class_OS_method_get_stderr_type>`
 
-Returns type of the standard error device.
+Returns the type of the standard error device.
+
+\ **Note:** This method is implemented on Linux, macOS, and Windows.
 
 .. rst-class:: classref-item-separator
 
@@ -1235,7 +1255,11 @@ Returns type of the standard error device.
 
 :ref:`StdHandleType<enum_OS_StdHandleType>` **get_stdin_type**\ (\ ) |const| :ref:`🔗<class_OS_method_get_stdin_type>`
 
-Returns type of the standard input device.
+Returns the type of the standard input device.
+
+\ **Note:** This method is implemented on Linux, macOS, and Windows.
+
+\ **Note:** On exported Windows builds, run the console wrapper executable to access the standard input. If you need a single executable with full console support, use a custom build compiled with the ``windows_subsystem=console`` flag.
 
 .. rst-class:: classref-item-separator
 
@@ -1247,7 +1271,9 @@ Returns type of the standard input device.
 
 :ref:`StdHandleType<enum_OS_StdHandleType>` **get_stdout_type**\ (\ ) |const| :ref:`🔗<class_OS_method_get_stdout_type>`
 
-Returns type of the standard output device.
+Returns the type of the standard output device.
+
+\ **Note:** This method is implemented on Linux, macOS, and Windows.
 
 .. rst-class:: classref-item-separator
 
@@ -1409,7 +1435,7 @@ Not to be confused with :ref:`get_data_dir()<class_OS_method_get_data_dir>`, whi
 
 Returns the exact production and build version of the operating system. This is different from the branded version used in marketing. This helps to distinguish between different releases of operating systems, including minor versions, and insider and custom builds.
 
-- For Windows, the major and minor version are returned, as well as the build number. For example, the returned string may look like ``10.0.9926`` for a build of Windows 10, and it may look like ``6.1.7601`` for a build of Windows 7 SP1.
+- For Windows, the major and minor version are returned, as well as the build number. For example, the returned string may look like ``10.0.9926`` for a build of Windows 10.
 
 - For rolling distributions, such as Arch Linux, an empty string is returned.
 
@@ -1429,9 +1455,11 @@ Returns the exact production and build version of the operating system. This is 
 
 :ref:`String<class_String>` **get_version_alias**\ (\ ) |const| :ref:`🔗<class_OS_method_get_version_alias>`
 
-Returns the branded version used in marketing, followed by the build number (on Windows) or the version number (on macOS). Examples include ``11 (build 22000)`` and ``Sequoia (15.0.0)``. This value can then be appended to :ref:`get_name()<class_OS_method_get_name>` to get a full, human-readable operating system name and version combination for the operating system. Windows feature updates such as 24H2 are not contained in the resulting string, but Windows Server is recognized as such (e.g. ``2025 (build 26100)`` for Windows Server 2025).
+Returns the branded version used in marketing, followed by the build number (on Windows), the version number (on macOS), or the SDK version and incremental build number (on Android). Examples include ``11 (build 22000)``, ``Sequoia (15.0.0)``, and ``15 (SDK 35 build abc528-11988f)``.
 
-\ **Note:** This method is only supported on Windows and macOS. On other operating systems, it returns the same value as :ref:`get_version()<class_OS_method_get_version>`.
+This value can then be appended to :ref:`get_name()<class_OS_method_get_name>` to get a full, human-readable operating system name and version combination for the operating system. Windows feature updates such as 24H2 are not contained in the resulting string, but Windows Server is recognized as such (e.g. ``2025 (build 26100)`` for Windows Server 2025).
+
+\ **Note:** This method is only supported on Windows, macOS, and Android. On other operating systems, it returns the same value as :ref:`get_version()<class_OS_method_get_version>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1665,13 +1693,29 @@ Initializes the singleton for the system MIDI driver, allowing Godot to receive 
 
 ----
 
+.. _class_OS_method_open_with_program:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **open_with_program**\ (\ program_path\: :ref:`String<class_String>`, paths\: :ref:`PackedStringArray<class_PackedStringArray>`\ ) :ref:`🔗<class_OS_method_open_with_program>`
+
+Opens one or more files/directories with the specified application. The ``program_path`` specifies the path to the application to use for opening the files, and ``paths`` contains an array of file/directory paths to open.
+
+\ **Note:** This method is mostly only relevant for macOS, where opening files using :ref:`create_process()<class_OS_method_create_process>` might fail. On other platforms, this falls back to using :ref:`create_process()<class_OS_method_create_process>`.
+
+\ **Note:** On macOS, ``program_path`` should ideally be the path to an ``.app`` bundle.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_OS_method_read_buffer_from_stdin:
 
 .. rst-class:: classref-method
 
-:ref:`PackedByteArray<class_PackedByteArray>` **read_buffer_from_stdin**\ (\ buffer_size\: :ref:`int<class_int>`\ ) :ref:`🔗<class_OS_method_read_buffer_from_stdin>`
+:ref:`PackedByteArray<class_PackedByteArray>` **read_buffer_from_stdin**\ (\ buffer_size\: :ref:`int<class_int>` = 1024\ ) :ref:`🔗<class_OS_method_read_buffer_from_stdin>`
 
-Reads a user input as raw data from the standard input. This operation can be *blocking*, which causes the window to freeze if :ref:`read_string_from_stdin()<class_OS_method_read_string_from_stdin>` is called on the main thread.
+Reads a user input as raw data from the standard input. This operation can be *blocking*, which causes the window to freeze if :ref:`read_buffer_from_stdin()<class_OS_method_read_buffer_from_stdin>` is called on the main thread.
 
 - If standard input is console, this method will block until the program receives a line break in standard input (usually by the user pressing :kbd:`Enter`).
 
@@ -1691,7 +1735,7 @@ Reads a user input as raw data from the standard input. This operation can be *b
 
 .. rst-class:: classref-method
 
-:ref:`String<class_String>` **read_string_from_stdin**\ (\ buffer_size\: :ref:`int<class_int>`\ ) :ref:`🔗<class_OS_method_read_string_from_stdin>`
+:ref:`String<class_String>` **read_string_from_stdin**\ (\ buffer_size\: :ref:`int<class_int>` = 1024\ ) :ref:`🔗<class_OS_method_read_string_from_stdin>`
 
 Reads a user input as a UTF-8 encoded string from the standard input. This operation can be *blocking*, which causes the window to freeze if :ref:`read_string_from_stdin()<class_OS_method_read_string_from_stdin>` is called on the main thread.
 
@@ -1711,6 +1755,18 @@ Reads a user input as a UTF-8 encoded string from the standard input. This opera
 
 ----
 
+.. _class_OS_method_remove_logger:
+
+.. rst-class:: classref-method
+
+|void| **remove_logger**\ (\ logger\: :ref:`Logger<class_Logger>`\ ) :ref:`🔗<class_OS_method_remove_logger>`
+
+Remove a custom logger added by :ref:`add_logger()<class_OS_method_add_logger>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_OS_method_request_permission:
 
 .. rst-class:: classref-method
@@ -1725,9 +1781,11 @@ The ``name`` must be the full permission name. For example:
 
 - ``OS.request_permission("android.permission.POST_NOTIFICATIONS")``\ 
 
-\ **Note:** Permission must be checked during export.
+- ``OS.request_permission("macos.permission.RECORD_SCREEN")``\ 
 
-\ **Note:** This method is only implemented on Android.
+\ **Note:** On Android, permission must be checked during export.
+
+\ **Note:** This method is implemented on Android and macOS.
 
 .. rst-class:: classref-item-separator
 
@@ -1874,6 +1932,7 @@ Removes the given environment variable from the current environment, if it exist
 \ **Note:** Environment variable names are case-sensitive on all platforms except Windows.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

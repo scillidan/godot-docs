@@ -49,7 +49,7 @@ Properties
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+--------------------+
    | :ref:`bool<class_bool>`                                      | :ref:`floor_constant_speed<class_CharacterBody2D_property_floor_constant_speed>`   | ``false``          |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+--------------------+
-   | :ref:`float<class_float>`                                    | :ref:`floor_max_angle<class_CharacterBody2D_property_floor_max_angle>`             | ``0.785398``       |
+   | :ref:`float<class_float>`                                    | :ref:`floor_max_angle<class_CharacterBody2D_property_floor_max_angle>`             | ``0.7853982``      |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+--------------------+
    | :ref:`float<class_float>`                                    | :ref:`floor_snap_length<class_CharacterBody2D_property_floor_snap_length>`         | ``1.0``            |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+--------------------+
@@ -73,7 +73,7 @@ Properties
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+--------------------+
    | :ref:`Vector2<class_Vector2>`                                | :ref:`velocity<class_CharacterBody2D_property_velocity>`                           | ``Vector2(0, 0)``  |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+--------------------+
-   | :ref:`float<class_float>`                                    | :ref:`wall_min_slide_angle<class_CharacterBody2D_property_wall_min_slide_angle>`   | ``0.261799``       |
+   | :ref:`float<class_float>`                                    | :ref:`wall_min_slide_angle<class_CharacterBody2D_property_wall_min_slide_angle>`   | ``0.2617994``      |
    +--------------------------------------------------------------+------------------------------------------------------------------------------------+--------------------+
 
 .. rst-class:: classref-reftable-group
@@ -236,7 +236,7 @@ If ``true``, the body will always move at the same speed on the ground no matter
 
 .. rst-class:: classref-property
 
-:ref:`float<class_float>` **floor_max_angle** = ``0.785398`` :ref:`🔗<class_CharacterBody2D_property_floor_max_angle>`
+:ref:`float<class_float>` **floor_max_angle** = ``0.7853982`` :ref:`🔗<class_CharacterBody2D_property_floor_max_angle>`
 
 .. rst-class:: classref-property-setget
 
@@ -298,7 +298,7 @@ If ``false``, the body will slide on floor's slopes when :ref:`velocity<class_Ch
 - |void| **set_max_slides**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_max_slides**\ (\ )
 
-Maximum number of times the body can change direction before it stops when calling :ref:`move_and_slide()<class_CharacterBody2D_method_move_and_slide>`.
+Maximum number of times the body can change direction before it stops when calling :ref:`move_and_slide()<class_CharacterBody2D_method_move_and_slide>`. Must be greater than zero.
 
 .. rst-class:: classref-item-separator
 
@@ -315,7 +315,7 @@ Maximum number of times the body can change direction before it stops when calli
 - |void| **set_motion_mode**\ (\ value\: :ref:`MotionMode<enum_CharacterBody2D_MotionMode>`\ )
 - :ref:`MotionMode<enum_CharacterBody2D_MotionMode>` **get_motion_mode**\ (\ )
 
-Sets the motion mode which defines the behavior of :ref:`move_and_slide()<class_CharacterBody2D_method_move_and_slide>`. See :ref:`MotionMode<enum_CharacterBody2D_MotionMode>` constants for available modes.
+Sets the motion mode which defines the behavior of :ref:`move_and_slide()<class_CharacterBody2D_method_move_and_slide>`.
 
 .. rst-class:: classref-item-separator
 
@@ -349,7 +349,7 @@ Collision layers that will be included for detecting floor bodies that will act 
 - |void| **set_platform_on_leave**\ (\ value\: :ref:`PlatformOnLeave<enum_CharacterBody2D_PlatformOnLeave>`\ )
 - :ref:`PlatformOnLeave<enum_CharacterBody2D_PlatformOnLeave>` **get_platform_on_leave**\ (\ )
 
-Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied. See :ref:`PlatformOnLeave<enum_CharacterBody2D_PlatformOnLeave>` constants for available behavior.
+Sets the behavior to apply when you leave a moving platform. By default, to be physically accurate, when you leave the last platform velocity is applied.
 
 .. rst-class:: classref-item-separator
 
@@ -450,14 +450,14 @@ Current velocity vector in pixels per second, used and modified during calls to 
 
 .. rst-class:: classref-property
 
-:ref:`float<class_float>` **wall_min_slide_angle** = ``0.261799`` :ref:`🔗<class_CharacterBody2D_property_wall_min_slide_angle>`
+:ref:`float<class_float>` **wall_min_slide_angle** = ``0.2617994`` :ref:`🔗<class_CharacterBody2D_property_wall_min_slide_angle>`
 
 .. rst-class:: classref-property-setget
 
 - |void| **set_wall_min_slide_angle**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_wall_min_slide_angle**\ (\ )
 
-Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The default value equals 15 degrees. This property only affects movement when :ref:`motion_mode<class_CharacterBody2D_property_motion_mode>` is :ref:`MOTION_MODE_FLOATING<class_CharacterBody2D_constant_MOTION_MODE_FLOATING>`.
+Minimum angle (in radians) where the body is allowed to slide when it encounters a wall. The default value equals 15 degrees. This property only affects movement when :ref:`motion_mode<class_CharacterBody2D_property_motion_mode>` is :ref:`MOTION_MODE_FLOATING<class_CharacterBody2D_constant_MOTION_MODE_FLOATING>`.
 
 .. rst-class:: classref-section-separator
 
@@ -714,6 +714,7 @@ The general behavior and available properties change according to the :ref:`moti
 Returns ``true`` if the body collided, otherwise, returns ``false``.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

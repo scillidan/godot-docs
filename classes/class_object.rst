@@ -10,7 +10,7 @@
 Object
 ======
 
-**Inherited By:** :ref:`AudioServer<class_AudioServer>`, :ref:`CameraServer<class_CameraServer>`, :ref:`ClassDB<class_ClassDB>`, :ref:`DisplayServer<class_DisplayServer>`, :ref:`EditorFileSystemDirectory<class_EditorFileSystemDirectory>`, :ref:`EditorInterface<class_EditorInterface>`, :ref:`EditorPaths<class_EditorPaths>`, :ref:`EditorSelection<class_EditorSelection>`, :ref:`EditorUndoRedoManager<class_EditorUndoRedoManager>`, :ref:`EditorVCSInterface<class_EditorVCSInterface>`, :ref:`Engine<class_Engine>`, :ref:`EngineDebugger<class_EngineDebugger>`, :ref:`FramebufferCacheRD<class_FramebufferCacheRD>`, :ref:`GDExtensionManager<class_GDExtensionManager>`, :ref:`Geometry2D<class_Geometry2D>`, :ref:`Geometry3D<class_Geometry3D>`, :ref:`Input<class_Input>`, :ref:`InputMap<class_InputMap>`, :ref:`IP<class_IP>`, :ref:`JavaClassWrapper<class_JavaClassWrapper>`, :ref:`JavaScriptBridge<class_JavaScriptBridge>`, :ref:`JNISingleton<class_JNISingleton>`, :ref:`JSONRPC<class_JSONRPC>`, :ref:`MainLoop<class_MainLoop>`, :ref:`Marshalls<class_Marshalls>`, :ref:`MovieWriter<class_MovieWriter>`, :ref:`NativeMenu<class_NativeMenu>`, :ref:`NavigationMeshGenerator<class_NavigationMeshGenerator>`, :ref:`NavigationServer2D<class_NavigationServer2D>`, :ref:`NavigationServer3D<class_NavigationServer3D>`, :ref:`Node<class_Node>`, :ref:`OpenXRExtensionWrapperExtension<class_OpenXRExtensionWrapperExtension>`, :ref:`OpenXRInteractionProfileMetadata<class_OpenXRInteractionProfileMetadata>`, :ref:`OS<class_OS>`, :ref:`Performance<class_Performance>`, :ref:`PhysicsDirectBodyState2D<class_PhysicsDirectBodyState2D>`, :ref:`PhysicsDirectBodyState3D<class_PhysicsDirectBodyState3D>`, :ref:`PhysicsDirectSpaceState2D<class_PhysicsDirectSpaceState2D>`, :ref:`PhysicsDirectSpaceState3D<class_PhysicsDirectSpaceState3D>`, :ref:`PhysicsServer2D<class_PhysicsServer2D>`, :ref:`PhysicsServer2DManager<class_PhysicsServer2DManager>`, :ref:`PhysicsServer3D<class_PhysicsServer3D>`, :ref:`PhysicsServer3DManager<class_PhysicsServer3DManager>`, :ref:`PhysicsServer3DRenderingServerHandler<class_PhysicsServer3DRenderingServerHandler>`, :ref:`ProjectSettings<class_ProjectSettings>`, :ref:`RefCounted<class_RefCounted>`, :ref:`RenderData<class_RenderData>`, :ref:`RenderingDevice<class_RenderingDevice>`, :ref:`RenderingServer<class_RenderingServer>`, :ref:`RenderSceneData<class_RenderSceneData>`, :ref:`ResourceLoader<class_ResourceLoader>`, :ref:`ResourceSaver<class_ResourceSaver>`, :ref:`ResourceUID<class_ResourceUID>`, :ref:`ScriptLanguage<class_ScriptLanguage>`, :ref:`ShaderIncludeDB<class_ShaderIncludeDB>`, :ref:`TextServerManager<class_TextServerManager>`, :ref:`ThemeDB<class_ThemeDB>`, :ref:`TileData<class_TileData>`, :ref:`Time<class_Time>`, :ref:`TranslationServer<class_TranslationServer>`, :ref:`TreeItem<class_TreeItem>`, :ref:`UndoRedo<class_UndoRedo>`, :ref:`UniformSetCacheRD<class_UniformSetCacheRD>`, :ref:`WorkerThreadPool<class_WorkerThreadPool>`, :ref:`XRServer<class_XRServer>`, :ref:`XRVRS<class_XRVRS>`
+**Inherited By:** :ref:`AudioServer<class_AudioServer>`, :ref:`CameraServer<class_CameraServer>`, :ref:`ClassDB<class_ClassDB>`, :ref:`DisplayServer<class_DisplayServer>`, :ref:`EditorFileSystemDirectory<class_EditorFileSystemDirectory>`, :ref:`EditorInterface<class_EditorInterface>`, :ref:`EditorPaths<class_EditorPaths>`, :ref:`EditorSelection<class_EditorSelection>`, :ref:`EditorUndoRedoManager<class_EditorUndoRedoManager>`, :ref:`EditorVCSInterface<class_EditorVCSInterface>`, :ref:`Engine<class_Engine>`, :ref:`EngineDebugger<class_EngineDebugger>`, :ref:`FramebufferCacheRD<class_FramebufferCacheRD>`, :ref:`GDExtensionManager<class_GDExtensionManager>`, :ref:`Geometry2D<class_Geometry2D>`, :ref:`Geometry3D<class_Geometry3D>`, :ref:`Input<class_Input>`, :ref:`InputMap<class_InputMap>`, :ref:`IP<class_IP>`, :ref:`JavaClassWrapper<class_JavaClassWrapper>`, :ref:`JavaScriptBridge<class_JavaScriptBridge>`, :ref:`JNISingleton<class_JNISingleton>`, :ref:`JSONRPC<class_JSONRPC>`, :ref:`MainLoop<class_MainLoop>`, :ref:`Marshalls<class_Marshalls>`, :ref:`MovieWriter<class_MovieWriter>`, :ref:`NativeMenu<class_NativeMenu>`, :ref:`NavigationMeshGenerator<class_NavigationMeshGenerator>`, :ref:`NavigationServer2D<class_NavigationServer2D>`, :ref:`NavigationServer3D<class_NavigationServer3D>`, :ref:`Node<class_Node>`, :ref:`OpenXRExtensionWrapper<class_OpenXRExtensionWrapper>`, :ref:`OpenXRInteractionProfileMetadata<class_OpenXRInteractionProfileMetadata>`, :ref:`OS<class_OS>`, :ref:`Performance<class_Performance>`, :ref:`PhysicsDirectBodyState2D<class_PhysicsDirectBodyState2D>`, :ref:`PhysicsDirectBodyState3D<class_PhysicsDirectBodyState3D>`, :ref:`PhysicsDirectSpaceState2D<class_PhysicsDirectSpaceState2D>`, :ref:`PhysicsDirectSpaceState3D<class_PhysicsDirectSpaceState3D>`, :ref:`PhysicsServer2D<class_PhysicsServer2D>`, :ref:`PhysicsServer2DManager<class_PhysicsServer2DManager>`, :ref:`PhysicsServer3D<class_PhysicsServer3D>`, :ref:`PhysicsServer3DManager<class_PhysicsServer3DManager>`, :ref:`PhysicsServer3DRenderingServerHandler<class_PhysicsServer3DRenderingServerHandler>`, :ref:`ProjectSettings<class_ProjectSettings>`, :ref:`RefCounted<class_RefCounted>`, :ref:`RenderData<class_RenderData>`, :ref:`RenderingDevice<class_RenderingDevice>`, :ref:`RenderingServer<class_RenderingServer>`, :ref:`RenderSceneData<class_RenderSceneData>`, :ref:`ResourceLoader<class_ResourceLoader>`, :ref:`ResourceSaver<class_ResourceSaver>`, :ref:`ResourceUID<class_ResourceUID>`, :ref:`ScriptLanguage<class_ScriptLanguage>`, :ref:`ShaderIncludeDB<class_ShaderIncludeDB>`, :ref:`TextServerManager<class_TextServerManager>`, :ref:`ThemeDB<class_ThemeDB>`, :ref:`TileData<class_TileData>`, :ref:`Time<class_Time>`, :ref:`TranslationServer<class_TranslationServer>`, :ref:`TreeItem<class_TreeItem>`, :ref:`UndoRedo<class_UndoRedo>`, :ref:`UniformSetCacheRD<class_UniformSetCacheRD>`, :ref:`WorkerThreadPool<class_WorkerThreadPool>`, :ref:`XRServer<class_XRServer>`, :ref:`XRVRS<class_XRVRS>`
 
 Base class for all other classes in the engine.
 
@@ -274,6 +274,14 @@ One-shot connections disconnect themselves after emission.
 
 Reference-counted connections can be assigned to the same :ref:`Callable<class_Callable>` multiple times. Each disconnection decreases the internal counter. The signal fully disconnects only when the counter reaches 0.
 
+.. _class_Object_constant_CONNECT_APPEND_SOURCE_OBJECT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ConnectFlags<enum_Object_ConnectFlags>` **CONNECT_APPEND_SOURCE_OBJECT** = ``16``
+
+The source object is automatically bound when a :ref:`PackedScene<class_PackedScene>` is instantiated. If this flag bit is enabled, the source object will be appended right after the original arguments of the signal.
+
 .. rst-class:: classref-section-separator
 
 ----
@@ -335,7 +343,7 @@ Combined with :ref:`_set()<class_Object_private_method__set>` and :ref:`_get_pro
         if property == "fake_property":
             print("Getting my property!")
             return 4
-    
+
     func _get_property_list():
         return [
             { "name": "fake_property", "type": TYPE_INT }
@@ -352,7 +360,7 @@ Combined with :ref:`_set()<class_Object_private_method__set>` and :ref:`_get_pro
         }
         return default;
     }
-    
+
     public override Godot.Collections.Array<Godot.Collections.Dictionary> _GetPropertyList()
     {
         return
@@ -392,18 +400,18 @@ The example below displays a list of numbers shown as words going from ``ZERO`` 
 
     @tool
     extends Node
-    
+
     @export var number_count = 3:
         set(nc):
             number_count = nc
             numbers.resize(number_count)
             notify_property_list_changed()
-    
+
     var numbers = PackedInt32Array([0, 0, 0])
-    
+
     func _get_property_list():
         var properties = []
-    
+
         for i in range(number_count):
             properties.append({
                 "name": "number_%d" % i,
@@ -411,14 +419,14 @@ The example below displays a list of numbers shown as words going from ``ZERO`` 
                 "hint": PROPERTY_HINT_ENUM,
                 "hint_string": "ZERO,ONE,TWO,THREE,FOUR,FIVE",
             })
-    
+
         return properties
-    
+
     func _get(property):
         if property.begins_with("number_"):
             var index = property.get_slice("_", 1).to_int()
             return numbers[index]
-    
+
     func _set(property, value):
         if property.begins_with("number_"):
             var index = property.get_slice("_", 1).to_int()
@@ -432,7 +440,7 @@ The example below displays a list of numbers shown as words going from ``ZERO`` 
     public partial class MyNode : Node
     {
         private int _numberCount;
-    
+
         [Export]
         public int NumberCount
         {
@@ -444,13 +452,13 @@ The example below displays a list of numbers shown as words going from ``ZERO`` 
                 NotifyPropertyListChanged();
             }
         }
-    
+
         private Godot.Collections.Array<int> _numbers = [];
-    
+
         public override Godot.Collections.Array<Godot.Collections.Dictionary> _GetPropertyList()
         {
             Godot.Collections.Array<Godot.Collections.Dictionary> properties = [];
-    
+
             for (int i = 0; i < _numberCount; i++)
             {
                 properties.Add(new Godot.Collections.Dictionary()
@@ -461,10 +469,10 @@ The example below displays a list of numbers shown as words going from ``ZERO`` 
                     { "hint_string", "Zero,One,Two,Three,Four,Five" },
                 });
             }
-    
+
             return properties;
         }
-    
+
         public override Variant _Get(StringName property)
         {
             string propertyName = property.ToString();
@@ -475,7 +483,7 @@ The example below displays a list of numbers shown as words going from ``ZERO`` 
             }
             return default;
         }
-    
+
         public override bool _Set(StringName property, Variant value)
         {
             string propertyName = property.ToString();
@@ -521,6 +529,8 @@ Called when the object's script is instantiated, oftentimes after the object is 
 
 Returns the current iterable value. ``iter`` stores the iteration state, but unlike :ref:`_iter_init()<class_Object_private_method__iter_init>` and :ref:`_iter_next()<class_Object_private_method__iter_next>` the state is supposed to be read-only, so there is no :ref:`Array<class_Array>` wrapper.
 
+\ **Tip:** In GDScript, you can use a subtype of :ref:`Variant<class_Variant>` as the return type for :ref:`_iter_get()<class_Object_private_method__iter_get>`. The specified type will be used to set the type of the iterator variable in ``for`` loops, enhancing type safety.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -533,30 +543,28 @@ Returns the current iterable value. ``iter`` stores the iteration state, but unl
 
 Initializes the iterator. ``iter`` stores the iteration state. Since GDScript does not support passing arguments by reference, a single-element array is used as a wrapper. Returns ``true`` so long as the iterator has not reached the end.
 
-Example:
-
 ::
 
     class MyRange:
         var _from
         var _to
-    
+
         func _init(from, to):
             assert(from <= to)
             _from = from
             _to = to
-    
+
         func _iter_init(iter):
             iter[0] = _from
             return iter[0] < _to
-    
+
         func _iter_next(iter):
             iter[0] += 1
             return iter[0] < _to
-    
+
         func _iter_get(iter):
             return iter
-    
+
     func _ready():
         var my_range = MyRange.new(2, 5)
         for x in my_range:
@@ -659,14 +667,14 @@ Combined with :ref:`_get()<class_Object_private_method__get>` and :ref:`_get_pro
  .. code-tab:: gdscript
 
     var internal_data = {}
-    
+
     func _set(property, value):
         if property == "fake_property":
             # Storing the value in the fake property.
             internal_data["fake_property"] = value
             return true
         return false
-    
+
     func _get_property_list():
         return [
             { "name": "fake_property", "type": TYPE_INT }
@@ -675,7 +683,7 @@ Combined with :ref:`_get()<class_Object_private_method__get>` and :ref:`_get_pro
  .. code-tab:: csharp
 
     private Godot.Collections.Dictionary _internalData = new Godot.Collections.Dictionary();
-    
+
     public override bool _Set(StringName property, Variant value)
     {
         if (property == "FakeProperty")
@@ -684,10 +692,10 @@ Combined with :ref:`_get()<class_Object_private_method__get>` and :ref:`_get_pro
             _internalData["FakeProperty"] = value;
             return true;
         }
-    
+
         return false;
     }
-    
+
     public override Godot.Collections.Array<Godot.Collections.Dictionary> _GetPropertyList()
     {
         return
@@ -718,7 +726,7 @@ Override this method to customize the return value of :ref:`to_string()<class_Ob
 
     func _to_string():
         return "Welcome to Godot 4!"
-    
+
     func _init():
         print(self)       # Prints "Welcome to Godot 4!"
         var a = str(self) # a is "Welcome to Godot 4!"
@@ -742,13 +750,13 @@ Override this method to customize existing properties. Every property info goes 
 
     @tool
     extends Node
-    
+
     @export var is_number_editable: bool:
         set(value):
             is_number_editable = value
             notify_property_list_changed()
     @export var number: int
-    
+
     func _validate_property(property: Dictionary):
         if property.name == "number" and not is_number_editable:
             property.usage |= PROPERTY_USAGE_READ_ONLY
@@ -759,7 +767,7 @@ Override this method to customize existing properties. Every property info goes 
     public partial class MyNode : Node
     {
         private bool _isNumberEditable;
-    
+
         [Export]
         public bool IsNumberEditable
         {
@@ -770,10 +778,10 @@ Override this method to customize existing properties. Every property info goes 
                 NotifyPropertyListChanged();
             }
         }
-    
+
         [Export]
         public int Number { get; set; }
-    
+
         public override void _ValidateProperty(Godot.Collections.Dictionary property)
         {
             if (property["name"].AsStringName() == PropertyName.Number && !IsNumberEditable)
@@ -966,155 +974,13 @@ If this method is called during :ref:`NOTIFICATION_PREDELETE<class_Object_consta
 
 Connects a ``signal`` by name to a ``callable``. Optional ``flags`` can be also added to configure the connection's behavior (see :ref:`ConnectFlags<enum_Object_ConnectFlags>` constants).
 
-A signal can only be connected once to the same :ref:`Callable<class_Callable>`. If the signal is already connected, this method returns :ref:`@GlobalScope.ERR_INVALID_PARAMETER<class_@GlobalScope_constant_ERR_INVALID_PARAMETER>` and pushes an error message, unless the signal is connected with :ref:`CONNECT_REFERENCE_COUNTED<class_Object_constant_CONNECT_REFERENCE_COUNTED>`. To prevent this, use :ref:`is_connected()<class_Object_method_is_connected>` first to check for existing connections.
+A signal can only be connected once to the same :ref:`Callable<class_Callable>`. If the signal is already connected, this method returns :ref:`@GlobalScope.ERR_INVALID_PARAMETER<class_@GlobalScope_constant_ERR_INVALID_PARAMETER>` and generates an error, unless the signal is connected with :ref:`CONNECT_REFERENCE_COUNTED<class_Object_constant_CONNECT_REFERENCE_COUNTED>`. To prevent this, use :ref:`is_connected()<class_Object_method_is_connected>` first to check for existing connections.
 
-If the ``callable``'s object is freed, the connection will be lost.
+\ **Note:** If the ``callable``'s object is freed, the connection will be lost.
 
-\ **Examples with recommended syntax:**\ 
+\ **Note:** In GDScript, it is generally recommended to connect signals with :ref:`Signal.connect()<class_Signal_method_connect>` instead.
 
-Connecting signals is one of the most common operations in Godot and the API gives many options to do so, which are described further down. The code block below shows the recommended approach.
-
-
-.. tabs::
-
- .. code-tab:: gdscript
-
-    func _ready():
-        var button = Button.new()
-        # `button_down` here is a Signal variant type, and we thus call the Signal.connect() method, not Object.connect().
-        # See discussion below for a more in-depth overview of the API.
-        button.button_down.connect(_on_button_down)
-    
-        # This assumes that a `Player` class exists, which defines a `hit` signal.
-        var player = Player.new()
-        # We use Signal.connect() again, and we also use the Callable.bind() method,
-        # which returns a new Callable with the parameter binds.
-        player.hit.connect(_on_player_hit.bind("sword", 100))
-    
-    func _on_button_down():
-        print("Button down!")
-    
-    func _on_player_hit(weapon_type, damage):
-        print("Hit with weapon %s for %d damage." % [weapon_type, damage])
-
- .. code-tab:: csharp
-
-    public override void _Ready()
-    {
-        var button = new Button();
-        // C# supports passing signals as events, so we can use this idiomatic construct:
-        button.ButtonDown += OnButtonDown;
-    
-        // This assumes that a `Player` class exists, which defines a `Hit` signal.
-        var player = new Player();
-        // We can use lambdas when we need to bind additional parameters.
-        player.Hit += () => OnPlayerHit("sword", 100);
-    }
-    
-    private void OnButtonDown()
-    {
-        GD.Print("Button down!");
-    }
-    
-    private void OnPlayerHit(string weaponType, int damage)
-    {
-        GD.Print($"Hit with weapon {weaponType} for {damage} damage.");
-    }
-
-
-
-\ **\ ``Object.connect()`` or ``Signal.connect()``?**\ 
-
-As seen above, the recommended method to connect signals is not :ref:`connect()<class_Object_method_connect>`. The code block below shows the four options for connecting signals, using either this legacy method or the recommended :ref:`Signal.connect()<class_Signal_method_connect>`, and using either an implicit :ref:`Callable<class_Callable>` or a manually defined one.
-
-
-.. tabs::
-
- .. code-tab:: gdscript
-
-    func _ready():
-        var button = Button.new()
-        # Option 1: Object.connect() with an implicit Callable for the defined function.
-        button.connect("button_down", _on_button_down)
-        # Option 2: Object.connect() with a constructed Callable using a target object and method name.
-        button.connect("button_down", Callable(self, "_on_button_down"))
-        # Option 3: Signal.connect() with an implicit Callable for the defined function.
-        button.button_down.connect(_on_button_down)
-        # Option 4: Signal.connect() with a constructed Callable using a target object and method name.
-        button.button_down.connect(Callable(self, "_on_button_down"))
-    
-    func _on_button_down():
-        print("Button down!")
-
- .. code-tab:: csharp
-
-    public override void _Ready()
-    {
-        var button = new Button();
-        // Option 1: In C#, we can use signals as events and connect with this idiomatic syntax:
-        button.ButtonDown += OnButtonDown;
-        // Option 2: GodotObject.Connect() with a constructed Callable from a method group.
-        button.Connect(Button.SignalName.ButtonDown, Callable.From(OnButtonDown));
-        // Option 3: GodotObject.Connect() with a constructed Callable using a target object and method name.
-        button.Connect(Button.SignalName.ButtonDown, new Callable(this, MethodName.OnButtonDown));
-    }
-    
-    private void OnButtonDown()
-    {
-        GD.Print("Button down!");
-    }
-
-
-
-While all options have the same outcome (``button``'s :ref:`BaseButton.button_down<class_BaseButton_signal_button_down>` signal will be connected to ``_on_button_down``), **option 3** offers the best validation: it will print a compile-time error if either the ``button_down`` :ref:`Signal<class_Signal>` or the ``_on_button_down`` :ref:`Callable<class_Callable>` are not defined. On the other hand, **option 2** only relies on string names and will only be able to validate either names at runtime: it will print a runtime error if ``"button_down"`` doesn't correspond to a signal, or if ``"_on_button_down"`` is not a registered method in the object ``self``. The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to connect signals programmatically based on strings read from a configuration file). Otherwise, option 3 is the recommended (and fastest) method.
-
-\ **Binding and passing parameters:**\ 
-
-The syntax to bind parameters is through :ref:`Callable.bind()<class_Callable_method_bind>`, which returns a copy of the :ref:`Callable<class_Callable>` with its parameters bound.
-
-When calling :ref:`emit_signal()<class_Object_method_emit_signal>` or :ref:`Signal.emit()<class_Signal_method_emit>`, the signal parameters can be also passed. The examples below show the relationship between these signal parameters and bound parameters.
-
-
-.. tabs::
-
- .. code-tab:: gdscript
-
-    func _ready():
-        # This assumes that a `Player` class exists, which defines a `hit` signal.
-        var player = Player.new()
-        # Using Callable.bind().
-        player.hit.connect(_on_player_hit.bind("sword", 100))
-    
-        # Parameters added when emitting the signal are passed first.
-        player.hit.emit("Dark lord", 5)
-    
-    # We pass two arguments when emitting (`hit_by`, `level`),
-    # and bind two more arguments when connecting (`weapon_type`, `damage`).
-    func _on_player_hit(hit_by, level, weapon_type, damage):
-        print("Hit by %s (level %d) with weapon %s for %d damage." % [hit_by, level, weapon_type, damage])
-
- .. code-tab:: csharp
-
-    public override void _Ready()
-    {
-        // This assumes that a `Player` class exists, which defines a `Hit` signal.
-        var player = new Player();
-        // Using lambda expressions that create a closure that captures the additional parameters.
-        // The lambda only receives the parameters defined by the signal's delegate.
-        player.Hit += (hitBy, level) => OnPlayerHit(hitBy, level, "sword", 100);
-    
-        // Parameters added when emitting the signal are passed first.
-        player.EmitSignal(SignalName.Hit, "Dark lord", 5);
-    }
-    
-    // We pass two arguments when emitting (`hit_by`, `level`),
-    // and bind two more arguments when connecting (`weapon_type`, `damage`).
-    private void OnPlayerHit(string hitBy, int level, string weaponType, int damage)
-    {
-        GD.Print($"Hit by {hitBy} (level {level}) with weapon {weaponType} for {damage} damage.");
-    }
-
-
+\ **Note:** This operation (and all other signal related operations) is thread-safe.
 
 .. rst-class:: classref-item-separator
 
@@ -1169,7 +1035,7 @@ Returns :ref:`@GlobalScope.ERR_UNAVAILABLE<class_@GlobalScope_constant_ERR_UNAVA
 
 |void| **free**\ (\ ) :ref:`🔗<class_Object_method_free>`
 
-Deletes the object from memory. Pre-existing references to the object become invalid, and any attempt to access them will result in a run-time error. Checking the references with :ref:`@GlobalScope.is_instance_valid()<class_@GlobalScope_method_is_instance_valid>` will return ``false``.
+Deletes the object from memory. Pre-existing references to the object become invalid, and any attempt to access them will result in a runtime error. Checking the references with :ref:`@GlobalScope.is_instance_valid()<class_@GlobalScope_method_is_instance_valid>` will return ``false``. This is equivalent to the ``memdelete`` function in GDExtension C++.
 
 .. rst-class:: classref-item-separator
 
@@ -1597,10 +1463,10 @@ If ``reversed`` is ``true``, the call order is reversed.
 
     var player = Node2D.new()
     player.set_script(load("res://player.gd"))
-    
+
     player.notification(NOTIFICATION_ENTER_TREE)
     # The call order is Object -> Node -> Node2D -> player.gd.
-    
+
     player.notification(NOTIFICATION_ENTER_TREE, true)
     # The call order is player.gd -> Node2D -> Node -> Object.
 
@@ -1608,10 +1474,10 @@ If ``reversed`` is ``true``, the call order is reversed.
 
     var player = new Node2D();
     player.SetScript(GD.Load("res://player.gd"));
-    
+
     player.Notification(NotificationEnterTree);
     // The call order is GodotObject -> Node -> Node2D -> player.gd.
-    
+
     player.Notification(NotificationEnterTree, true);
     // The call order is player.gd -> Node2D -> Node -> GodotObject.
 
@@ -1747,11 +1613,11 @@ Assigns ``value`` to the given ``property``, at the end of the current frame. Th
 
     var node = Node2D.new()
     add_child(node)
-    
+
     node.rotation = 1.5
     node.set_deferred("rotation", 3.0)
     print(node.rotation) # Prints 1.5
-    
+
     await get_tree().process_frame
     print(node.rotation) # Prints 3.0
 
@@ -1761,7 +1627,7 @@ Assigns ``value`` to the given ``property``, at the end of the current frame. Th
     node.Rotation = 1.5f;
     node.SetDeferred(Node2D.PropertyName.Rotation, 3f);
     GD.Print(node.Rotation); // Prints 1.5
-    
+
     await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
     GD.Print(node.Rotation); // Prints 3.0
 
@@ -1911,6 +1777,7 @@ For detailed examples, see :doc:`Localization using gettext <../tutorials/i18n/l
 \ **Note:** This method can't be used without an **Object** instance, as it requires the :ref:`can_translate_messages()<class_Object_method_can_translate_messages>` method. To translate strings in a static context, use :ref:`TranslationServer.translate_plural()<class_TranslationServer_method_translate_plural>`.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

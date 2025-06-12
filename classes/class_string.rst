@@ -195,11 +195,19 @@ Methods
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                         | :ref:`pad_zeros<class_String_method_pad_zeros>`\ (\ digits\: :ref:`int<class_int>`\ ) |const|                                                                                             |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`                         | :ref:`path_join<class_String_method_path_join>`\ (\ file\: :ref:`String<class_String>`\ ) |const|                                                                                         |
+   | :ref:`String<class_String>`                         | :ref:`path_join<class_String_method_path_join>`\ (\ path\: :ref:`String<class_String>`\ ) |const|                                                                                         |
+   +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                         | :ref:`remove_char<class_String_method_remove_char>`\ (\ what\: :ref:`int<class_int>`\ ) |const|                                                                                           |
+   +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                         | :ref:`remove_chars<class_String_method_remove_chars>`\ (\ chars\: :ref:`String<class_String>`\ ) |const|                                                                                  |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                         | :ref:`repeat<class_String_method_repeat>`\ (\ count\: :ref:`int<class_int>`\ ) |const|                                                                                                    |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                         | :ref:`replace<class_String_method_replace>`\ (\ what\: :ref:`String<class_String>`, forwhat\: :ref:`String<class_String>`\ ) |const|                                                      |
+   +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                         | :ref:`replace_char<class_String_method_replace_char>`\ (\ key\: :ref:`int<class_int>`, with\: :ref:`int<class_int>`\ ) |const|                                                            |
+   +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                         | :ref:`replace_chars<class_String_method_replace_chars>`\ (\ keys\: :ref:`String<class_String>`, with\: :ref:`int<class_int>`\ ) |const|                                                   |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                         | :ref:`replacen<class_String_method_replacen>`\ (\ what\: :ref:`String<class_String>`, forwhat\: :ref:`String<class_String>`\ ) |const|                                                    |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -247,7 +255,11 @@ Methods
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                               | :ref:`to_int<class_String_method_to_int>`\ (\ ) |const|                                                                                                                                   |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                         | :ref:`to_kebab_case<class_String_method_to_kebab_case>`\ (\ ) |const|                                                                                                                     |
+   +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                         | :ref:`to_lower<class_String_method_to_lower>`\ (\ ) |const|                                                                                                                               |
+   +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`PackedByteArray<class_PackedByteArray>`       | :ref:`to_multibyte_char_buffer<class_String_method_to_multibyte_char_buffer>`\ (\ encoding\: :ref:`String<class_String>` = ""\ ) |const|                                                  |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                         | :ref:`to_pascal_case<class_String_method_to_pascal_case>`\ (\ ) |const|                                                                                                                   |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -272,6 +284,8 @@ Methods
    | :ref:`String<class_String>`                         | :ref:`uri_decode<class_String_method_uri_decode>`\ (\ ) |const|                                                                                                                           |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                         | :ref:`uri_encode<class_String_method_uri_encode>`\ (\ ) |const|                                                                                                                           |
+   +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                         | :ref:`uri_file_decode<class_String_method_uri_file_decode>`\ (\ ) |const|                                                                                                                 |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                         | :ref:`validate_filename<class_String_method_validate_filename>`\ (\ ) |const|                                                                                                             |
    +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -492,7 +506,7 @@ Changes the appearance of the string: replaces underscores (``_``) with spaces, 
 
 Performs a case-sensitive comparison to another string. Returns ``-1`` if less than, ``1`` if greater than, or ``0`` if equal. "Less than" and "greater than" are determined by the `Unicode code points <https://en.wikipedia.org/wiki/List_of_Unicode_characters>`__ of each string, which roughly matches the alphabetical order.
 
-With different string lengths, returns ``1`` if this string is longer than the ``to`` string, or ``-1`` if shorter. Note that the length of empty strings is *always* ``0``.
+If the character comparison reaches the end of one string, but the other string contains more characters, then it will use length as the deciding factor: ``1`` will be returned if this string is longer than the ``to`` string, or ``-1`` if shorter. Note that the length of empty strings is always ``0``.
 
 To get a :ref:`bool<class_bool>` result from a string comparison, use the ``==`` operator instead. See also :ref:`nocasecmp_to()<class_String_method_nocasecmp_to>`, :ref:`filecasecmp_to()<class_String_method_filecasecmp_to>`, and :ref:`naturalcasecmp_to()<class_String_method_naturalcasecmp_to>`.
 
@@ -663,7 +677,7 @@ Returns the index of the **first** occurrence of ``what`` in this string, or ``-
  .. code-tab:: gdscript
 
     print("Team".find("I")) # Prints -1
-    
+
     print("Potato".find("t"))    # Prints 2
     print("Potato".find("t", 3)) # Prints 4
     print("Potato".find("t", 5)) # Prints -1
@@ -671,7 +685,7 @@ Returns the index of the **first** occurrence of ``what`` in this string, or ``-
  .. code-tab:: csharp
 
     GD.Print("Team".Find("I")); // Prints -1
-    
+
     GD.Print("Potato".Find("t"));    // Prints 2
     GD.Print("Potato".Find("t", 3)); // Prints 4
     GD.Print("Potato".Find("t", 5)); // Prints -1
@@ -711,7 +725,7 @@ Formats the string by replacing all occurrences of ``placeholder`` with the elem
     # Prints "Waiting for Godot is a play by Samuel Beckett, and Godot Engine is named after it."
     var use_array_values = "Waiting for {0} is a play by {1}, and {0} Engine is named after it."
     print(use_array_values.format(["Godot", "Samuel Beckett"]))
-    
+
     # Prints "User 42 is Godot."
     print("User {id} is {name}.".format({"id": 42, "name": "Godot"}))
 
@@ -794,7 +808,7 @@ If the string is a valid file name or path, returns the file extension without t
     var b = "cool.txt".get_extension()          # b is "txt"
     var c = "cool.font.tres".get_extension()    # c is "tres"
     var d = ".pack1".get_extension()            # d is "pack1"
-    
+
     var e = "file.txt.".get_extension()  # e is ""
     var f = "file.txt..".get_extension() # f is ""
     var g = "txt".get_extension()        # g is ""
@@ -893,13 +907,13 @@ Decodes a hexadecimal string as a :ref:`PackedByteArray<class_PackedByteArray>`.
 
     var text = "hello world"
     var encoded = text.to_utf8_buffer().hex_encode() # outputs "68656c6c6f20776f726c64"
-    print(buf.hex_decode().get_string_from_utf8())
+    print(encoded.hex_decode().get_string_from_utf8())
 
  .. code-tab:: csharp
 
     var text = "hello world";
     var encoded = text.ToUtf8Buffer().HexEncode(); // outputs "68656c6c6f20776f726c64"
-    GD.Print(buf.HexDecode().GetStringFromUtf8());
+    GD.Print(encoded.HexDecode().GetStringFromUtf8());
 
 
 
@@ -1018,12 +1032,12 @@ Returns ``true`` if the string is a path, and its starting point is dependent on
 
 :ref:`bool<class_bool>` **is_subsequence_of**\ (\ text\: :ref:`String<class_String>`\ ) |const| :ref:`🔗<class_String_method_is_subsequence_of>`
 
-Returns ``true`` if all characters of this string can be found in ``text`` in their original order.
+Returns ``true`` if all characters of this string can be found in ``text`` in their original order. This is not the same as :ref:`contains()<class_String_method_contains>`.
 
 ::
 
     var text = "Wow, incredible!"
-    
+
     print("inedible".is_subsequence_of(text)) # Prints true
     print("Word!".is_subsequence_of(text))    # Prints true
     print("Window".is_subsequence_of(text))   # Prints false
@@ -1039,7 +1053,7 @@ Returns ``true`` if all characters of this string can be found in ``text`` in th
 
 :ref:`bool<class_bool>` **is_subsequence_ofn**\ (\ text\: :ref:`String<class_String>`\ ) |const| :ref:`🔗<class_String_method_is_subsequence_ofn>`
 
-Returns ``true`` if all characters of this string can be found in ``text`` in their original order, **ignoring case**.
+Returns ``true`` if all characters of this string can be found in ``text`` in their original order, **ignoring case**. This is not the same as :ref:`containsn()<class_String_method_containsn>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1072,7 +1086,7 @@ See also :ref:`is_valid_unicode_identifier()<class_String_method_is_valid_unicod
 
 :ref:`bool<class_bool>` **is_valid_filename**\ (\ ) |const| :ref:`🔗<class_String_method_is_valid_filename>`
 
-Returns ``true`` if this string does not contain characters that are not allowed in file names (``:`` ``/`` ``\`` ``?`` ``*`` ``"`` ``|`` ``%`` ``<`` ``>``).
+Returns ``true`` if this string is a valid file name. A valid file name cannot be empty, begin or end with space characters, or contain characters that are not allowed (``:`` ``/`` ``\`` ``?`` ``*`` ``"`` ``|`` ``%`` ``<`` ``>``).
 
 .. rst-class:: classref-item-separator
 
@@ -1112,7 +1126,7 @@ If ``with_prefix`` is ``true``, the hexadecimal number needs to prefixed by ``"0
     print("A08E".is_valid_hex_number())    # Prints true
     print("-AbCdEf".is_valid_hex_number()) # Prints true
     print("2.5".is_valid_hex_number())     # Prints false
-    
+
     print("0xDEADC0DE".is_valid_hex_number(true)) # Prints true
 
 .. rst-class:: classref-item-separator
@@ -1225,14 +1239,14 @@ Returns the concatenation of ``parts``' elements, with each element separated by
  .. code-tab:: gdscript
 
     var fruits = ["Apple", "Orange", "Pear", "Kiwi"]
-    
+
     print(", ".join(fruits))  # Prints "Apple, Orange, Pear, Kiwi"
     print("---".join(fruits)) # Prints "Apple---Orange---Pear---Kiwi"
 
  .. code-tab:: csharp
 
     string[] fruits = ["Apple", "Orange", "Pear", "Kiwi"];
-    
+
     // In C#, this method is static.
     GD.Print(string.Join(", ", fruits));  // Prints "Apple, Orange, Pear, Kiwi"
     GD.Print(string.Join("---", fruits)); // Prints "Apple---Orange---Pear---Kiwi"
@@ -1368,7 +1382,7 @@ Performs a **case-sensitive**, *natural order* comparison to another string. Ret
 
 When used for sorting, natural order comparison orders sequences of numbers by the combined value of each digit as is often expected, instead of the single digit's value. A sorted sequence of numbered strings will be ``["1", "2", "3", ...]``, not ``["1", "10", "2", "3", ...]``.
 
-With different string lengths, returns ``1`` if this string is longer than the ``to`` string, or ``-1`` if shorter. Note that the length of empty strings is *always* ``0``.
+If the character comparison reaches the end of one string, but the other string contains more characters, then it will use length as the deciding factor: ``1`` will be returned if this string is longer than the ``to`` string, or ``-1`` if shorter. Note that the length of empty strings is always ``0``.
 
 To get a :ref:`bool<class_bool>` result from a string comparison, use the ``==`` operator instead. See also :ref:`naturalnocasecmp_to()<class_String_method_naturalnocasecmp_to>`, :ref:`filecasecmp_to()<class_String_method_filecasecmp_to>`, and :ref:`nocasecmp_to()<class_String_method_nocasecmp_to>`.
 
@@ -1386,7 +1400,7 @@ Performs a **case-insensitive**, *natural order* comparison to another string. R
 
 When used for sorting, natural order comparison orders sequences of numbers by the combined value of each digit as is often expected, instead of the single digit's value. A sorted sequence of numbered strings will be ``["1", "2", "3", ...]``, not ``["1", "10", "2", "3", ...]``.
 
-With different string lengths, returns ``1`` if this string is longer than the ``to`` string, or ``-1`` if shorter. Note that the length of empty strings is *always* ``0``.
+If the character comparison reaches the end of one string, but the other string contains more characters, then it will use length as the deciding factor: ``1`` will be returned if this string is longer than the ``to`` string, or ``-1`` if shorter. Note that the length of empty strings is always ``0``.
 
 To get a :ref:`bool<class_bool>` result from a string comparison, use the ``==`` operator instead. See also :ref:`naturalcasecmp_to()<class_String_method_naturalcasecmp_to>`, :ref:`filenocasecmp_to()<class_String_method_filenocasecmp_to>`, and :ref:`casecmp_to()<class_String_method_casecmp_to>`.
 
@@ -1402,7 +1416,7 @@ To get a :ref:`bool<class_bool>` result from a string comparison, use the ``==``
 
 Performs a **case-insensitive** comparison to another string. Returns ``-1`` if less than, ``1`` if greater than, or ``0`` if equal. "Less than" or "greater than" are determined by the `Unicode code points <https://en.wikipedia.org/wiki/List_of_Unicode_characters>`__ of each string, which roughly matches the alphabetical order. Internally, lowercase characters are converted to uppercase for the comparison.
 
-With different string lengths, returns ``1`` if this string is longer than the ``to`` string, or ``-1`` if shorter. Note that the length of empty strings is *always* ``0``.
+If the character comparison reaches the end of one string, but the other string contains more characters, then it will use length as the deciding factor: ``1`` will be returned if this string is longer than the ``to`` string, or ``-1`` if shorter. Note that the length of empty strings is always ``0``.
 
 To get a :ref:`bool<class_bool>` result from a string comparison, use the ``==`` operator instead. See also :ref:`casecmp_to()<class_String_method_casecmp_to>`, :ref:`filenocasecmp_to()<class_String_method_filenocasecmp_to>`, and :ref:`naturalnocasecmp_to()<class_String_method_naturalnocasecmp_to>`.
 
@@ -1427,11 +1441,11 @@ Trailing zeros are not included in the string. The last digit is rounded, not tr
     String.num(3.141593)     # Returns "3.141593"
     String.num(3.141593, 3)  # Returns "3.142"
     String.num(3.14159300)   # Returns "3.141593"
-    
+
     # Here, the last digit will be rounded up,
     # which reduces the total digit count, since trailing zeros are removed:
     String.num(42.129999, 5) # Returns "42.13"
-    
+
     # If `decimals` is not specified, the maximum number of significant digits is 14:
     String.num(-0.0000012345432123454321)     # Returns "-0.00000123454321"
     String.num(-10000.0000012345432123454321) # Returns "-10000.0000012345"
@@ -1483,7 +1497,7 @@ Converts the given ``number`` to a string representation, in scientific notation
 
 
 
-\ **Note:** In C#, this method is not implemented. To achieve similar results, see C#'s `Standard numeric format strings <https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings>`__
+\ **Note:** In C#, this method is not implemented. To achieve similar results, see C#'s `Standard numeric format strings <https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings>`__.
 
 .. rst-class:: classref-item-separator
 
@@ -1533,11 +1547,35 @@ Formats the string representing a number to have an exact number of ``digits`` *
 
 .. rst-class:: classref-method
 
-:ref:`String<class_String>` **path_join**\ (\ file\: :ref:`String<class_String>`\ ) |const| :ref:`🔗<class_String_method_path_join>`
+:ref:`String<class_String>` **path_join**\ (\ path\: :ref:`String<class_String>`\ ) |const| :ref:`🔗<class_String_method_path_join>`
 
-Concatenates ``file`` at the end of the string as a subpath, adding ``/`` if necessary.
+Concatenates ``path`` at the end of the string as a subpath, adding ``/`` if necessary.
 
 \ **Example:** ``"this/is".path_join("path") == "this/is/path"``.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_String_method_remove_char:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **remove_char**\ (\ what\: :ref:`int<class_int>`\ ) |const| :ref:`🔗<class_String_method_remove_char>`
+
+Removes all occurrences of the Unicode character with code ``what``. Faster version of :ref:`replace()<class_String_method_replace>` when the key is only one character long and the replacement is ``""``.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_String_method_remove_chars:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **remove_chars**\ (\ chars\: :ref:`String<class_String>`\ ) |const| :ref:`🔗<class_String_method_remove_chars>`
+
+Removes any occurrence of the characters in ``chars``. See also :ref:`remove_char()<class_String_method_remove_char>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1562,6 +1600,30 @@ Repeats this string a number of times. ``count`` needs to be greater than ``0``.
 :ref:`String<class_String>` **replace**\ (\ what\: :ref:`String<class_String>`, forwhat\: :ref:`String<class_String>`\ ) |const| :ref:`🔗<class_String_method_replace>`
 
 Replaces all occurrences of ``what`` inside the string with the given ``forwhat``.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_String_method_replace_char:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **replace_char**\ (\ key\: :ref:`int<class_int>`, with\: :ref:`int<class_int>`\ ) |const| :ref:`🔗<class_String_method_replace_char>`
+
+Replaces all occurrences of the Unicode character with code ``key`` with the Unicode character with code ``with``. Faster version of :ref:`replace()<class_String_method_replace>` when the key is only one character long. To get a single character use ``"X".unicode_at(0)`` (note that some strings, like compound letters and emoji, can be made up of multiple unicode codepoints, and will not work with this method, use :ref:`length()<class_String_method_length>` to make sure).
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_String_method_replace_chars:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **replace_chars**\ (\ keys\: :ref:`String<class_String>`, with\: :ref:`int<class_int>`\ ) |const| :ref:`🔗<class_String_method_replace_chars>`
+
+Replaces any occurrence of the characters in ``keys`` with the Unicode character with code ``with``. See also :ref:`replace_char()<class_String_method_replace_char>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1663,7 +1725,7 @@ If ``maxsplit`` is greater than ``0``, the number of splits may not exceed ``max
 
     var some_string = "One,Two,Three,Four"
     var some_array = some_string.rsplit(",", true, 1)
-    
+
     print(some_array.size()) # Prints 2
     print(some_array[0])     # Prints "One,Two,Three"
     print(some_array[1])     # Prints "Four"
@@ -1794,7 +1856,7 @@ If ``maxsplit`` is greater than ``0``, the number of splits may not exceed ``max
  .. code-tab:: gdscript
 
     var some_array = "One,Two,Three,Four".split(",", true, 2)
-    
+
     print(some_array.size()) # Prints 3
     print(some_array[0])     # Prints "One"
     print(some_array[1])     # Prints "Two"
@@ -1804,7 +1866,7 @@ If ``maxsplit`` is greater than ``0``, the number of splits may not exceed ``max
 
     // C#'s `Split()` does not support the `maxsplit` parameter.
     var someArray = "One,Two,Three".Split(",");
-    
+
     GD.Print(someArray[0]); // Prints "One"
     GD.Print(someArray[1]); // Prints "Two"
     GD.Print(someArray[2]); // Prints "Three"
@@ -1938,6 +2000,37 @@ Converts the string representing an integer number into an :ref:`int<class_int>`
 
 ----
 
+.. _class_String_method_to_kebab_case:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **to_kebab_case**\ (\ ) |const| :ref:`🔗<class_String_method_to_kebab_case>`
+
+Returns the string converted to ``kebab-case``.
+
+\ **Note:** Numbers followed by a *single* letter are not separated in the conversion to keep some words (such as "2D") together.
+
+
+.. tabs::
+
+ .. code-tab:: gdscript
+
+    "Node2D".to_kebab_case()               # Returns "node-2d"
+    "2nd place".to_kebab_case()            # Returns "2-nd-place"
+    "Texture3DAssetFolder".to_kebab_case() # Returns "texture-3d-asset-folder"
+
+ .. code-tab:: csharp
+
+    "Node2D".ToKebabCase();               // Returns "node-2d"
+    "2nd place".ToKebabCase();            // Returns "2-nd-place"
+    "Texture3DAssetFolder".ToKebabCase(); // Returns "texture-3d-asset-folder"
+
+
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_String_method_to_lower:
 
 .. rst-class:: classref-method
@@ -1945,6 +2038,24 @@ Converts the string representing an integer number into an :ref:`int<class_int>`
 :ref:`String<class_String>` **to_lower**\ (\ ) |const| :ref:`🔗<class_String_method_to_lower>`
 
 Returns the string converted to ``lowercase``.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_String_method_to_multibyte_char_buffer:
+
+.. rst-class:: classref-method
+
+:ref:`PackedByteArray<class_PackedByteArray>` **to_multibyte_char_buffer**\ (\ encoding\: :ref:`String<class_String>` = ""\ ) |const| :ref:`🔗<class_String_method_to_multibyte_char_buffer>`
+
+Converts the string to system multibyte code page encoded :ref:`PackedByteArray<class_PackedByteArray>`. If conversion fails, empty array is returned.
+
+The values permitted for ``encoding`` are system dependent. If ``encoding`` is empty string, system default encoding is used.
+
+- For Windows, see `Code Page Identifiers <https://learn.microsoft.com/en-us/windows/win32/Intl/code-page-identifiers>`__ .NET names.
+
+- For macOS and Linux/BSD, see ``libiconv`` library documentation and ``iconv --list`` for a list of supported encodings.
 
 .. rst-class:: classref-item-separator
 
@@ -2112,6 +2223,8 @@ Decodes the string from its URL-encoded format. This method is meant to properly
 
 
 
+\ **Note:** This method decodes ``+`` as space.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -2131,17 +2244,29 @@ Encodes the string to URL-friendly format. This method is meant to properly enco
 
     var prefix = "$DOCS_URL/?highlight="
     var url = prefix + "Godot Engine:docs".uri_encode()
-    
+
     print(url) # Prints "$DOCS_URL/?highlight=Godot%20Engine%3%docs"
 
  .. code-tab:: csharp
 
     var prefix = "$DOCS_URL/?highlight=";
     var url = prefix + "Godot Engine:docs".URIEncode();
-    
+
     GD.Print(url); // Prints "$DOCS_URL/?highlight=Godot%20Engine%3%docs"
 
 
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_String_method_uri_file_decode:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **uri_file_decode**\ (\ ) |const| :ref:`🔗<class_String_method_uri_file_decode>`
+
+Decodes the file path from its URL-encoded format. Unlike :ref:`uri_decode()<class_String_method_uri_decode>` this method leaves ``+`` as is.
 
 .. rst-class:: classref-item-separator
 
@@ -2235,7 +2360,7 @@ Formats the **String**, replacing the placeholders with one or more parameters. 
 ::
 
     print("I caught %d fishes!" % 2) # Prints "I caught 2 fishes!"
-    
+
     var my_message = "Travelling to %s, at %2.2f km/h."
     var location = "Deep Valley"
     var speed = 40.3485
@@ -2354,6 +2479,7 @@ Returns ``true`` if the left **String** comes after ``right`` in `Unicode order 
 Returns a new **String** that only contains the character at ``index``. Indices start from ``0``. If ``index`` is greater or equal to ``0``, the character is fetched starting from the beginning of the string. If ``index`` is a negative value, it is fetched starting from the end. Accessing a string out-of-bounds will cause a run-time error, pausing the project execution if run from the editor.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

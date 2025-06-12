@@ -19,7 +19,7 @@ A control used for visual representation of a percentage.
 Description
 -----------
 
-A control used for visual representation of a percentage. Shows fill percentage from right to left.
+A control used for visual representation of a percentage. Shows the fill percentage in the center. Can also be used to show indeterminate progress. For more fill modes, use :ref:`TextureProgressBar<class_TextureProgressBar>` instead.
 
 .. rst-class:: classref-reftable-group
 
@@ -275,6 +275,7 @@ The style of the background.
 The style of the progress (i.e. the part that fills the bar).
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

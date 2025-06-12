@@ -60,6 +60,8 @@ Methods
    :widths: auto
 
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Error<enum_@GlobalScope_Error>`                          | :ref:`close_scene<class_EditorInterface_method_close_scene>`\ (\ )                                                                                                                                                                                                                                                                                                             |
+   +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                         | :ref:`edit_node<class_EditorInterface_method_edit_node>`\ (\ node\: :ref:`Node<class_Node>`\ )                                                                                                                                                                                                                                                                                 |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                         | :ref:`edit_resource<class_EditorInterface_method_edit_resource>`\ (\ resource\: :ref:`Resource<class_Resource>`\ )                                                                                                                                                                                                                                                             |
@@ -99,6 +101,8 @@ Methods
    | :ref:`FileSystemDock<class_FileSystemDock>`                    | :ref:`get_file_system_dock<class_EditorInterface_method_get_file_system_dock>`\ (\ ) |const|                                                                                                                                                                                                                                                                                   |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`EditorInspector<class_EditorInspector>`                  | :ref:`get_inspector<class_EditorInterface_method_get_inspector>`\ (\ ) |const|                                                                                                                                                                                                                                                                                                 |
+   +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Array<class_Array>`\[:ref:`Node<class_Node>`\]           | :ref:`get_open_scene_roots<class_EditorInterface_method_get_open_scene_roots>`\ (\ ) |const|                                                                                                                                                                                                                                                                                   |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PackedStringArray<class_PackedStringArray>`              | :ref:`get_open_scenes<class_EditorInterface_method_get_open_scenes>`\ (\ ) |const|                                                                                                                                                                                                                                                                                             |
    +----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -220,6 +224,18 @@ If ``true``, the Movie Maker mode is enabled in the editor. See :ref:`MovieWrite
 
 Method Descriptions
 -------------------
+
+.. _class_EditorInterface_method_close_scene:
+
+.. rst-class:: classref-method
+
+:ref:`Error<enum_@GlobalScope_Error>` **close_scene**\ (\ ) :ref:`🔗<class_EditorInterface_method_close_scene>`
+
+Closes the currently active scene, discarding any pending changes in the process. Returns :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>` on success or :ref:`@GlobalScope.ERR_DOES_NOT_EXIST<class_@GlobalScope_constant_ERR_DOES_NOT_EXIST>` if there is no scene to close.
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_EditorInterface_method_edit_node:
 
@@ -373,7 +389,7 @@ Returns the :ref:`EditorPaths<class_EditorPaths>` singleton.
 
 Returns the actual scale of the editor UI (``1.0`` being 100% scale). This can be used to adjust position and dimensions of the UI added by plugins.
 
-\ **Note:** This value is set via the ``interface/editor/display_scale`` and ``interface/editor/custom_display_scale`` editor settings. Editor must be restarted for changes to be properly applied.
+\ **Note:** This value is set via the :ref:`EditorSettings.interface/editor/display_scale<class_EditorSettings_property_interface/editor/display_scale>` and :ref:`EditorSettings.interface/editor/custom_display_scale<class_EditorSettings_property_interface/editor/custom_display_scale>` settings. The editor must be restarted for changes to be properly applied.
 
 .. rst-class:: classref-item-separator
 
@@ -481,13 +497,25 @@ Returns the editor's :ref:`EditorInspector<class_EditorInspector>` instance.
 
 ----
 
+.. _class_EditorInterface_method_get_open_scene_roots:
+
+.. rst-class:: classref-method
+
+:ref:`Array<class_Array>`\[:ref:`Node<class_Node>`\] **get_open_scene_roots**\ (\ ) |const| :ref:`🔗<class_EditorInterface_method_get_open_scene_roots>`
+
+Returns an array with references to the root nodes of the currently opened scenes.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_EditorInterface_method_get_open_scenes:
 
 .. rst-class:: classref-method
 
 :ref:`PackedStringArray<class_PackedStringArray>` **get_open_scenes**\ (\ ) |const| :ref:`🔗<class_EditorInterface_method_get_open_scenes>`
 
-Returns an :ref:`Array<class_Array>` with the file paths of the currently opened scenes.
+Returns an array with the file paths of the currently opened scenes.
 
 .. rst-class:: classref-item-separator
 
@@ -802,7 +830,7 @@ Pops up an editor dialog for selecting a :ref:`Node<class_Node>` from the edited
     func _ready():
         if Engine.is_editor_hint():
             EditorInterface.popup_node_selector(_on_node_selected, ["Button"])
-    
+
     func _on_node_selected(node_path):
         if node_path.is_empty():
             print("node selection canceled")
@@ -826,7 +854,7 @@ Pops up an editor dialog for selecting properties from ``object``. The ``callbac
     func _ready():
         if Engine.is_editor_hint():
             EditorInterface.popup_property_selector(this, _on_property_selected, [TYPE_INT])
-    
+
     func _on_property_selected(property_path):
         if property_path.is_empty():
             print("property selection canceled")
@@ -905,6 +933,8 @@ Saves the currently active scene. Returns either :ref:`@GlobalScope.OK<class_@Gl
 
 Saves the currently active scene as a file at ``path``.
 
+\ **Note:** The ``with_preview`` parameter has no effect.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -943,7 +973,7 @@ A feature profile can be created programmatically using the :ref:`EditorFeatureP
 
 |void| **set_main_screen_editor**\ (\ name\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorInterface_method_set_main_screen_editor>`
 
-Sets the editor's current main screen to the one specified in ``name``. ``name`` must match the title of the tab in question exactly (e.g. ``2D``, ``3D``, ``Script``, or ``AssetLib`` for default tabs).
+Sets the editor's current main screen to the one specified in ``name``. ``name`` must match the title of the tab in question exactly (e.g. ``2D``, ``3D``, ``Script``, ``Game``, or ``AssetLib`` for default tabs).
 
 .. rst-class:: classref-item-separator
 
@@ -970,6 +1000,7 @@ Sets the enabled status of a plugin. The plugin name is the same as its director
 Stops the scene that is currently playing.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

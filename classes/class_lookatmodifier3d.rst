@@ -691,7 +691,7 @@ Returns the remaining seconds of the time-based interpolation.
 
 :ref:`bool<class_bool>` **is_interpolating**\ (\ ) |const| :ref:`🔗<class_LookAtModifier3D_method_is_interpolating>`
 
-Returns whether the time-based interpolation is running or not. If ``true``, it is equivalent to :ref:`get_interpolation_remaining()<class_LookAtModifier3D_method_get_interpolation_remaining>` being ``0``.
+Returns ``true`` if time-based interpolation is running. If ``true``, it is equivalent to :ref:`get_interpolation_remaining()<class_LookAtModifier3D_method_get_interpolation_remaining>` returning ``0.0``.
 
 This is useful to determine whether a **LookAtModifier3D** can be removed safely.
 
@@ -710,6 +710,7 @@ Returns whether the target is within the angle limitations. It is useful for uns
 \ **Note:** The value is updated after :ref:`SkeletonModifier3D._process_modification()<class_SkeletonModifier3D_private_method__process_modification>`. To retrieve this value correctly, we recommend using the signal :ref:`SkeletonModifier3D.modification_processed<class_SkeletonModifier3D_signal_modification_processed>`.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

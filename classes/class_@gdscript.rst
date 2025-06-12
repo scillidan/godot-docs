@@ -109,7 +109,9 @@ Positive floating-point infinity. This is the result of floating-point division 
 
 **NAN** = ``nan`` :ref:`🔗<class_@GDScript_constant_NAN>`
 
-"Not a Number", an invalid floating-point value. :ref:`NAN<class_@GDScript_constant_NAN>` has special properties, including that ``!=`` always returns ``true``, while other comparison operators always return ``false``. This is true even when comparing with itself (``NAN == NAN`` returns ``false`` and ``NAN != NAN`` returns ``true``). It is returned by some invalid operations, such as dividing floating-point ``0.0`` by ``0.0``.
+"Not a Number", an invalid floating-point value. It is returned by some invalid operations, such as dividing floating-point ``0.0`` by ``0.0``.
+
+\ :ref:`NAN<class_@GDScript_constant_NAN>` has special properties, including that ``!=`` always returns ``true``, while other comparison operators always return ``false``. This is true even when comparing with itself (``NAN == NAN`` returns ``false`` and ``NAN != NAN`` returns ``true``). Due to this, you must use :ref:`@GlobalScope.is_nan()<class_@GlobalScope_method_is_nan>` to check whether a number is equal to :ref:`NAN<class_@GDScript_constant_NAN>`.
 
 \ **Warning:** "Not a Number" is only a concept with floating-point numbers, and has no equivalent for integers. Dividing an integer ``0`` by ``0`` will not result in :ref:`NAN<class_@GDScript_constant_NAN>` and will result in a run-time error instead.
 
@@ -131,27 +133,27 @@ Mark the following property as exported (editable in the Inspector dock and save
 ::
 
     extends Node
-    
+
     enum Direction {LEFT, RIGHT, UP, DOWN}
-    
+
     # Built-in types.
     @export var string = ""
     @export var int_number = 5
     @export var float_number: float = 5
-    
+
     # Enums.
     @export var type: Variant.Type
     @export var format: Image.Format
     @export var direction: Direction
-    
+
     # Resources.
     @export var image: Image
     @export var custom_resource: CustomResource
-    
+
     # Nodes.
     @export var node: Node
     @export var custom_node: CustomNode
-    
+
     # Typed arrays.
     @export var int_array: Array[int]
     @export var direction_array: Array[Direction]
@@ -259,7 +261,7 @@ See also :ref:`@GlobalScope.PROPERTY_HINT_ENUM<class_@GlobalScope_constant_PROPE
     @export_enum("Warrior", "Magician", "Thief") var character_class: int
     @export_enum("Slow:30", "Average:60", "Very Fast:200") var character_speed: int
     @export_enum("Rebecca", "Mary", "Leah") var character_name: String
-    
+
     @export_enum("Sword", "Spear", "Mace") var character_items: Array[int]
     @export_enum("double_jump", "climb", "dash") var character_skills: Array[String]
 
@@ -275,7 +277,7 @@ If you want to use named GDScript enums, then use :ref:`@export<class_@GDScript_
 
     enum CharacterName {REBECCA, MARY, LEAH}
     @export var character_name: CharacterName
-    
+
     enum CharacterItem {SWORD, SPEAR, MACE}
     @export var character_items: Array[CharacterItem]
 
@@ -564,11 +566,11 @@ See also :ref:`@GlobalScope.PROPERTY_USAGE_GROUP<class_@GlobalScope_constant_PRO
     @export_group("Racer Properties")
     @export var nickname = "Nick"
     @export var age = 26
-    
+
     @export_group("Car Properties", "car_")
     @export var car_label = "Speedy"
     @export var car_number = 3
-    
+
     @export_group("", "")
     @export var ungrouped_number = 3
 
@@ -655,10 +657,10 @@ See also :ref:`@GlobalScope.PROPERTY_HINT_RANGE<class_@GlobalScope_constant_PROP
     @export_range(-10, 20) var number
     @export_range(-10, 20, 0.2) var number: float
     @export_range(0, 20) var numbers: Array[float]
-    
+
     @export_range(0, 100, 1, "or_greater") var power_percent
     @export_range(0, 100, 1, "or_greater", "or_less") var health_delta
-    
+
     @export_range(-180, 180, 0.001, "radians_as_degrees") var angle_radians
     @export_range(0, 360, 1, "degrees") var angle_degrees
     @export_range(-8, 8, 2, "suffix:px") var target_offset
@@ -700,7 +702,7 @@ See also :ref:`@GlobalScope.PROPERTY_USAGE_SUBGROUP<class_@GlobalScope_constant_
     @export_group("Racer Properties")
     @export var nickname = "Nick"
     @export var age = 26
-    
+
     @export_subgroup("Car Properties", "car_")
     @export var car_label = "Speedy"
     @export var car_number = 3
@@ -742,14 +744,14 @@ See also :ref:`@GlobalScope.PROPERTY_HINT_TOOL_BUTTON<class_@GlobalScope_constan
 
     @tool
     extends Sprite2D
-    
+
     @export_tool_button("Hello") var hello_action = hello
     @export_tool_button("Randomize the color!", "ColorRect")
     var randomize_color_action = randomize_color
-    
+
     func hello():
         print("Hello world!")
-    
+
     func randomize_color():
         var undo_redo = EditorInterface.get_editor_undo_redo()
         undo_redo.create_action("Randomized Sprite2D Color")
@@ -831,10 +833,10 @@ The order of ``mode``, ``sync`` and ``transfer_mode`` does not matter, but value
 
     @rpc
     func fn(): pass
-    
+
     @rpc("any_peer", "unreliable_ordered")
     func fn_update_pos(): pass
-    
+
     @rpc("authority", "call_remote", "unreliable", 0) # Equivalent to @rpc
     func fn_default(): pass
 
@@ -1025,7 +1027,7 @@ Converts ``what`` to ``type`` in the best way possible. The ``type`` uses the :r
 
     var a = [4, 2.5, 1.2]
     print(a is Array) # Prints true
-    
+
     var b = convert(a, TYPE_PACKED_BYTE_ARRAY)
     print(b)          # Prints [4, 2, 1]
     print(b is Array) # Prints false
@@ -1060,10 +1062,10 @@ Returns an array of dictionaries representing the current call stack. See also :
 
     func _ready():
         foo()
-    
+
     func foo():
         bar()
-    
+
     func bar():
         print(get_stack())
 
@@ -1089,7 +1091,7 @@ Starting from ``_ready()``, ``bar()`` would print:
 
 **Deprecated:** Consider using :ref:`JSON.from_native()<class_JSON_method_from_native>` or :ref:`Object.get_property_list()<class_Object_method_get_property_list>` instead.
 
-Returns the passed ``instance`` converted to a Dictionary. Can be useful for serializing.
+Returns the passed ``instance`` converted to a :ref:`Dictionary<class_Dictionary>`. Can be useful for serializing.
 
 ::
 
@@ -1128,7 +1130,7 @@ Returns ``true`` if ``value`` is an instance of ``type``. The ``type`` value mus
 
 - A :ref:`Script<class_Script>` (you can use any class, including inner one).
 
-Unlike the right operand of the ``is`` operator, ``type`` can be a non-constant value. The ``is`` operator supports more features (such as typed arrays). Use the operator instead of this method if you do not need dynamic type checking.
+Unlike the right operand of the ``is`` operator, ``type`` can be a non-constant value. The ``is`` operator supports more features (such as typed arrays). Use the operator instead of this method if you do not need to check the type dynamically.
 
 \ **Examples:**\ 
 
@@ -1159,7 +1161,7 @@ Returns the length of the given Variant ``var``. The length can be the character
 
     var a = [1, 2, 3, 4]
     len(a) # Returns 4
-    
+
     var b = "Hello!"
     len(b) # Returns 6
 
@@ -1334,6 +1336,7 @@ Returns ``true`` if the given :ref:`Object<class_Object>`-derived class exists i
     type_exists("NonExistentClass") # Returns false
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

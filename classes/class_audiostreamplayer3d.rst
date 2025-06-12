@@ -454,7 +454,11 @@ The maximum number of sounds this node can play at the same time. Playing additi
 - |void| **set_panning_strength**\ (\ value\: :ref:`float<class_float>`\ )
 - :ref:`float<class_float>` **get_panning_strength**\ (\ )
 
-Scales the panning strength for this node by multiplying the base :ref:`ProjectSettings.audio/general/3d_panning_strength<class_ProjectSettings_property_audio/general/3d_panning_strength>` with this factor. Higher values will pan audio from left to right more dramatically than lower values.
+Scales the panning strength for this node by multiplying the base :ref:`ProjectSettings.audio/general/3d_panning_strength<class_ProjectSettings_property_audio/general/3d_panning_strength>` by this factor. If the product is ``0.0`` then stereo panning is disabled and the volume is the same for all channels. If the product is ``1.0`` then one of the channels will be muted when the sound is located exactly to the left (or right) of the listener.
+
+Two speaker stereo arrangements implement the `WebAudio standard for StereoPannerNode Panning <https://webaudio.github.io/web-audio-api/#stereopanner-algorithm>`__ where the volume is cosine of half the azimuth angle to the ear.
+
+For other speaker arrangements such as the 5.1 and 7.1 the SPCAP (Speaker-Placement Correction Amplitude) algorithm is implemented.
 
 .. rst-class:: classref-item-separator
 
@@ -674,6 +678,7 @@ Sets the position from which audio will be played, in seconds.
 Stops the audio.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

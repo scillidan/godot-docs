@@ -81,6 +81,8 @@ Properties
    +---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
    | :ref:`Vector2<class_Vector2>`                                       | :ref:`custom_minimum_size<class_Control_property_custom_minimum_size>`                       | ``Vector2(0, 0)``                                                             |
    +---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+   | :ref:`FocusBehaviorRecursive<enum_Control_FocusBehaviorRecursive>`  | :ref:`focus_behavior_recursive<class_Control_property_focus_behavior_recursive>`             | ``0``                                                                         |
+   +---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
    | :ref:`FocusMode<enum_Control_FocusMode>`                            | :ref:`focus_mode<class_Control_property_focus_mode>`                                         | ``0``                                                                         |
    +---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
    | :ref:`NodePath<class_NodePath>`                                     | :ref:`focus_neighbor_bottom<class_Control_property_focus_neighbor_bottom>`                   | ``NodePath("")``                                                              |
@@ -104,6 +106,8 @@ Properties
    | :ref:`LayoutDirection<enum_Control_LayoutDirection>`                | :ref:`layout_direction<class_Control_property_layout_direction>`                             | ``0``                                                                         |
    +---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                             | :ref:`localize_numeral_system<class_Control_property_localize_numeral_system>`               | ``true``                                                                      |
+   +---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
+   | :ref:`MouseBehaviorRecursive<enum_Control_MouseBehaviorRecursive>`  | :ref:`mouse_behavior_recursive<class_Control_property_mouse_behavior_recursive>`             | ``0``                                                                         |
    +---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
    | :ref:`CursorShape<enum_Control_CursorShape>`                        | :ref:`mouse_default_cursor_shape<class_Control_property_mouse_default_cursor_shape>`         | ``0``                                                                         |
    +---------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------+
@@ -159,6 +163,8 @@ Methods
    :widths: auto
 
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`String<class_String>`                                  | :ref:`_accessibility_get_contextual_info<class_Control_private_method__accessibility_get_contextual_info>`\ (\ ) |virtual| |const|                                                                                                                                      |
+   +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                      | :ref:`_can_drop_data<class_Control_private_method__can_drop_data>`\ (\ at_position\: :ref:`Vector2<class_Vector2>`, data\: :ref:`Variant<class_Variant>`\ ) |virtual| |const|                                                                                           |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                       | :ref:`_drop_data<class_Control_private_method__drop_data>`\ (\ at_position\: :ref:`Vector2<class_Vector2>`, data\: :ref:`Variant<class_Variant>`\ ) |virtual|                                                                                                           |
@@ -178,6 +184,10 @@ Methods
    | :ref:`Array<class_Array>`\[:ref:`Vector3i<class_Vector3i>`\] | :ref:`_structured_text_parser<class_Control_private_method__structured_text_parser>`\ (\ args\: :ref:`Array<class_Array>`, text\: :ref:`String<class_String>`\ ) |virtual| |const|                                                                                      |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                       | :ref:`accept_event<class_Control_method_accept_event>`\ (\ )                                                                                                                                                                                                            |
+   +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                       | :ref:`accessibility_drag<class_Control_method_accessibility_drag>`\ (\ )                                                                                                                                                                                                |
+   +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                       | :ref:`accessibility_drop<class_Control_method_accessibility_drop>`\ (\ )                                                                                                                                                                                                |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                       | :ref:`add_theme_color_override<class_Control_method_add_theme_color_override>`\ (\ name\: :ref:`StringName<class_StringName>`, color\: :ref:`Color<class_Color>`\ )                                                                                                     |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -213,11 +223,15 @@ Methods
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Vector2<class_Vector2>`                                | :ref:`get_end<class_Control_method_get_end>`\ (\ ) |const|                                                                                                                                                                                                              |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`FocusMode<enum_Control_FocusMode>`                     | :ref:`get_focus_mode_with_override<class_Control_method_get_focus_mode_with_override>`\ (\ ) |const|                                                                                                                                                                    |
+   +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`NodePath<class_NodePath>`                              | :ref:`get_focus_neighbor<class_Control_method_get_focus_neighbor>`\ (\ side\: :ref:`Side<enum_@GlobalScope_Side>`\ ) |const|                                                                                                                                            |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Rect2<class_Rect2>`                                    | :ref:`get_global_rect<class_Control_method_get_global_rect>`\ (\ ) |const|                                                                                                                                                                                              |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Vector2<class_Vector2>`                                | :ref:`get_minimum_size<class_Control_method_get_minimum_size>`\ (\ ) |const|                                                                                                                                                                                            |
+   +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`MouseFilter<enum_Control_MouseFilter>`                 | :ref:`get_mouse_filter_with_override<class_Control_method_get_mouse_filter_with_override>`\ (\ ) |const|                                                                                                                                                                |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                                    | :ref:`get_offset<class_Control_method_get_offset>`\ (\ offset\: :ref:`Side<enum_@GlobalScope_Side>`\ ) |const|                                                                                                                                                          |
    +--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -495,6 +509,82 @@ The node can only grab focus on mouse clicks. Use with :ref:`focus_mode<class_Co
 :ref:`FocusMode<enum_Control_FocusMode>` **FOCUS_ALL** = ``2``
 
 The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or using the D-pad buttons on a gamepad. Use with :ref:`focus_mode<class_Control_property_focus_mode>`.
+
+.. _class_Control_constant_FOCUS_ACCESSIBILITY:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`FocusMode<enum_Control_FocusMode>` **FOCUS_ACCESSIBILITY** = ``3``
+
+The node can grab focus only when screen reader is active. Use with :ref:`focus_mode<class_Control_property_focus_mode>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _enum_Control_FocusBehaviorRecursive:
+
+.. rst-class:: classref-enumeration
+
+enum **FocusBehaviorRecursive**: :ref:`🔗<enum_Control_FocusBehaviorRecursive>`
+
+.. _class_Control_constant_FOCUS_BEHAVIOR_INHERITED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`FocusBehaviorRecursive<enum_Control_FocusBehaviorRecursive>` **FOCUS_BEHAVIOR_INHERITED** = ``0``
+
+Inherits the :ref:`focus_behavior_recursive<class_Control_property_focus_behavior_recursive>` from the parent control. If there is no parent control, this is the same as :ref:`FOCUS_BEHAVIOR_ENABLED<class_Control_constant_FOCUS_BEHAVIOR_ENABLED>`.
+
+.. _class_Control_constant_FOCUS_BEHAVIOR_DISABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`FocusBehaviorRecursive<enum_Control_FocusBehaviorRecursive>` **FOCUS_BEHAVIOR_DISABLED** = ``1``
+
+Prevents the control from getting focused. :ref:`get_focus_mode_with_override()<class_Control_method_get_focus_mode_with_override>` will return :ref:`FOCUS_NONE<class_Control_constant_FOCUS_NONE>`.
+
+.. _class_Control_constant_FOCUS_BEHAVIOR_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`FocusBehaviorRecursive<enum_Control_FocusBehaviorRecursive>` **FOCUS_BEHAVIOR_ENABLED** = ``2``
+
+Allows the control to be focused, depending on the :ref:`focus_mode<class_Control_property_focus_mode>`. This can be used to ignore the parent's :ref:`focus_behavior_recursive<class_Control_property_focus_behavior_recursive>`. :ref:`get_focus_mode_with_override()<class_Control_method_get_focus_mode_with_override>` will return the :ref:`focus_mode<class_Control_property_focus_mode>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _enum_Control_MouseBehaviorRecursive:
+
+.. rst-class:: classref-enumeration
+
+enum **MouseBehaviorRecursive**: :ref:`🔗<enum_Control_MouseBehaviorRecursive>`
+
+.. _class_Control_constant_MOUSE_BEHAVIOR_INHERITED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`MouseBehaviorRecursive<enum_Control_MouseBehaviorRecursive>` **MOUSE_BEHAVIOR_INHERITED** = ``0``
+
+Inherits the :ref:`mouse_behavior_recursive<class_Control_property_mouse_behavior_recursive>` from the parent control. If there is no parent control, this is the same as :ref:`MOUSE_BEHAVIOR_ENABLED<class_Control_constant_MOUSE_BEHAVIOR_ENABLED>`.
+
+.. _class_Control_constant_MOUSE_BEHAVIOR_DISABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`MouseBehaviorRecursive<enum_Control_MouseBehaviorRecursive>` **MOUSE_BEHAVIOR_DISABLED** = ``1``
+
+Prevents the control from receiving mouse input. :ref:`get_mouse_filter_with_override()<class_Control_method_get_mouse_filter_with_override>` will return :ref:`MOUSE_FILTER_IGNORE<class_Control_constant_MOUSE_FILTER_IGNORE>`.
+
+.. _class_Control_constant_MOUSE_BEHAVIOR_ENABLED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`MouseBehaviorRecursive<enum_Control_MouseBehaviorRecursive>` **MOUSE_BEHAVIOR_ENABLED** = ``2``
+
+Allows the control to be receive mouse input, depending on the :ref:`mouse_filter<class_Control_property_mouse_filter>`. This can be used to ignore the parent's :ref:`mouse_behavior_recursive<class_Control_property_mouse_behavior_recursive>`. :ref:`get_mouse_filter_with_override()<class_Control_method_get_mouse_filter_with_override>` will return the :ref:`mouse_filter<class_Control_property_mouse_filter>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1357,6 +1447,23 @@ The minimum size of the node's bounding rectangle. If you set it to a value grea
 
 ----
 
+.. _class_Control_property_focus_behavior_recursive:
+
+.. rst-class:: classref-property
+
+:ref:`FocusBehaviorRecursive<enum_Control_FocusBehaviorRecursive>` **focus_behavior_recursive** = ``0`` :ref:`🔗<class_Control_property_focus_behavior_recursive>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_focus_behavior_recursive**\ (\ value\: :ref:`FocusBehaviorRecursive<enum_Control_FocusBehaviorRecursive>`\ )
+- :ref:`FocusBehaviorRecursive<enum_Control_FocusBehaviorRecursive>` **get_focus_behavior_recursive**\ (\ )
+
+Determines which controls can be focused together with :ref:`focus_mode<class_Control_property_focus_mode>`. See :ref:`get_focus_mode_with_override()<class_Control_method_get_focus_mode_with_override>`. Since the default behavior is :ref:`FOCUS_BEHAVIOR_INHERITED<class_Control_constant_FOCUS_BEHAVIOR_INHERITED>`, this can be used to prevent all children controls from getting focused.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_Control_property_focus_mode:
 
 .. rst-class:: classref-property
@@ -1368,7 +1475,7 @@ The minimum size of the node's bounding rectangle. If you set it to a value grea
 - |void| **set_focus_mode**\ (\ value\: :ref:`FocusMode<enum_Control_FocusMode>`\ )
 - :ref:`FocusMode<enum_Control_FocusMode>` **get_focus_mode**\ (\ )
 
-The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals.
+Determines which controls can be focused. Only one control can be focused at a time, and the focused control will receive keyboard, gamepad, and mouse events in :ref:`_gui_input()<class_Control_private_method__gui_input>`. Use :ref:`get_focus_mode_with_override()<class_Control_method_get_focus_mode_with_override>` to determine if a control can grab focus, since :ref:`focus_behavior_recursive<class_Control_property_focus_behavior_recursive>` also affects it. See also :ref:`grab_focus()<class_Control_method_grab_focus>`.
 
 .. rst-class:: classref-item-separator
 
@@ -1566,6 +1673,23 @@ If ``true``, automatically converts code line numbers, list indices, :ref:`SpinB
 
 ----
 
+.. _class_Control_property_mouse_behavior_recursive:
+
+.. rst-class:: classref-property
+
+:ref:`MouseBehaviorRecursive<enum_Control_MouseBehaviorRecursive>` **mouse_behavior_recursive** = ``0`` :ref:`🔗<class_Control_property_mouse_behavior_recursive>`
+
+.. rst-class:: classref-property-setget
+
+- |void| **set_mouse_behavior_recursive**\ (\ value\: :ref:`MouseBehaviorRecursive<enum_Control_MouseBehaviorRecursive>`\ )
+- :ref:`MouseBehaviorRecursive<enum_Control_MouseBehaviorRecursive>` **get_mouse_behavior_recursive**\ (\ )
+
+Determines which controls can receive mouse input together with :ref:`mouse_filter<class_Control_property_mouse_filter>`. See :ref:`get_mouse_filter_with_override()<class_Control_method_get_mouse_filter_with_override>`. Since the default behavior is :ref:`MOUSE_BEHAVIOR_INHERITED<class_Control_constant_MOUSE_BEHAVIOR_INHERITED>`, this can be used to prevent all children controls from receiving mouse input.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_Control_property_mouse_default_cursor_shape:
 
 .. rst-class:: classref-property
@@ -1596,7 +1720,7 @@ The default cursor shape for this control. Useful for Godot plugins and applicat
 - |void| **set_mouse_filter**\ (\ value\: :ref:`MouseFilter<enum_Control_MouseFilter>`\ )
 - :ref:`MouseFilter<enum_Control_MouseFilter>` **get_mouse_filter**\ (\ )
 
-Controls whether the control will be able to receive mouse button input events through :ref:`_gui_input()<class_Control_private_method__gui_input>` and how these events should be handled. Also controls whether the control can receive the :ref:`mouse_entered<class_Control_signal_mouse_entered>`, and :ref:`mouse_exited<class_Control_signal_mouse_exited>` signals. See the constants to learn what each does.
+Determines which controls will be able to receive mouse button input events through :ref:`_gui_input()<class_Control_private_method__gui_input>` and the :ref:`mouse_entered<class_Control_signal_mouse_entered>`, and :ref:`mouse_exited<class_Control_signal_mouse_exited>` signals. Also determines how these events should be propagated. See the constants to learn what each does. Use :ref:`get_mouse_filter_with_override()<class_Control_method_get_mouse_filter_with_override>` to determine if a control can receive mouse input, since :ref:`mouse_behavior_recursive<class_Control_property_mouse_behavior_recursive>` also affects it.
 
 .. rst-class:: classref-item-separator
 
@@ -1779,7 +1903,7 @@ Helper property to access :ref:`rotation<class_Control_property_rotation>` in de
 - |void| **set_scale**\ (\ value\: :ref:`Vector2<class_Vector2>`\ )
 - :ref:`Vector2<class_Vector2>` **get_scale**\ (\ )
 
-The node's scale, relative to its :ref:`size<class_Control_property_size>`. Change this property to scale the node around its :ref:`pivot_offset<class_Control_property_pivot_offset>`. The Control's :ref:`tooltip_text<class_Control_property_tooltip_text>` will also scale according to this value.
+The node's scale, relative to its :ref:`size<class_Control_property_size>`. Change this property to scale the node around its :ref:`pivot_offset<class_Control_property_pivot_offset>`. The Control's tooltip will also scale according to this value.
 
 \ **Note:** This property is mainly intended to be used for animation purposes. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the :doc:`documentation <../tutorials/rendering/multiple_resolutions>` instead of scaling Controls individually.
 
@@ -1985,6 +2109,18 @@ The tooltip popup will use either a default implementation, or a custom one that
 Method Descriptions
 -------------------
 
+.. _class_Control_private_method__accessibility_get_contextual_info:
+
+.. rst-class:: classref-method
+
+:ref:`String<class_String>` **_accessibility_get_contextual_info**\ (\ ) |virtual| |const| :ref:`🔗<class_Control_private_method__accessibility_get_contextual_info>`
+
+Return the description of the keyboard shortcuts and other contextual help for this control.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_Control_private_method__can_drop_data:
 
 .. rst-class:: classref-method
@@ -1994,6 +2130,8 @@ Method Descriptions
 Godot calls this method to test if ``data`` from a control's :ref:`_get_drag_data()<class_Control_private_method__get_drag_data>` can be dropped at ``at_position``. ``at_position`` is local to this control.
 
 This method should only be used to test the data. Process the data in :ref:`_drop_data()<class_Control_private_method__drop_data>`.
+
+\ **Note:** If drag was initiated by keyboard shortcut or :ref:`accessibility_drag()<class_Control_method_accessibility_drag>`, ``at_position`` is set to ``Vector2(INFINITY, INFINITY)`` and the currently selected item/text position should be used as drop position.
 
 
 .. tabs::
@@ -2028,6 +2166,8 @@ This method should only be used to test the data. Process the data in :ref:`_dro
 
 Godot calls this method to pass you the ``data`` from a control's :ref:`_get_drag_data()<class_Control_private_method__get_drag_data>` result. Godot first calls :ref:`_can_drop_data()<class_Control_private_method__can_drop_data>` to test if ``data`` is allowed to drop at ``at_position`` where ``at_position`` is local to this control.
 
+\ **Note:** If drag was initiated by keyboard shortcut or :ref:`accessibility_drag()<class_Control_method_accessibility_drag>`, ``at_position`` is set to ``Vector2(INFINITY, INFINITY)`` and the currently selected item/text position should be used as drop position.
+
 
 .. tabs::
 
@@ -2035,7 +2175,7 @@ Godot calls this method to pass you the ``data`` from a control's :ref:`_get_dra
 
     func _can_drop_data(position, data):
         return typeof(data) == TYPE_DICTIONARY and data.has("color")
-    
+
     func _drop_data(position, data):
         var color = data["color"]
 
@@ -2045,7 +2185,7 @@ Godot calls this method to pass you the ``data`` from a control's :ref:`_get_dra
     {
         return data.VariantType == Variant.Type.Dictionary && data.AsGodotDictionary().ContainsKey("color");
     }
-    
+
     public override void _DropData(Vector2 atPosition, Variant data)
     {
         Color color = data.AsGodotDictionary()["color"].AsColor();
@@ -2066,6 +2206,8 @@ Godot calls this method to pass you the ``data`` from a control's :ref:`_get_dra
 Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns ``null`` if there is no data to drag. Controls that want to receive drop data should implement :ref:`_can_drop_data()<class_Control_private_method__can_drop_data>` and :ref:`_drop_data()<class_Control_private_method__drop_data>`. ``at_position`` is local to this control. Drag may be forced with :ref:`force_drag()<class_Control_method_force_drag>`.
 
 A preview that will follow the mouse that should represent the data can be set with :ref:`set_drag_preview()<class_Control_method_set_drag_preview>`. A good time to set the preview is in this method.
+
+\ **Note:** If drag was initiated by keyboard shortcut or :ref:`accessibility_drag()<class_Control_method_accessibility_drag>`, ``at_position`` is set to ``Vector2(INFINITY, INFINITY)`` and the currently selected item/text position should be used as drop position.
 
 
 .. tabs::
@@ -2282,6 +2424,30 @@ Returns an :ref:`Array<class_Array>` of :ref:`Vector3i<class_Vector3i>` text ran
 Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to :ref:`Node._unhandled_input()<class_Node_private_method__unhandled_input>` or :ref:`Node._unhandled_key_input()<class_Node_private_method__unhandled_key_input>`.
 
 \ **Note:** This does not affect the methods in :ref:`Input<class_Input>`, only the way events are propagated.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Control_method_accessibility_drag:
+
+.. rst-class:: classref-method
+
+|void| **accessibility_drag**\ (\ ) :ref:`🔗<class_Control_method_accessibility_drag>`
+
+Starts drag-and-drop operation without using a mouse.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Control_method_accessibility_drop:
+
+.. rst-class:: classref-method
+
+|void| **accessibility_drop**\ (\ ) :ref:`🔗<class_Control_method_accessibility_drop>`
+
+Ends drag-and-drop operation without using a mouse.
 
 .. rst-class:: classref-item-separator
 
@@ -2545,7 +2711,7 @@ Returns combined minimum size from :ref:`custom_minimum_size<class_Control_prope
 
 :ref:`CursorShape<enum_Control_CursorShape>` **get_cursor_shape**\ (\ position\: :ref:`Vector2<class_Vector2>` = Vector2(0, 0)\ ) |const| :ref:`🔗<class_Control_method_get_cursor_shape>`
 
-Returns the mouse cursor shape the control displays on mouse hover. See :ref:`CursorShape<enum_Control_CursorShape>`.
+Returns the mouse cursor shape for this control when hovered over ``position`` in local coordinates. For most controls, this is the same as :ref:`mouse_default_cursor_shape<class_Control_property_mouse_default_cursor_shape>`, but some built-in controls implement more complex logic.
 
 .. rst-class:: classref-item-separator
 
@@ -2558,6 +2724,18 @@ Returns the mouse cursor shape the control displays on mouse hover. See :ref:`Cu
 :ref:`Vector2<class_Vector2>` **get_end**\ (\ ) |const| :ref:`🔗<class_Control_method_get_end>`
 
 Returns :ref:`offset_right<class_Control_property_offset_right>` and :ref:`offset_bottom<class_Control_property_offset_bottom>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Control_method_get_focus_mode_with_override:
+
+.. rst-class:: classref-method
+
+:ref:`FocusMode<enum_Control_FocusMode>` **get_focus_mode_with_override**\ (\ ) |const| :ref:`🔗<class_Control_method_get_focus_mode_with_override>`
+
+Returns the :ref:`focus_mode<class_Control_property_focus_mode>`, but takes the :ref:`focus_behavior_recursive<class_Control_property_focus_behavior_recursive>` into account. If :ref:`focus_behavior_recursive<class_Control_property_focus_behavior_recursive>` is set to :ref:`FOCUS_BEHAVIOR_DISABLED<class_Control_constant_FOCUS_BEHAVIOR_DISABLED>`, or it is set to :ref:`FOCUS_BEHAVIOR_INHERITED<class_Control_constant_FOCUS_BEHAVIOR_INHERITED>` and its ancestor is set to :ref:`FOCUS_BEHAVIOR_DISABLED<class_Control_constant_FOCUS_BEHAVIOR_DISABLED>`, then this returns :ref:`FOCUS_NONE<class_Control_constant_FOCUS_NONE>`.
 
 .. rst-class:: classref-item-separator
 
@@ -2600,6 +2778,18 @@ Returns the position and size of the control relative to the containing canvas. 
 :ref:`Vector2<class_Vector2>` **get_minimum_size**\ (\ ) |const| :ref:`🔗<class_Control_method_get_minimum_size>`
 
 Returns the minimum size for this control. See :ref:`custom_minimum_size<class_Control_property_custom_minimum_size>`.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Control_method_get_mouse_filter_with_override:
+
+.. rst-class:: classref-method
+
+:ref:`MouseFilter<enum_Control_MouseFilter>` **get_mouse_filter_with_override**\ (\ ) |const| :ref:`🔗<class_Control_method_get_mouse_filter_with_override>`
+
+Returns the :ref:`mouse_filter<class_Control_property_mouse_filter>`, but takes the :ref:`mouse_behavior_recursive<class_Control_property_mouse_behavior_recursive>` into account. If :ref:`mouse_behavior_recursive<class_Control_property_mouse_behavior_recursive>` is set to :ref:`MOUSE_BEHAVIOR_DISABLED<class_Control_constant_MOUSE_BEHAVIOR_DISABLED>`, or it is set to :ref:`MOUSE_BEHAVIOR_INHERITED<class_Control_constant_MOUSE_BEHAVIOR_INHERITED>` and its ancestor is set to :ref:`MOUSE_BEHAVIOR_DISABLED<class_Control_constant_MOUSE_BEHAVIOR_DISABLED>`, then this returns :ref:`MOUSE_FILTER_IGNORE<class_Control_constant_MOUSE_FILTER_IGNORE>`.
 
 .. rst-class:: classref-item-separator
 
@@ -3087,7 +3277,7 @@ Best used with :ref:`Node.NOTIFICATION_DRAG_END<class_Node_constant_NOTIFICATION
 
 :ref:`bool<class_bool>` **is_layout_rtl**\ (\ ) |const| :ref:`🔗<class_Control_method_is_layout_rtl>`
 
-Returns ``true`` if layout is right-to-left. See also :ref:`layout_direction<class_Control_property_layout_direction>`.
+Returns ``true`` if the layout is right-to-left. See also :ref:`layout_direction<class_Control_property_layout_direction>`.
 
 .. rst-class:: classref-item-separator
 
@@ -3289,7 +3479,7 @@ Shows the given control at the mouse pointer. A good time to call this method is
  .. code-tab:: gdscript
 
     @export var color = Color(1, 0, 0, 1)
-    
+
     func _get_drag_data(position):
         # Use a control that is not in the tree
         var cpb = ColorPickerButton.new()
@@ -3302,7 +3492,7 @@ Shows the given control at the mouse pointer. A good time to call this method is
 
     [Export]
     private Color _color = new Color(1, 0, 0, 1);
-    
+
     public override Variant _GetDragData(Vector2 atPosition)
     {
         // Use a control that is not in the tree
@@ -3436,6 +3626,7 @@ Moves the mouse cursor to ``position``, relative to :ref:`position<class_Control
 \ **Note:** :ref:`warp_mouse()<class_Control_method_warp_mouse>` is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

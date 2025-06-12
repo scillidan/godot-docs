@@ -19,7 +19,7 @@ Settings for a single tile in a :ref:`TileSet<class_TileSet>`.
 Description
 -----------
 
-**TileData** object represents a single tile in a :ref:`TileSet<class_TileSet>`. It is usually edited using the tileset editor, but it can be modified at runtime using :ref:`TileMap._tile_data_runtime_update()<class_TileMap_private_method__tile_data_runtime_update>`.
+**TileData** object represents a single tile in a :ref:`TileSet<class_TileSet>`. It is usually edited using the tileset editor, but it can be modified at runtime using :ref:`TileMapLayer._tile_data_runtime_update()<class_TileMapLayer_private_method__tile_data_runtime_update>`.
 
 .. rst-class:: classref-reftable-group
 
@@ -334,7 +334,7 @@ Vertical point of the tile used for determining y-sorted order.
 - |void| **set_z_index**\ (\ value\: :ref:`int<class_int>`\ )
 - :ref:`int<class_int>` **get_z_index**\ (\ )
 
-Ordering index of this tile, relative to :ref:`TileMap<class_TileMap>`.
+Ordering index of this tile, relative to :ref:`TileMapLayer<class_TileMapLayer>`.
 
 .. rst-class:: classref-section-separator
 
@@ -736,6 +736,7 @@ Sets the occluder polygon count in the TileSet occlusion layer with index ``laye
 Sets the tile's terrain bit for the given ``peering_bit`` direction. To check that a direction is valid, use :ref:`is_valid_terrain_peering_bit()<class_TileData_method_is_valid_terrain_peering_bit>`.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

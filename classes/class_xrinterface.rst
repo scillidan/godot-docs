@@ -292,6 +292,14 @@ Player is free to move around, full positional tracking.
 
 Same as :ref:`XR_PLAY_AREA_ROOMSCALE<class_XRInterface_constant_XR_PLAY_AREA_ROOMSCALE>` but origin point is fixed to the center of the physical space. In this mode, system-level recentering may be disabled, requiring the use of :ref:`XRServer.center_on_hmd()<class_XRServer_method_center_on_hmd>`.
 
+.. _class_XRInterface_constant_XR_PLAY_AREA_CUSTOM:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`PlayAreaMode<enum_XRInterface_PlayAreaMode>` **XR_PLAY_AREA_CUSTOM** = ``2147483647``
+
+Custom play area set by a GDExtension.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -325,6 +333,40 @@ Additive blend mode. This is typically used for AR devices or VR devices with pa
 :ref:`EnvironmentBlendMode<enum_XRInterface_EnvironmentBlendMode>` **XR_ENV_BLEND_MODE_ALPHA_BLEND** = ``2``
 
 Alpha blend mode. This is typically used for AR or VR devices with passthrough capabilities. The alpha channel controls how much of the passthrough is visible. Alpha of 0.0 means the passthrough is visible and this pixel works in ADDITIVE mode. Alpha of 1.0 means that the passthrough is not visible and this pixel works in OPAQUE mode.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _enum_XRInterface_VRSTextureFormat:
+
+.. rst-class:: classref-enumeration
+
+enum **VRSTextureFormat**: :ref:`🔗<enum_XRInterface_VRSTextureFormat>`
+
+.. _class_XRInterface_constant_XR_VRS_TEXTURE_FORMAT_UNIFIED:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`VRSTextureFormat<enum_XRInterface_VRSTextureFormat>` **XR_VRS_TEXTURE_FORMAT_UNIFIED** = ``0``
+
+The texture format is the same as returned by :ref:`XRVRS.make_vrs_texture()<class_XRVRS_method_make_vrs_texture>`.
+
+.. _class_XRInterface_constant_XR_VRS_TEXTURE_FORMAT_FRAGMENT_SHADING_RATE:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`VRSTextureFormat<enum_XRInterface_VRSTextureFormat>` **XR_VRS_TEXTURE_FORMAT_FRAGMENT_SHADING_RATE** = ``1``
+
+The texture format is the same as expected by the Vulkan ``VK_KHR_fragment_shading_rate`` extension.
+
+.. _class_XRInterface_constant_XR_VRS_TEXTURE_FORMAT_FRAGMENT_DENSITY_MAP:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`VRSTextureFormat<enum_XRInterface_VRSTextureFormat>` **XR_VRS_TEXTURE_FORMAT_FRAGMENT_DENSITY_MAP** = ``2``
+
+The texture format is the same as expected by the Vulkan ``VK_EXT_fragment_density_map`` extension.
 
 .. rst-class:: classref-section-separator
 
@@ -725,6 +767,7 @@ Triggers a haptic pulse on a device associated with this interface.
 Turns the interface off.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

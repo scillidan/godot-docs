@@ -131,6 +131,8 @@ Methods
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Array<class_Array>`\[:ref:`RID<class_RID>`\]  | :ref:`get_maps<class_NavigationServer2D_method_get_maps>`\ (\ ) |const|                                                                                                                                                                                                                                                                                                               |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                               | :ref:`get_process_info<class_NavigationServer2D_method_get_process_info>`\ (\ process_info\: :ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>`\ ) |const|                                                                                                                                                                                                                       |
+   +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                             | :ref:`is_baking_navigation_polygon<class_NavigationServer2D_method_is_baking_navigation_polygon>`\ (\ navigation_polygon\: :ref:`NavigationPolygon<class_NavigationPolygon>`\ ) |const|                                                                                                                                                                                               |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`RID<class_RID>`                               | :ref:`link_create<class_NavigationServer2D_method_link_create>`\ (\ )                                                                                                                                                                                                                                                                                                                 |
@@ -140,6 +142,8 @@ Methods
    | :ref:`Vector2<class_Vector2>`                       | :ref:`link_get_end_position<class_NavigationServer2D_method_link_get_end_position>`\ (\ link\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                       |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                           | :ref:`link_get_enter_cost<class_NavigationServer2D_method_link_get_enter_cost>`\ (\ link\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                           |
+   +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                               | :ref:`link_get_iteration_id<class_NavigationServer2D_method_link_get_iteration_id>`\ (\ link\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                       |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`RID<class_RID>`                               | :ref:`link_get_map<class_NavigationServer2D_method_link_get_map>`\ (\ link\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                                         |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -271,6 +275,8 @@ Methods
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                           | :ref:`region_get_enter_cost<class_NavigationServer2D_method_region_get_enter_cost>`\ (\ region\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                     |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                               | :ref:`region_get_iteration_id<class_NavigationServer2D_method_region_get_iteration_id>`\ (\ region\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                 |
+   +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`RID<class_RID>`                               | :ref:`region_get_map<class_NavigationServer2D_method_region_get_map>`\ (\ region\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                                   |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                               | :ref:`region_get_navigation_layers<class_NavigationServer2D_method_region_get_navigation_layers>`\ (\ region\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                       |
@@ -305,6 +311,8 @@ Methods
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                              | :ref:`region_set_use_edge_connections<class_NavigationServer2D_method_region_set_use_edge_connections>`\ (\ region\: :ref:`RID<class_RID>`, enabled\: :ref:`bool<class_bool>`\ )                                                                                                                                                                                                      |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                              | :ref:`set_active<class_NavigationServer2D_method_set_active>`\ (\ active\: :ref:`bool<class_bool>`\ )                                                                                                                                                                                                                                                                                 |
+   +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                              | :ref:`set_debug_enabled<class_NavigationServer2D_method_set_debug_enabled>`\ (\ enabled\: :ref:`bool<class_bool>`\ )                                                                                                                                                                                                                                                                  |
    +-----------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PackedVector2Array<class_PackedVector2Array>` | :ref:`simplify_path<class_NavigationServer2D_method_simplify_path>`\ (\ path\: :ref:`PackedVector2Array<class_PackedVector2Array>`, epsilon\: :ref:`float<class_float>`\ )                                                                                                                                                                                                            |
@@ -322,6 +330,18 @@ Methods
 
 Signals
 -------
+
+.. _class_NavigationServer2D_signal_avoidance_debug_changed:
+
+.. rst-class:: classref-signal
+
+**avoidance_debug_changed**\ (\ ) :ref:`🔗<class_NavigationServer2D_signal_avoidance_debug_changed>`
+
+Emitted when avoidance debug settings are changed. Only available in debug builds.
+
+.. rst-class:: classref-item-separator
+
+----
 
 .. _class_NavigationServer2D_signal_map_changed:
 
@@ -342,6 +362,101 @@ Emitted when a navigation map is updated, when a region moves or is modified.
 **navigation_debug_changed**\ (\ ) :ref:`🔗<class_NavigationServer2D_signal_navigation_debug_changed>`
 
 Emitted when navigation debug settings are changed. Only available in debug builds.
+
+.. rst-class:: classref-section-separator
+
+----
+
+.. rst-class:: classref-descriptions-group
+
+Enumerations
+------------
+
+.. _enum_NavigationServer2D_ProcessInfo:
+
+.. rst-class:: classref-enumeration
+
+enum **ProcessInfo**: :ref:`🔗<enum_NavigationServer2D_ProcessInfo>`
+
+.. _class_NavigationServer2D_constant_INFO_ACTIVE_MAPS:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_ACTIVE_MAPS** = ``0``
+
+Constant to get the number of active navigation maps.
+
+.. _class_NavigationServer2D_constant_INFO_REGION_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_REGION_COUNT** = ``1``
+
+Constant to get the number of active navigation regions.
+
+.. _class_NavigationServer2D_constant_INFO_AGENT_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_AGENT_COUNT** = ``2``
+
+Constant to get the number of active navigation agents processing avoidance.
+
+.. _class_NavigationServer2D_constant_INFO_LINK_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_LINK_COUNT** = ``3``
+
+Constant to get the number of active navigation links.
+
+.. _class_NavigationServer2D_constant_INFO_POLYGON_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_POLYGON_COUNT** = ``4``
+
+Constant to get the number of navigation mesh polygons.
+
+.. _class_NavigationServer2D_constant_INFO_EDGE_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_EDGE_COUNT** = ``5``
+
+Constant to get the number of navigation mesh polygon edges.
+
+.. _class_NavigationServer2D_constant_INFO_EDGE_MERGE_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_EDGE_MERGE_COUNT** = ``6``
+
+Constant to get the number of navigation mesh polygon edges that were merged due to edge key overlap.
+
+.. _class_NavigationServer2D_constant_INFO_EDGE_CONNECTION_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_EDGE_CONNECTION_COUNT** = ``7``
+
+Constant to get the number of navigation mesh polygon edges that are considered connected by edge proximity.
+
+.. _class_NavigationServer2D_constant_INFO_EDGE_FREE_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_EDGE_FREE_COUNT** = ``8``
+
+Constant to get the number of navigation mesh polygon edges that could not be merged but may be still connected by edge proximity or with links.
+
+.. _class_NavigationServer2D_constant_INFO_OBSTACLE_COUNT:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>` **INFO_OBSTACLE_COUNT** = ``9``
+
+Constant to get the number of active navigation obstacles.
 
 .. rst-class:: classref-section-separator
 
@@ -812,6 +927,18 @@ Returns all created navigation map :ref:`RID<class_RID>`\ s on the NavigationSer
 
 ----
 
+.. _class_NavigationServer2D_method_get_process_info:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **get_process_info**\ (\ process_info\: :ref:`ProcessInfo<enum_NavigationServer2D_ProcessInfo>`\ ) |const| :ref:`🔗<class_NavigationServer2D_method_get_process_info>`
+
+Returns information about the current state of the NavigationServer.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_NavigationServer2D_method_is_baking_navigation_polygon:
 
 .. rst-class:: classref-method
@@ -867,6 +994,20 @@ Returns the ending position of this ``link``.
 :ref:`float<class_float>` **link_get_enter_cost**\ (\ link\: :ref:`RID<class_RID>`\ ) |const| :ref:`🔗<class_NavigationServer2D_method_link_get_enter_cost>`
 
 Returns the enter cost of this ``link``.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_NavigationServer2D_method_link_get_iteration_id:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **link_get_iteration_id**\ (\ link\: :ref:`RID<class_RID>`\ ) |const| :ref:`🔗<class_NavigationServer2D_method_link_get_iteration_id>`
+
+Returns the current iteration ID of the navigation link. Every time the navigation link changes and synchronizes, the iteration ID increases. An iteration ID of ``0`` means the navigation link has never synchronized.
+
+\ **Note:** The iteration ID will wrap around to ``1`` after reaching its range limit.
 
 .. rst-class:: classref-item-separator
 
@@ -1069,6 +1210,8 @@ Create a new map.
 .. rst-class:: classref-method
 
 |void| **map_force_update**\ (\ map\: :ref:`RID<class_RID>`\ ) :ref:`🔗<class_NavigationServer2D_method_map_force_update>`
+
+**Deprecated:** This method is no longer supported, as it is incompatible with asynchronous updates. It can only be used in a single-threaded context, at your own risk.
 
 This function immediately forces synchronization of the specified navigation ``map`` :ref:`RID<class_RID>`. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).
 
@@ -1668,6 +1811,20 @@ Returns the enter cost of this ``region``.
 
 ----
 
+.. _class_NavigationServer2D_method_region_get_iteration_id:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **region_get_iteration_id**\ (\ region\: :ref:`RID<class_RID>`\ ) |const| :ref:`🔗<class_NavigationServer2D_method_region_get_iteration_id>`
+
+Returns the current iteration ID of the navigation region. Every time the navigation region changes and synchronizes, the iteration ID increases. An iteration ID of ``0`` means the navigation region has never synchronized.
+
+\ **Note:** The iteration ID will wrap around to ``1`` after reaching its range limit.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_NavigationServer2D_method_region_get_map:
 
 .. rst-class:: classref-method
@@ -1880,6 +2037,18 @@ If ``enabled`` is ``true``, the navigation ``region`` will use edge connections 
 
 ----
 
+.. _class_NavigationServer2D_method_set_active:
+
+.. rst-class:: classref-method
+
+|void| **set_active**\ (\ active\: :ref:`bool<class_bool>`\ ) :ref:`🔗<class_NavigationServer2D_method_set_active>`
+
+Control activation of this server.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_NavigationServer2D_method_set_debug_enabled:
 
 .. rst-class:: classref-method
@@ -1933,6 +2102,7 @@ Sets the ``callback`` :ref:`Callable<class_Callable>` for the specific source ge
 - ``node`` - The :ref:`Node<class_Node>` that is parsed.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

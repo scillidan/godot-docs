@@ -203,7 +203,7 @@ Signals
 
 **main_screen_changed**\ (\ screen_name\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorPlugin_signal_main_screen_changed>`
 
-Emitted when user changes the workspace (**2D**, **3D**, **Script**, **AssetLib**). Also works with custom screens defined by plugins.
+Emitted when user changes the workspace (**2D**, **3D**, **Script**, **Game**, **AssetLib**). Also works with custom screens defined by plugins.
 
 .. rst-class:: classref-item-separator
 
@@ -587,7 +587,7 @@ Called by the engine when the user enables the **EditorPlugin** in the Plugin ta
 
 |void| **_forward_3d_draw_over_viewport**\ (\ viewport_control\: :ref:`Control<class_Control>`\ ) |virtual| :ref:`🔗<class_EditorPlugin_private_method__forward_3d_draw_over_viewport>`
 
-Called by the engine when the 3D editor's viewport is updated. Use the ``overlay`` :ref:`Control<class_Control>` for drawing. You can update the viewport manually by calling :ref:`update_overlays()<class_EditorPlugin_method_update_overlays>`.
+Called by the engine when the 3D editor's viewport is updated. ``viewport_control`` is an overlay on top of the viewport and it can be used for drawing. You can update the viewport manually by calling :ref:`update_overlays()<class_EditorPlugin_method_update_overlays>`.
 
 
 .. tabs::
@@ -595,12 +595,12 @@ Called by the engine when the 3D editor's viewport is updated. Use the ``overlay
  .. code-tab:: gdscript
 
     func _forward_3d_draw_over_viewport(overlay):
-        # Draw a circle at cursor position.
+        # Draw a circle at the cursor's position.
         overlay.draw_circle(overlay.get_local_mouse_position(), 64, Color.WHITE)
-    
+
     func _forward_3d_gui_input(camera, event):
         if event is InputEventMouseMotion:
-            # Redraw viewport when cursor is moved.
+            # Redraw the viewport when the cursor is moved.
             update_overlays()
             return EditorPlugin.AFTER_GUI_INPUT_STOP
         return EditorPlugin.AFTER_GUI_INPUT_PASS
@@ -609,15 +609,15 @@ Called by the engine when the 3D editor's viewport is updated. Use the ``overlay
 
     public override void _Forward3DDrawOverViewport(Control viewportControl)
     {
-        // Draw a circle at cursor position.
+        // Draw a circle at the cursor's position.
         viewportControl.DrawCircle(viewportControl.GetLocalMousePosition(), 64, Colors.White);
     }
-    
+
     public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Camera3D viewportCamera, InputEvent @event)
     {
         if (@event is InputEventMouseMotion)
         {
-            // Redraw viewport when cursor is moved.
+            // Redraw the viewport when the cursor is moved.
             UpdateOverlays();
             return EditorPlugin.AfterGuiInput.Stop;
         }
@@ -702,7 +702,7 @@ This method must return :ref:`AFTER_GUI_INPUT_PASS<class_EditorPlugin_constant_A
 
 |void| **_forward_canvas_draw_over_viewport**\ (\ viewport_control\: :ref:`Control<class_Control>`\ ) |virtual| :ref:`🔗<class_EditorPlugin_private_method__forward_canvas_draw_over_viewport>`
 
-Called by the engine when the 2D editor's viewport is updated. Use the ``overlay`` :ref:`Control<class_Control>` for drawing. You can update the viewport manually by calling :ref:`update_overlays()<class_EditorPlugin_method_update_overlays>`.
+Called by the engine when the 2D editor's viewport is updated. ``viewport_control`` is an overlay on top of the viewport and it can be used for drawing. You can update the viewport manually by calling :ref:`update_overlays()<class_EditorPlugin_method_update_overlays>`.
 
 
 .. tabs::
@@ -710,12 +710,12 @@ Called by the engine when the 2D editor's viewport is updated. Use the ``overlay
  .. code-tab:: gdscript
 
     func _forward_canvas_draw_over_viewport(overlay):
-        # Draw a circle at cursor position.
+        # Draw a circle at the cursor's position.
         overlay.draw_circle(overlay.get_local_mouse_position(), 64, Color.WHITE)
-    
+
     func _forward_canvas_gui_input(event):
         if event is InputEventMouseMotion:
-            # Redraw viewport when cursor is moved.
+            # Redraw the viewport when the cursor is moved.
             update_overlays()
             return true
         return false
@@ -724,15 +724,15 @@ Called by the engine when the 2D editor's viewport is updated. Use the ``overlay
 
     public override void _ForwardCanvasDrawOverViewport(Control viewportControl)
     {
-        // Draw a circle at cursor position.
+        // Draw a circle at the cursor's position.
         viewportControl.DrawCircle(viewportControl.GetLocalMousePosition(), 64, Colors.White);
     }
-    
+
     public override bool _ForwardCanvasGuiInput(InputEvent @event)
     {
         if (@event is InputEventMouseMotion)
         {
-            // Redraw viewport when cursor is moved.
+            // Redraw the viewport when the cursor is moved.
             UpdateOverlays();
             return true;
         }
@@ -837,7 +837,7 @@ This is for editors that edit script-based objects. You can return a list of bre
 
 Override this method in your plugin to return a :ref:`Texture2D<class_Texture2D>` in order to give it an icon.
 
-For main screen plugins, this appears at the top of the screen, to the right of the "2D", "3D", "Script", and "AssetLib" buttons.
+For main screen plugins, this appears at the top of the screen, to the right of the "2D", "3D", "Script", "Game", and "AssetLib" buttons.
 
 Ideally, the plugin icon should be white with a transparent background and 16×16 pixels in size.
 
@@ -876,7 +876,7 @@ Ideally, the plugin icon should be white with a transparent background and 16×1
 
 Override this method in your plugin to provide the name of the plugin when displayed in the Godot editor.
 
-For main screen plugins, this appears at the top of the screen, to the right of the "2D", "3D", "Script", and "AssetLib" buttons.
+For main screen plugins, this appears at the top of the screen, to the right of the "2D", "3D", "Script", "Game", and "AssetLib" buttons.
 
 .. rst-class:: classref-item-separator
 
@@ -923,12 +923,12 @@ If the user confirms saving, :ref:`_save_external_data()<class_EditorPlugin_priv
     func _get_unsaved_status(for_scene):
         if not unsaved:
             return ""
-    
+
         if for_scene.is_empty():
             return "Save changes in MyCustomPlugin before closing?"
         else:
             return "Scene %s has changes from MyCustomPlugin. Save before closing?" % for_scene.get_file()
-    
+
     func _save_external_data():
         unsaved = false
 
@@ -984,7 +984,7 @@ Implement this function if your plugin edits a specific type of object (Resource
 
 :ref:`bool<class_bool>` **_has_main_screen**\ (\ ) |virtual| |const| :ref:`🔗<class_EditorPlugin_private_method__has_main_screen>`
 
-Returns ``true`` if this is a main screen editor plugin (it goes in the workspace selector together with **2D**, **3D**, **Script** and **AssetLib**).
+Returns ``true`` if this is a main screen editor plugin (it goes in the workspace selector together with **2D**, **3D**, **Script**, **Game**, and **AssetLib**).
 
 When the plugin's workspace is selected, other main screen plugins will be hidden, but your plugin will not appear automatically. It needs to be added as a child of :ref:`EditorInterface.get_editor_main_screen()<class_EditorInterface_method_get_editor_main_screen>` and made visible inside :ref:`_make_visible()<class_EditorPlugin_private_method__make_visible>`.
 
@@ -993,21 +993,21 @@ Use :ref:`_get_plugin_name()<class_EditorPlugin_private_method__get_plugin_name>
 ::
 
     var plugin_control
-    
+
     func _enter_tree():
         plugin_control = preload("my_plugin_control.tscn").instantiate()
         EditorInterface.get_editor_main_screen().add_child(plugin_control)
         plugin_control.hide()
-    
+
     func _has_main_screen():
         return true
-    
+
     func _make_visible(visible):
         plugin_control.visible = visible
-    
+
     func _get_plugin_name():
         return "My Super Cool Plugin 3000"
-    
+
     func _get_plugin_icon():
         return EditorInterface.get_editor_theme().get_icon("Node", "EditorIcons")
 
@@ -1099,7 +1099,7 @@ Adds a script at ``path`` to the Autoload list as ``name``.
 
 Adds a plugin to the context menu. ``slot`` is the context menu where the plugin will be added.
 
-See :ref:`ContextMenuSlot<enum_EditorContextMenuPlugin_ContextMenuSlot>` for available context menus. A plugin instance can belong only to a single context menu slot.
+\ **Note:** A plugin instance can belong only to a single context menu slot.
 
 .. rst-class:: classref-item-separator
 
@@ -1125,7 +1125,7 @@ Optionally, you can specify a shortcut parameter. When pressed, this shortcut wi
 
 |void| **add_control_to_container**\ (\ container\: :ref:`CustomControlContainer<enum_EditorPlugin_CustomControlContainer>`, control\: :ref:`Control<class_Control>`\ ) :ref:`🔗<class_EditorPlugin_method_add_control_to_container>`
 
-Adds a custom control to a container (see :ref:`CustomControlContainer<enum_EditorPlugin_CustomControlContainer>`). There are many locations where custom controls can be added in the editor UI.
+Adds a custom control to a container in the editor UI.
 
 Please remember that you have to manage the visibility of your custom controls yourself (and likely hide it after adding it).
 
@@ -1141,13 +1141,13 @@ When your plugin is deactivated, make sure to remove your custom control with :r
 
 |void| **add_control_to_dock**\ (\ slot\: :ref:`DockSlot<enum_EditorPlugin_DockSlot>`, control\: :ref:`Control<class_Control>`, shortcut\: :ref:`Shortcut<class_Shortcut>` = null\ ) :ref:`🔗<class_EditorPlugin_method_add_control_to_dock>`
 
-Adds the control to a specific dock slot (see :ref:`DockSlot<enum_EditorPlugin_DockSlot>` for options).
+Adds the control to a specific dock slot.
 
 If the dock is repositioned and as long as the plugin is active, the editor will save the dock position on further sessions.
 
 When your plugin is deactivated, make sure to remove your custom control with :ref:`remove_control_from_docks()<class_EditorPlugin_method_remove_control_from_docks>` and free it with :ref:`Node.queue_free()<class_Node_method_queue_free>`.
 
-Optionally, you can specify a shortcut parameter. When pressed, this shortcut will toggle the dock's visibility once it's moved to the bottom panel (this shortcut does not affect the dock otherwise). See the default editor bottom panel shortcuts in the Editor Settings for inspiration. Per convention, they all use :kbd:`Alt` modifier.
+Optionally, you can specify a shortcut parameter. When pressed, this shortcut will open and focus the dock.
 
 .. rst-class:: classref-item-separator
 
@@ -1248,10 +1248,10 @@ Registers a new :ref:`EditorInspectorPlugin<class_EditorInspectorPlugin>`. Inspe
 
     const MyInspectorPlugin = preload("res://addons/your_addon/path/to/your/script.gd")
     var inspector_plugin = MyInspectorPlugin.new()
-    
+
     func _enter_tree():
         add_inspector_plugin(inspector_plugin)
-    
+
     func _exit_tree():
         remove_inspector_plugin(inspector_plugin)
 
@@ -1730,6 +1730,7 @@ Use this method if you always want to receive inputs from 3D view screen inside 
 Updates the overlays of the 2D and 3D editor viewport. Causes methods :ref:`_forward_canvas_draw_over_viewport()<class_EditorPlugin_private_method__forward_canvas_draw_over_viewport>`, :ref:`_forward_canvas_force_draw_over_viewport()<class_EditorPlugin_private_method__forward_canvas_force_draw_over_viewport>`, :ref:`_forward_3d_draw_over_viewport()<class_EditorPlugin_private_method__forward_3d_draw_over_viewport>` and :ref:`_forward_3d_force_draw_over_viewport()<class_EditorPlugin_private_method__forward_3d_force_draw_over_viewport>` to be called.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

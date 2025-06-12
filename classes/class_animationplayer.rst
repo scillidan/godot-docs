@@ -622,7 +622,7 @@ Returns the start time of the section currently being played.
 
 :ref:`bool<class_bool>` **has_section**\ (\ ) |const| :ref:`🔗<class_AnimationPlayer_method_has_section>`
 
-Returns ``true`` if an animation is currently playing with section.
+Returns ``true`` if an animation is currently playing with a section.
 
 .. rst-class:: classref-item-separator
 
@@ -787,7 +787,7 @@ Queues an animation for playback once the current animation and all previously q
 
 |void| **reset_section**\ (\ ) :ref:`🔗<class_AnimationPlayer_method_reset_section>`
 
-Resets the current section if section is set.
+Resets the current section. Does nothing if a section has not been set.
 
 .. rst-class:: classref-item-separator
 
@@ -902,6 +902,7 @@ If ``keep_state`` is ``true``, the animation state is not updated visually.
 \ **Note:** The method / audio / animation playback tracks will not be processed by this method.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

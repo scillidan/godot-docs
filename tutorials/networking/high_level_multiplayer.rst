@@ -153,7 +153,7 @@ To terminate networking:
 .. tabs::
  .. code-tab:: gdscript GDScript
 
-    multiplayer.multiplayer_peer = null
+    multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 
  .. code-tab:: csharp
 
@@ -204,6 +204,8 @@ To check whether the peer is server or client:
  .. code-tab:: csharp
 
     Multiplayer.IsServer();
+
+.. _doc_high_level_multiplayer_rpcs:
 
 Remote procedure calls
 ----------------------
@@ -414,7 +416,7 @@ have loaded the game scene.
 
 
     func remove_multiplayer_peer():
-        multiplayer.multiplayer_peer = null
+        multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
         players.clear()
 
 
@@ -460,11 +462,11 @@ have loaded the game scene.
 
 
     func _on_connected_fail():
-        multiplayer.multiplayer_peer = null
+        remove_multiplayer_peer()
 
 
     func _on_server_disconnected():
-        multiplayer.multiplayer_peer = null
+        remove_multiplayer_peer()
         players.clear()
         server_disconnected.emit()
 

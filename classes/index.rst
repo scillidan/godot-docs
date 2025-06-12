@@ -29,6 +29,7 @@ Nodes
 
     class_node
     class_acceptdialog
+    class_aimmodifier3d
     class_animatablebody2d
     class_animatablebody3d
     class_animatedsprite2d
@@ -48,6 +49,7 @@ Nodes
     class_basebutton
     class_bone2d
     class_boneattachment3d
+    class_boneconstraint3d
     class_boxcontainer
     class_button
     class_camera2d
@@ -75,6 +77,8 @@ Nodes
     class_confirmationdialog
     class_container
     class_control
+    class_converttransformmodifier3d
+    class_copytransformmodifier3d
     class_cpuparticles2d
     class_cpuparticles3d
     class_csgbox3d
@@ -105,6 +109,7 @@ Nodes
     class_filesystemdock
     class_flowcontainer
     class_fogvolume
+    class_foldablecontainer
     class_generic6dofjoint3d
     class_geometryinstance3d
     class_gpuparticles2d
@@ -158,6 +163,7 @@ Nodes
     class_meshinstance2d
     class_meshinstance3d
     class_missingnode
+    class_modifierbonetarget3d
     class_multimeshinstance2d
     class_multimeshinstance3d
     class_multiplayerspawner
@@ -417,6 +423,7 @@ Resources
     class_fbxdocument
     class_fbxstate
     class_fogmaterial
+    class_foldablegroup
     class_font
     class_fontfile
     class_fontvariation
@@ -565,6 +572,7 @@ Resources
     class_styleboxflat
     class_styleboxline
     class_styleboxtexture
+    class_svgtexture
     class_syntaxhighlighter
     class_systemfont
     class_textmesh
@@ -751,11 +759,13 @@ Other objects
     class_editordebuggersession
     class_editorexportplatform
     class_editorexportplatformandroid
+    class_editorexportplatformappleembedded
     class_editorexportplatformextension
     class_editorexportplatformios
     class_editorexportplatformlinuxbsd
     class_editorexportplatformmacos
     class_editorexportplatformpc
+    class_editorexportplatformvisionos
     class_editorexportplatformweb
     class_editorexportplatformwindows
     class_editorexportplugin
@@ -817,6 +827,7 @@ Other objects
     class_kinematiccollision3d
     class_lightmapper
     class_lightmapperrd
+    class_logger
     class_mainloop
     class_marshalls
     class_meshconvexdecompositionsettings
@@ -842,7 +853,10 @@ Other objects
     class_offlinemultiplayerpeer
     class_oggpacketsequenceplayback
     class_openxrapiextension
+    class_openxrextensionwrapper
     class_openxrextensionwrapperextension
+    class_openxrfutureextension
+    class_openxrfutureresult
     class_openxrinteractionprofilemetadata
     class_openxrinterface
     class_os
@@ -927,6 +941,7 @@ Other objects
     class_resourceimporteroggvorbis
     class_resourceimporterscene
     class_resourceimportershaderfile
+    class_resourceimportersvg
     class_resourceimportertexture
     class_resourceimportertextureatlas
     class_resourceimporterwav
@@ -937,6 +952,7 @@ Other objects
     class_scenestate
     class_scenetree
     class_scenetreetimer
+    class_scriptbacktrace
     class_scriptlanguage
     class_scriptlanguageextension
     class_semaphore
@@ -1013,11 +1029,13 @@ Editor-only
     class_editordebuggersession
     class_editorexportplatform
     class_editorexportplatformandroid
+    class_editorexportplatformappleembedded
     class_editorexportplatformextension
     class_editorexportplatformios
     class_editorexportplatformlinuxbsd
     class_editorexportplatformmacos
     class_editorexportplatformpc
+    class_editorexportplatformvisionos
     class_editorexportplatformweb
     class_editorexportplatformwindows
     class_editorexportplugin

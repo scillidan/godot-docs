@@ -67,15 +67,15 @@ Properties
 .. table::
    :widths: auto
 
-   +------------------------------------------+--------------------------------------------------------------------+---------------+
-   | :ref:`bool<class_bool>`                  | :ref:`capture_included<class_Animation_property_capture_included>` | ``false``     |
-   +------------------------------------------+--------------------------------------------------------------------+---------------+
-   | :ref:`float<class_float>`                | :ref:`length<class_Animation_property_length>`                     | ``1.0``       |
-   +------------------------------------------+--------------------------------------------------------------------+---------------+
-   | :ref:`LoopMode<enum_Animation_LoopMode>` | :ref:`loop_mode<class_Animation_property_loop_mode>`               | ``0``         |
-   +------------------------------------------+--------------------------------------------------------------------+---------------+
-   | :ref:`float<class_float>`                | :ref:`step<class_Animation_property_step>`                         | ``0.0333333`` |
-   +------------------------------------------+--------------------------------------------------------------------+---------------+
+   +------------------------------------------+--------------------------------------------------------------------+-----------------+
+   | :ref:`bool<class_bool>`                  | :ref:`capture_included<class_Animation_property_capture_included>` | ``false``       |
+   +------------------------------------------+--------------------------------------------------------------------+-----------------+
+   | :ref:`float<class_float>`                | :ref:`length<class_Animation_property_length>`                     | ``1.0``         |
+   +------------------------------------------+--------------------------------------------------------------------+-----------------+
+   | :ref:`LoopMode<enum_Animation_LoopMode>` | :ref:`loop_mode<class_Animation_property_loop_mode>`               | ``0``           |
+   +------------------------------------------+--------------------------------------------------------------------+-----------------+
+   | :ref:`float<class_float>`                | :ref:`step<class_Animation_property_step>`                         | ``0.033333335`` |
+   +------------------------------------------+--------------------------------------------------------------------+-----------------+
 
 .. rst-class:: classref-reftable-group
 
@@ -585,7 +585,7 @@ Determines the behavior of both ends of the animation timeline during animation 
 
 .. rst-class:: classref-property
 
-:ref:`float<class_float>` **step** = ``0.0333333`` :ref:`🔗<class_Animation_property_step>`
+:ref:`float<class_float>` **step** = ``0.033333335`` :ref:`🔗<class_Animation_property_step>`
 
 .. rst-class:: classref-property-setget
 
@@ -1553,9 +1553,10 @@ A ``backward`` mainly affects the direction of key retrieval of the track with :
 
 |void| **value_track_set_update_mode**\ (\ track_idx\: :ref:`int<class_int>`, mode\: :ref:`UpdateMode<enum_Animation_UpdateMode>`\ ) :ref:`🔗<class_Animation_method_value_track_set_update_mode>`
 
-Sets the update mode (see :ref:`UpdateMode<enum_Animation_UpdateMode>`) of a value track.
+Sets the update mode of a value track.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

@@ -186,11 +186,11 @@ indentation level to distinguish continuation lines:
         "Job": "Mechanic",
     }
 
-    enum Tiles {
-        TILE_BRICK,
-        TILE_FLOOR,
-        TILE_SPIKE,
-        TILE_TELEPORT,
+    enum Tile {
+        BRICK,
+        FLOOR,
+        SPIKE,
+        TELEPORT,
     }
 
 **Bad**:
@@ -211,11 +211,11 @@ indentation level to distinguish continuation lines:
             "Job": "Mechanic",
     }
 
-    enum Tiles {
-            TILE_BRICK,
-            TILE_FLOOR,
-            TILE_SPIKE,
-            TILE_TELEPORT,
+    enum Tile {
+            BRICK,
+            FLOOR,
+            SPIKE,
+            TELEPORT,
     }
 
 Trailing comma
@@ -738,7 +738,7 @@ underscore (\_) to separate words:
 
     const MAX_SPEED = 200
 
-Use PascalCase for enum *names* and CONSTANT\_CASE for their members, as they
+Use PascalCase for enum *names* and keep them singular, as they represent a type. Use CONSTANT\_CASE for their members, as they
 are constants:
 
 ::
@@ -801,7 +801,7 @@ We suggest to organize GDScript code this way:
     13. remaining static methods
     14. overridden built-in virtual methods:
         1. _init()
-        2. _enter_tree() 
+        2. _enter_tree()
         3. _ready()
         4. _process()
         5. _physics_process()
@@ -813,7 +813,7 @@ We suggest to organize GDScript code this way:
 And put the class methods and variables in the following order depending on their access modifiers:
 
 ::
-   
+
     1. public
     2. private
 
@@ -829,7 +829,6 @@ This code order follows four rules of thumb:
 4. The object's construction and initialization functions, ``_init`` and
    ``_ready``, come before functions that modify the object at runtime.
 
-
 Class declaration
 ~~~~~~~~~~~~~~~~~
 
@@ -838,7 +837,9 @@ first line of the script.
 
 Follow with the optional ``@icon`` then the ``class_name`` if necessary. You can turn a
 GDScript file into a global type in your project using ``class_name``. For more
-information, see :ref:`doc_gdscript_basics_class_name`.
+information, see :ref:`doc_gdscript_basics_class_name`. If the class is meant
+to be an :ref:`abstract class <doc_gdscript_basics_abstract_class>`,
+add ``abstract`` *before* the ``class_name`` keyword, but on the same line.
 
 Then, add the ``extends`` keyword if the class extends a built-in type.
 
@@ -849,7 +850,7 @@ and how other developers should use it, for example.
 
 ::
 
-    class_name MyNode
+    abstract class_name MyNode
     extends Node
     ## A brief description of the class's role and functionality.
     ##
@@ -872,7 +873,7 @@ variables, in that order.
 
     signal player_spawned(position)
 
-    enum Jobs {
+    enum Job {
         KNIGHT,
         WIZARD,
         ROGUE,
@@ -882,7 +883,7 @@ variables, in that order.
 
     const MAX_LIVES = 3
 
-    @export var job: Jobs = Jobs.KNIGHT
+    @export var job: Job = Job.KNIGHT
     @export var max_health = 50
     @export var attack = 5
 
@@ -1060,6 +1061,9 @@ that type will be used to infer the type of the var.
     @onready var health_bar := get_node("UI/LifeBar") as ProgressBar
     # health_bar will be typed as ProgressBar
 
-This option is also considered more :ref:`type-safe<doc_gdscript_static_typing_safe_lines>` than the first.
 
+.. note::
 
+    This option is considered more :ref:`type-safe<doc_gdscript_static_typing_safe_lines>` than type hints,
+    but also less null-safe as it silently casts the variable to ``null`` in case of a type mismatch at runtime,
+    without an error/warning.

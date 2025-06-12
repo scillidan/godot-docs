@@ -175,14 +175,14 @@ Constants
 
 **TRANSFORM_FLIP_H** = ``4096`` :ref:`🔗<class_TileSetAtlasSource_constant_TRANSFORM_FLIP_H>`
 
-Represents cell's horizontal flip flag. Should be used directly with :ref:`TileMap<class_TileMap>` to flip placed tiles by altering their alternative IDs.
+Represents cell's horizontal flip flag. Should be used directly with :ref:`TileMapLayer<class_TileMapLayer>` to flip placed tiles by altering their alternative IDs.
 
 ::
 
-    var alternate_id = $TileMap.get_cell_alternative_tile(0, Vector2i(2, 2))
+    var alternate_id = $TileMapLayer.get_cell_alternative_tile(Vector2i(2, 2))
     if not alternate_id & TileSetAtlasSource.TRANSFORM_FLIP_H:
         # If tile is not already flipped, flip it.
-        $TileMap.set_cell(0, Vector2i(2, 2), source_id, atlas_coords, alternate_id | TileSetAtlasSource.TRANSFORM_FLIP_H)
+        $TileMapLayer.set_cell(Vector2i(2, 2), source_id, atlas_coords, alternate_id | TileSetAtlasSource.TRANSFORM_FLIP_H)
 
 \ **Note:** These transformations can be combined to do the equivalent of 0, 90, 180, and 270 degree rotations, as shown below:
 
@@ -693,6 +693,7 @@ Sets the margin (in grid tiles) between each tile in the animation layout of the
 Sets the animation speed of the tile at coordinates ``atlas_coords`` has.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

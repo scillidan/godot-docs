@@ -21,7 +21,7 @@ An array specifically designed to hold 32-bit integer values. Packs data tightly
 
 \ **Note:** This type stores signed 32-bit integers, which means it can take values in the interval ``[-2^31, 2^31 - 1]``, i.e. ``[-2147483648, 2147483647]``. Exceeding those bounds will wrap around. In comparison, :ref:`int<class_int>` uses signed 64-bit integers which can hold much larger values. If you need to pack 64-bit integers tightly, see :ref:`PackedInt64Array<class_PackedInt64Array>`.
 
-\ **Note:** Packed arrays are always passed by reference. To get a copy of an array that can be modified independently of the original array, use :ref:`duplicate()<class_PackedInt32Array_method_duplicate>`. This is *not* the case for built-in properties and methods. The returned packed array of these are a copies, and changing it will *not* affect the original value. To update a built-in property you need to modify the returned array, and then assign it to the property again.
+\ **Note:** Packed arrays are always passed by reference. To get a copy of an array that can be modified independently of the original array, use :ref:`duplicate()<class_PackedInt32Array_method_duplicate>`. This is *not* the case for built-in properties and methods. In these cases the returned packed array is a copy, and changing it will *not* affect the original value. To update a built-in property of this type, modify the returned array and then assign it to the property again.
 
 .. note::
 
@@ -63,6 +63,8 @@ Methods
    | :ref:`int<class_int>`                           | :ref:`count<class_PackedInt32Array_method_count>`\ (\ value\: :ref:`int<class_int>`\ ) |const|                                           |
    +-------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PackedInt32Array<class_PackedInt32Array>` | :ref:`duplicate<class_PackedInt32Array_method_duplicate>`\ (\ )                                                                          |
+   +-------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                         | :ref:`erase<class_PackedInt32Array_method_erase>`\ (\ value\: :ref:`int<class_int>`\ )                                                   |
    +-------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                          | :ref:`fill<class_PackedInt32Array_method_fill>`\ (\ value\: :ref:`int<class_int>`\ )                                                     |
    +-------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
@@ -235,6 +237,18 @@ Creates a copy of the array, and returns it.
 
 ----
 
+.. _class_PackedInt32Array_method_erase:
+
+.. rst-class:: classref-method
+
+:ref:`bool<class_bool>` **erase**\ (\ value\: :ref:`int<class_int>`\ ) :ref:`🔗<class_PackedInt32Array_method_erase>`
+
+Removes the first occurrence of a value from the array and returns ``true``. If the value does not exist in the array, nothing happens and ``false`` is returned. To remove an element by index, use :ref:`remove_at()<class_PackedInt32Array_method_remove_at>` instead.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_PackedInt32Array_method_fill:
 
 .. rst-class:: classref-method
@@ -265,7 +279,9 @@ Searches the array for a value and returns its index or ``-1`` if not found. Opt
 
 :ref:`int<class_int>` **get**\ (\ index\: :ref:`int<class_int>`\ ) |const| :ref:`🔗<class_PackedInt32Array_method_get>`
 
-Returns the 32-bit integer at the given ``index`` in the array. This is the same as using the ``[]`` operator (``array[index]``).
+Returns the 32-bit integer at the given ``index`` in the array. If ``index`` out-of-bounds or negative, this method fails and returns ``0``.
+
+This method is similar (but not identical) to the ``[]`` operator. Most notably, when this method fails, it doesn't pause project execution if run from the editor.
 
 .. rst-class:: classref-item-separator
 
@@ -338,6 +354,8 @@ Removes an element from the array by index.
 :ref:`int<class_int>` **resize**\ (\ new_size\: :ref:`int<class_int>`\ ) :ref:`🔗<class_PackedInt32Array_method_resize>`
 
 Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling :ref:`resize()<class_PackedInt32Array_method_resize>` once and assigning the new values is faster than adding new elements one by one.
+
+Returns :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>` on success, or one of the following :ref:`Error<enum_@GlobalScope_Error>` constants if this method fails: :ref:`@GlobalScope.ERR_INVALID_PARAMETER<class_@GlobalScope_constant_ERR_INVALID_PARAMETER>` if the size is negative, or :ref:`@GlobalScope.ERR_OUT_OF_MEMORY<class_@GlobalScope_constant_ERR_OUT_OF_MEMORY>` if allocations fail. Use :ref:`size()<class_PackedInt32Array_method_size>` to find the actual size of the array after resize.
 
 .. rst-class:: classref-item-separator
 
@@ -485,6 +503,7 @@ Returns the :ref:`int<class_int>` at index ``index``. Negative indices can be us
 Note that :ref:`int<class_int>` type is 64-bit, unlike the values stored in the array.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

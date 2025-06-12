@@ -12,7 +12,7 @@ EditorExportPlatform
 
 **Inherits:** :ref:`RefCounted<class_RefCounted>` **<** :ref:`Object<class_Object>`
 
-**Inherited By:** :ref:`EditorExportPlatformAndroid<class_EditorExportPlatformAndroid>`, :ref:`EditorExportPlatformExtension<class_EditorExportPlatformExtension>`, :ref:`EditorExportPlatformIOS<class_EditorExportPlatformIOS>`, :ref:`EditorExportPlatformMacOS<class_EditorExportPlatformMacOS>`, :ref:`EditorExportPlatformPC<class_EditorExportPlatformPC>`, :ref:`EditorExportPlatformWeb<class_EditorExportPlatformWeb>`
+**Inherited By:** :ref:`EditorExportPlatformAndroid<class_EditorExportPlatformAndroid>`, :ref:`EditorExportPlatformAppleEmbedded<class_EditorExportPlatformAppleEmbedded>`, :ref:`EditorExportPlatformExtension<class_EditorExportPlatformExtension>`, :ref:`EditorExportPlatformMacOS<class_EditorExportPlatformMacOS>`, :ref:`EditorExportPlatformPC<class_EditorExportPlatformPC>`, :ref:`EditorExportPlatformWeb<class_EditorExportPlatformWeb>`
 
 Identifies a supported export platform, and internally provides the functionality of exporting to that platform.
 
@@ -65,7 +65,7 @@ Methods
    +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Array<class_Array>`                                             | :ref:`get_current_presets<class_EditorExportPlatform_method_get_current_presets>`\ (\ ) |const|                                                                                                                                                                                                                                                                                              |
    +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`PackedStringArray<class_PackedStringArray>`                     | :ref:`get_forced_export_files<class_EditorExportPlatform_method_get_forced_export_files>`\ (\ ) |static|                                                                                                                                                                                                                                                                                     |
+   | :ref:`PackedStringArray<class_PackedStringArray>`                     | :ref:`get_forced_export_files<class_EditorExportPlatform_method_get_forced_export_files>`\ (\ preset\: :ref:`EditorExportPreset<class_EditorExportPreset>`\ ) |static|                                                                                                                                                                                                                       |
    +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Dictionary<class_Dictionary>`                                   | :ref:`get_internal_export_files<class_EditorExportPlatform_method_get_internal_export_files>`\ (\ preset\: :ref:`EditorExportPreset<class_EditorExportPreset>`, debug\: :ref:`bool<class_bool>`\ )                                                                                                                                                                                           |
    +-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -159,7 +159,7 @@ flags **DebugFlags**: :ref:`🔗<enum_EditorExportPlatform_DebugFlags>`
 
 :ref:`DebugFlags<enum_EditorExportPlatform_DebugFlags>` **DEBUG_FLAG_DUMB_CLIENT** = ``1``
 
-Flag is set if remotely debugged project is expected to use remote file system. If set, :ref:`gen_export_flags()<class_EditorExportPlatform_method_gen_export_flags>` will add ``--remove-fs`` and ``--remote-fs-password`` (if password is set in the editor settings) command line arguments to the list.
+Flag is set if remotely debugged project is expected to use remote file system. If set, :ref:`gen_export_flags()<class_EditorExportPlatform_method_gen_export_flags>` will add ``--remote-fs`` and ``--remote-fs-password`` (if password is set in the editor settings) command line arguments to the list.
 
 .. _class_EditorExportPlatform_constant_DEBUG_FLAG_REMOTE_DEBUG:
 
@@ -288,7 +288,7 @@ Exports project files for the specified preset. This method can be used to imple
 
 \ ``shared_cb`` is called for exported native shared/static libraries and have the following arguments: ``file_path: String``, ``tags: PackedStringArray``, ``target_folder: String``.
 
-\ **Note:** ``file_index`` and ``file_count`` are intended for progress tracking only and aren't necesserely unique and precise.
+\ **Note:** ``file_index`` and ``file_count`` are intended for progress tracking only and aren't necessarily unique and precise.
 
 .. rst-class:: classref-item-separator
 
@@ -360,7 +360,7 @@ Returns array of :ref:`EditorExportPreset<class_EditorExportPreset>`\ s for this
 
 .. rst-class:: classref-method
 
-:ref:`PackedStringArray<class_PackedStringArray>` **get_forced_export_files**\ (\ ) |static| :ref:`🔗<class_EditorExportPlatform_method_get_forced_export_files>`
+:ref:`PackedStringArray<class_PackedStringArray>` **get_forced_export_files**\ (\ preset\: :ref:`EditorExportPreset<class_EditorExportPreset>`\ ) |static| :ref:`🔗<class_EditorExportPlatform_method_get_forced_export_files>`
 
 Returns array of core file names that always should be exported regardless of preset config.
 
@@ -535,6 +535,7 @@ Executes specified command on the remote host via SSH protocol and returns comma
 Executes specified command on the remote host via SSH protocol and returns process ID (on the remote host) without waiting for command to finish.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

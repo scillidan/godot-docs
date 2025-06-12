@@ -43,9 +43,9 @@ Methods
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                          | :ref:`_begin_customize_scenes<class_EditorExportPlugin_private_method__begin_customize_scenes>`\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`, features\: :ref:`PackedStringArray<class_PackedStringArray>`\ ) |virtual| |const|                          |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Resource<class_Resource>`                                  | :ref:`_customize_resource<class_EditorExportPlugin_private_method__customize_resource>`\ (\ resource\: :ref:`Resource<class_Resource>`, path\: :ref:`String<class_String>`\ ) |virtual|                                                                                            |
+   | :ref:`Resource<class_Resource>`                                  | :ref:`_customize_resource<class_EditorExportPlugin_private_method__customize_resource>`\ (\ resource\: :ref:`Resource<class_Resource>`, path\: :ref:`String<class_String>`\ ) |virtual| |required|                                                                                 |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`Node<class_Node>`                                          | :ref:`_customize_scene<class_EditorExportPlugin_private_method__customize_scene>`\ (\ scene\: :ref:`Node<class_Node>`, path\: :ref:`String<class_String>`\ ) |virtual|                                                                                                             |
+   | :ref:`Node<class_Node>`                                          | :ref:`_customize_scene<class_EditorExportPlugin_private_method__customize_scene>`\ (\ scene\: :ref:`Node<class_Node>`, path\: :ref:`String<class_String>`\ ) |virtual| |required|                                                                                                  |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`_end_customize_resources<class_EditorExportPlugin_private_method__end_customize_resources>`\ (\ ) |virtual|                                                                                                                                                                  |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -69,7 +69,7 @@ Methods
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                                      | :ref:`_get_android_manifest_element_contents<class_EditorExportPlugin_private_method__get_android_manifest_element_contents>`\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`, debug\: :ref:`bool<class_bool>`\ ) |virtual| |const|                         |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`int<class_int>`                                            | :ref:`_get_customization_configuration_hash<class_EditorExportPlugin_private_method__get_customization_configuration_hash>`\ (\ ) |virtual| |const|                                                                                                                                |
+   | :ref:`int<class_int>`                                            | :ref:`_get_customization_configuration_hash<class_EditorExportPlugin_private_method__get_customization_configuration_hash>`\ (\ ) |virtual| |required| |const|                                                                                                                     |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`PackedStringArray<class_PackedStringArray>`                | :ref:`_get_export_features<class_EditorExportPlugin_private_method__get_export_features>`\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`, debug\: :ref:`bool<class_bool>`\ ) |virtual| |const|                                                             |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -81,11 +81,27 @@ Methods
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Dictionary<class_Dictionary>`                              | :ref:`_get_export_options_overrides<class_EditorExportPlugin_private_method__get_export_options_overrides>`\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`\ ) |virtual| |const|                                                                            |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`String<class_String>`                                      | :ref:`_get_name<class_EditorExportPlugin_private_method__get_name>`\ (\ ) |virtual| |const|                                                                                                                                                                                        |
+   | :ref:`String<class_String>`                                      | :ref:`_get_name<class_EditorExportPlugin_private_method__get_name>`\ (\ ) |virtual| |required| |const|                                                                                                                                                                             |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                          | :ref:`_should_update_export_options<class_EditorExportPlugin_private_method__should_update_export_options>`\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`\ ) |virtual| |const|                                                                            |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                          | :ref:`_supports_platform<class_EditorExportPlugin_private_method__supports_platform>`\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`\ ) |virtual| |const|                                                                                                  |
+   +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`PackedByteArray<class_PackedByteArray>`                    | :ref:`_update_android_prebuilt_manifest<class_EditorExportPlugin_private_method__update_android_prebuilt_manifest>`\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`, manifest_data\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) |virtual| |const|     |
+   +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                           | :ref:`add_apple_embedded_platform_bundle_file<class_EditorExportPlugin_method_add_apple_embedded_platform_bundle_file>`\ (\ path\: :ref:`String<class_String>`\ )                                                                                                                  |
+   +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                           | :ref:`add_apple_embedded_platform_cpp_code<class_EditorExportPlugin_method_add_apple_embedded_platform_cpp_code>`\ (\ code\: :ref:`String<class_String>`\ )                                                                                                                        |
+   +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                           | :ref:`add_apple_embedded_platform_embedded_framework<class_EditorExportPlugin_method_add_apple_embedded_platform_embedded_framework>`\ (\ path\: :ref:`String<class_String>`\ )                                                                                                    |
+   +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                           | :ref:`add_apple_embedded_platform_framework<class_EditorExportPlugin_method_add_apple_embedded_platform_framework>`\ (\ path\: :ref:`String<class_String>`\ )                                                                                                                      |
+   +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                           | :ref:`add_apple_embedded_platform_linker_flags<class_EditorExportPlugin_method_add_apple_embedded_platform_linker_flags>`\ (\ flags\: :ref:`String<class_String>`\ )                                                                                                               |
+   +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                           | :ref:`add_apple_embedded_platform_plist_content<class_EditorExportPlugin_method_add_apple_embedded_platform_plist_content>`\ (\ plist_content\: :ref:`String<class_String>`\ )                                                                                                     |
+   +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | |void|                                                           | :ref:`add_apple_embedded_platform_project_static_lib<class_EditorExportPlugin_method_add_apple_embedded_platform_project_static_lib>`\ (\ path\: :ref:`String<class_String>`\ )                                                                                                    |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                           | :ref:`add_file<class_EditorExportPlugin_method_add_file>`\ (\ path\: :ref:`String<class_String>`, file\: :ref:`PackedByteArray<class_PackedByteArray>`, remap\: :ref:`bool<class_bool>`\ )                                                                                         |
    +------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -159,7 +175,7 @@ When enabled, :ref:`_get_customization_configuration_hash()<class_EditorExportPl
 
 .. rst-class:: classref-method
 
-:ref:`Resource<class_Resource>` **_customize_resource**\ (\ resource\: :ref:`Resource<class_Resource>`, path\: :ref:`String<class_String>`\ ) |virtual| :ref:`🔗<class_EditorExportPlugin_private_method__customize_resource>`
+:ref:`Resource<class_Resource>` **_customize_resource**\ (\ resource\: :ref:`Resource<class_Resource>`, path\: :ref:`String<class_String>`\ ) |virtual| |required| :ref:`🔗<class_EditorExportPlugin_private_method__customize_resource>`
 
 Customize a resource. If changes are made to it, return the same or a new resource. Otherwise, return ``null``. When a new resource is returned, ``resource`` will be replaced by a copy of the new resource.
 
@@ -189,7 +205,7 @@ Implementing this method is required if :ref:`_begin_customize_resources()<class
 
 .. rst-class:: classref-method
 
-:ref:`Node<class_Node>` **_customize_scene**\ (\ scene\: :ref:`Node<class_Node>`, path\: :ref:`String<class_String>`\ ) |virtual| :ref:`🔗<class_EditorExportPlugin_private_method__customize_scene>`
+:ref:`Node<class_Node>` **_customize_scene**\ (\ scene\: :ref:`Node<class_Node>`, path\: :ref:`String<class_String>`\ ) |virtual| |required| :ref:`🔗<class_EditorExportPlugin_private_method__customize_scene>`
 
 Customize a scene. If changes are made to it, return the same or a new scene. Otherwise, return ``null``. If a new scene is returned, it is up to you to dispose of the old one.
 
@@ -357,7 +373,7 @@ Virtual method to be overridden by the user. This is used at export time to upda
 
 .. rst-class:: classref-method
 
-:ref:`int<class_int>` **_get_customization_configuration_hash**\ (\ ) |virtual| |const| :ref:`🔗<class_EditorExportPlugin_private_method__get_customization_configuration_hash>`
+:ref:`int<class_int>` **_get_customization_configuration_hash**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_EditorExportPlugin_private_method__get_customization_configuration_hash>`
 
 Return a hash based on the configuration passed (for both scenes and resources). This helps keep separate caches for separate export configurations.
 
@@ -384,8 +400,6 @@ Return a :ref:`PackedStringArray<class_PackedStringArray>` of additional feature
 .. rst-class:: classref-method
 
 :ref:`bool<class_bool>` **_get_export_option_visibility**\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`, option\: :ref:`String<class_String>`\ ) |virtual| |const| :ref:`🔗<class_EditorExportPlugin_private_method__get_export_option_visibility>`
-
-**Optional.**\ 
 
 Validates ``option`` and returns the visibility for the specified ``platform``. The default implementation returns ``true`` for all options.
 
@@ -440,13 +454,13 @@ Return a :ref:`Dictionary<class_Dictionary>` of override values for export optio
     class MyExportPlugin extends EditorExportPlugin:
         func _get_name() -> String:
             return "MyExportPlugin"
-    
+
         func _supports_platform(platform) -> bool:
             if platform is EditorExportPlatformPC:
                 # Run on all desktop platforms including Windows, MacOS and Linux.
                 return true
             return false
-    
+
         func _get_export_options_overrides(platform) -> Dictionary:
             # Override "Embed PCK" to always be enabled.
             return {
@@ -461,7 +475,7 @@ Return a :ref:`Dictionary<class_Dictionary>` of override values for export optio
 
 .. rst-class:: classref-method
 
-:ref:`String<class_String>` **_get_name**\ (\ ) |virtual| |const| :ref:`🔗<class_EditorExportPlugin_private_method__get_name>`
+:ref:`String<class_String>` **_get_name**\ (\ ) |virtual| |required| |const| :ref:`🔗<class_EditorExportPlugin_private_method__get_name>`
 
 Return the name identifier of this plugin (for future identification by the exporter). The plugins are sorted by name before exporting.
 
@@ -495,6 +509,110 @@ Return ``true`` if the plugin supports the given ``platform``.
 
 ----
 
+.. _class_EditorExportPlugin_private_method__update_android_prebuilt_manifest:
+
+.. rst-class:: classref-method
+
+:ref:`PackedByteArray<class_PackedByteArray>` **_update_android_prebuilt_manifest**\ (\ platform\: :ref:`EditorExportPlatform<class_EditorExportPlatform>`, manifest_data\: :ref:`PackedByteArray<class_PackedByteArray>`\ ) |virtual| |const| :ref:`🔗<class_EditorExportPlugin_private_method__update_android_prebuilt_manifest>`
+
+Provide access to the Android prebuilt manifest and allows the plugin to modify it if needed.
+
+Implementers of this virtual method should take the binary manifest data from ``manifest_data``, copy it, modify it, and then return it with the modifications.
+
+If no modifications are needed, then an empty :ref:`PackedByteArray<class_PackedByteArray>` should be returned.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorExportPlugin_method_add_apple_embedded_platform_bundle_file:
+
+.. rst-class:: classref-method
+
+|void| **add_apple_embedded_platform_bundle_file**\ (\ path\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_apple_embedded_platform_bundle_file>`
+
+Adds an Apple embedded platform bundle file from the given ``path`` to the exported project.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorExportPlugin_method_add_apple_embedded_platform_cpp_code:
+
+.. rst-class:: classref-method
+
+|void| **add_apple_embedded_platform_cpp_code**\ (\ code\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_apple_embedded_platform_cpp_code>`
+
+Adds C++ code to the Apple embedded platform export. The final code is created from the code appended by each active export plugin.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorExportPlugin_method_add_apple_embedded_platform_embedded_framework:
+
+.. rst-class:: classref-method
+
+|void| **add_apple_embedded_platform_embedded_framework**\ (\ path\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_apple_embedded_platform_embedded_framework>`
+
+Adds a dynamic library (\*.dylib, \*.framework) to the Linking Phase in the Apple embedded platform's Xcode project and embeds it into the resulting binary.
+
+\ **Note:** For static libraries (\*.a), this works in the same way as :ref:`add_apple_embedded_platform_framework()<class_EditorExportPlugin_method_add_apple_embedded_platform_framework>`.
+
+\ **Note:** This method should not be used for System libraries as they are already present on the device.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorExportPlugin_method_add_apple_embedded_platform_framework:
+
+.. rst-class:: classref-method
+
+|void| **add_apple_embedded_platform_framework**\ (\ path\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_apple_embedded_platform_framework>`
+
+Adds a static library (\*.a) or a dynamic library (\*.dylib, \*.framework) to the Linking Phase to the Apple embedded platform's Xcode project.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorExportPlugin_method_add_apple_embedded_platform_linker_flags:
+
+.. rst-class:: classref-method
+
+|void| **add_apple_embedded_platform_linker_flags**\ (\ flags\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_apple_embedded_platform_linker_flags>`
+
+Adds linker flags for the Apple embedded platform export.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorExportPlugin_method_add_apple_embedded_platform_plist_content:
+
+.. rst-class:: classref-method
+
+|void| **add_apple_embedded_platform_plist_content**\ (\ plist_content\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_apple_embedded_platform_plist_content>`
+
+Adds additional fields to the Apple embedded platform's project Info.plist file.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_EditorExportPlugin_method_add_apple_embedded_platform_project_static_lib:
+
+.. rst-class:: classref-method
+
+|void| **add_apple_embedded_platform_project_static_lib**\ (\ path\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_apple_embedded_platform_project_static_lib>`
+
+Adds a static library from the given ``path`` to the Apple embedded platform project.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_EditorExportPlugin_method_add_file:
 
 .. rst-class:: classref-method
@@ -517,6 +635,8 @@ When called inside :ref:`_export_file()<class_EditorExportPlugin_private_method_
 
 |void| **add_ios_bundle_file**\ (\ path\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_ios_bundle_file>`
 
+**Deprecated:** Use :ref:`add_apple_embedded_platform_bundle_file()<class_EditorExportPlugin_method_add_apple_embedded_platform_bundle_file>` instead.
+
 Adds an iOS bundle file from the given ``path`` to the exported project.
 
 .. rst-class:: classref-item-separator
@@ -529,7 +649,9 @@ Adds an iOS bundle file from the given ``path`` to the exported project.
 
 |void| **add_ios_cpp_code**\ (\ code\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_ios_cpp_code>`
 
-Adds a C++ code to the iOS export. The final code is created from the code appended by each active export plugin.
+**Deprecated:** Use :ref:`add_apple_embedded_platform_cpp_code()<class_EditorExportPlugin_method_add_apple_embedded_platform_cpp_code>` instead.
+
+Adds C++ code to the iOS export. The final code is created from the code appended by each active export plugin.
 
 .. rst-class:: classref-item-separator
 
@@ -541,9 +663,11 @@ Adds a C++ code to the iOS export. The final code is created from the code appen
 
 |void| **add_ios_embedded_framework**\ (\ path\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_ios_embedded_framework>`
 
+**Deprecated:** Use :ref:`add_apple_embedded_platform_embedded_framework()<class_EditorExportPlugin_method_add_apple_embedded_platform_embedded_framework>` instead.
+
 Adds a dynamic library (\*.dylib, \*.framework) to Linking Phase in iOS's Xcode project and embeds it into resulting binary.
 
-\ **Note:** For static libraries (\*.a) works in same way as :ref:`add_ios_framework()<class_EditorExportPlugin_method_add_ios_framework>`.
+\ **Note:** For static libraries (\*.a), this works the in same way as :ref:`add_apple_embedded_platform_framework()<class_EditorExportPlugin_method_add_apple_embedded_platform_framework>`.
 
 \ **Note:** This method should not be used for System libraries as they are already present on the device.
 
@@ -557,7 +681,9 @@ Adds a dynamic library (\*.dylib, \*.framework) to Linking Phase in iOS's Xcode 
 
 |void| **add_ios_framework**\ (\ path\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_ios_framework>`
 
-Adds a static library (\*.a) or dynamic library (\*.dylib, \*.framework) to Linking Phase in iOS's Xcode project.
+**Deprecated:** Use :ref:`add_apple_embedded_platform_framework()<class_EditorExportPlugin_method_add_apple_embedded_platform_framework>` instead.
+
+Adds a static library (\*.a) or a dynamic library (\*.dylib, \*.framework) to the Linking Phase to the iOS Xcode project.
 
 .. rst-class:: classref-item-separator
 
@@ -568,6 +694,8 @@ Adds a static library (\*.a) or dynamic library (\*.dylib, \*.framework) to Link
 .. rst-class:: classref-method
 
 |void| **add_ios_linker_flags**\ (\ flags\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_ios_linker_flags>`
+
+**Deprecated:** Use :ref:`add_apple_embedded_platform_linker_flags()<class_EditorExportPlugin_method_add_apple_embedded_platform_linker_flags>` instead.
 
 Adds linker flags for the iOS export.
 
@@ -581,7 +709,9 @@ Adds linker flags for the iOS export.
 
 |void| **add_ios_plist_content**\ (\ plist_content\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_ios_plist_content>`
 
-Adds content for iOS Property List files.
+**Deprecated:** Use :ref:`add_apple_embedded_platform_plist_content()<class_EditorExportPlugin_method_add_apple_embedded_platform_plist_content>` instead.
+
+Adds additional fields to the iOS project Info.plist file.
 
 .. rst-class:: classref-item-separator
 
@@ -593,7 +723,9 @@ Adds content for iOS Property List files.
 
 |void| **add_ios_project_static_lib**\ (\ path\: :ref:`String<class_String>`\ ) :ref:`🔗<class_EditorExportPlugin_method_add_ios_project_static_lib>`
 
-Adds a static lib from the given ``path`` to the iOS project.
+**Deprecated:** Use :ref:`add_apple_embedded_platform_project_static_lib()<class_EditorExportPlugin_method_add_apple_embedded_platform_project_static_lib>` instead.
+
+Adds a static library from the given ``path`` to the iOS project.
 
 .. rst-class:: classref-item-separator
 
@@ -674,6 +806,7 @@ Returns the current value of an export option supplied by :ref:`_get_export_opti
 To be called inside :ref:`_export_file()<class_EditorExportPlugin_private_method__export_file>`. Skips the current file, so it's not included in the export.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

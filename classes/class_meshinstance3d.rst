@@ -21,7 +21,7 @@ Node that instances meshes into a scenario.
 Description
 -----------
 
-MeshInstance3D is a node that takes a :ref:`Mesh<class_Mesh>` resource and adds it to the current scenario by creating an instance of it. This is the class most often used render 3D geometry and can be used to instance a single :ref:`Mesh<class_Mesh>` in many places. This allows reusing geometry, which can save on resources. When a :ref:`Mesh<class_Mesh>` has to be instantiated more than thousands of times at close proximity, consider using a :ref:`MultiMesh<class_MultiMesh>` in a :ref:`MultiMeshInstance3D<class_MultiMeshInstance3D>` instead.
+MeshInstance3D is a node that takes a :ref:`Mesh<class_Mesh>` resource and adds it to the current scenario by creating an instance of it. This is the class most often used to render 3D geometry and can be used to instance a single :ref:`Mesh<class_Mesh>` in many places. This allows reusing geometry, which can save on resources. When a :ref:`Mesh<class_Mesh>` has to be instantiated more than thousands of times at close proximity, consider using a :ref:`MultiMesh<class_MultiMesh>` in a :ref:`MultiMeshInstance3D<class_MultiMeshInstance3D>` instead.
 
 .. rst-class:: classref-introduction-group
 
@@ -348,6 +348,7 @@ Sets the override ``material`` for the specified ``surface`` of the :ref:`Mesh<c
 \ **Note:** This assigns the :ref:`Material<class_Material>` associated to the **MeshInstance3D**'s Surface Material Override properties, not the material within the :ref:`Mesh<class_Mesh>` resource. To set the material within the :ref:`Mesh<class_Mesh>` resource, use :ref:`Mesh.surface_set_material()<class_Mesh_method_surface_set_material>` instead.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

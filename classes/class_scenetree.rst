@@ -103,6 +103,10 @@ Methods
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                                | :ref:`has_group<class_SceneTree_method_has_group>`\ (\ name\: :ref:`StringName<class_StringName>`\ ) |const|                                                                                                                                                     |
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                                | :ref:`is_accessibility_enabled<class_SceneTree_method_is_accessibility_enabled>`\ (\ ) |const|                                                                                                                                                                   |
+   +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                                | :ref:`is_accessibility_supported<class_SceneTree_method_is_accessibility_supported>`\ (\ ) |const|                                                                                                                                                               |
+   +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                 | :ref:`notify_group<class_SceneTree_method_notify_group>`\ (\ group\: :ref:`StringName<class_StringName>`, notification\: :ref:`int<class_int>`\ )                                                                                                                |
    +--------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                                                 | :ref:`notify_group_flags<class_SceneTree_method_notify_group_flags>`\ (\ call_flags\: :ref:`int<class_int>`, group\: :ref:`StringName<class_StringName>`, notification\: :ref:`int<class_int>`\ )                                                                |
@@ -198,6 +202,25 @@ Emitted immediately before :ref:`Node._physics_process()<class_Node_private_meth
 **process_frame**\ (\ ) :ref:`🔗<class_SceneTree_signal_process_frame>`
 
 Emitted immediately before :ref:`Node._process()<class_Node_private_method__process>` is called on every node in this tree.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SceneTree_signal_scene_changed:
+
+.. rst-class:: classref-signal
+
+**scene_changed**\ (\ ) :ref:`🔗<class_SceneTree_signal_scene_changed>`
+
+Emitted after the new scene is added to scene tree and initialized. Can be used to reliably access :ref:`current_scene<class_SceneTree_property_current_scene>` when changing scenes.
+
+::
+
+    # This code should be inside an autoload.
+    get_tree().change_scene_to_file(other_scene_path)
+    await get_tree().scene_changed
+    print(get_tree().current_scene) # Prints the new scene.
 
 .. rst-class:: classref-item-separator
 
@@ -446,9 +469,11 @@ If ``true``, the scene tree is considered paused. This causes the following beha
 - |void| **set_physics_interpolation_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
 - :ref:`bool<class_bool>` **is_physics_interpolation_enabled**\ (\ )
 
-If ``true``, the renderer will interpolate the transforms of physics objects between the last two transforms, so that smooth motion is seen even when physics ticks do not coincide with rendered frames.
+If ``true``, the renderer will interpolate the transforms of objects (both physics and non-physics) between the last two transforms, so that smooth motion is seen even when physics ticks do not coincide with rendered frames.
 
 The default value of this property is controlled by :ref:`ProjectSettings.physics/common/physics_interpolation<class_ProjectSettings_property_physics/common/physics_interpolation>`.
+
+\ **Note:** Although this is a global setting, finer control of individual branches of the **SceneTree** is possible using :ref:`Node.physics_interpolation_mode<class_Node_property_physics_interpolation_mode>`.
 
 .. rst-class:: classref-item-separator
 
@@ -567,6 +592,8 @@ Returns :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>` on success, :ref:
 
 This ensures that both scenes aren't running at the same time, while still freeing the previous scene in a safe way similar to :ref:`Node.queue_free()<class_Node_method_queue_free>`.
 
+If you want to reliably access the new scene, await the :ref:`scene_changed<class_SceneTree_signal_scene_changed>` signal.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -646,7 +673,7 @@ Returns the first :ref:`Node<class_Node>` found inside the tree, that has been a
 
 :ref:`int<class_int>` **get_frame**\ (\ ) |const| :ref:`🔗<class_SceneTree_method_get_frame>`
 
-Returns how many frames have been processed, since the application started. This is *not* a measurement of elapsed time.
+Returns how many physics process steps have been processed, since the application started. This is *not* a measurement of elapsed time. See also :ref:`physics_frame<class_SceneTree_signal_physics_frame>`. For the number of frames rendered, see :ref:`Engine.get_process_frames()<class_Engine_method_get_process_frames>`.
 
 .. rst-class:: classref-item-separator
 
@@ -719,6 +746,30 @@ Returns an :ref:`Array<class_Array>` of currently existing :ref:`Tween<class_Twe
 :ref:`bool<class_bool>` **has_group**\ (\ name\: :ref:`StringName<class_StringName>`\ ) |const| :ref:`🔗<class_SceneTree_method_has_group>`
 
 Returns ``true`` if a node added to the given group ``name`` exists in the tree.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SceneTree_method_is_accessibility_enabled:
+
+.. rst-class:: classref-method
+
+:ref:`bool<class_bool>` **is_accessibility_enabled**\ (\ ) |const| :ref:`🔗<class_SceneTree_method_is_accessibility_enabled>`
+
+Returns ``true`` if accessibility features are enabled, and accessibility information updates are actively processed.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_SceneTree_method_is_accessibility_supported:
+
+.. rst-class:: classref-method
+
+:ref:`bool<class_bool>` **is_accessibility_supported**\ (\ ) |const| :ref:`🔗<class_SceneTree_method_is_accessibility_supported>`
+
+Returns ``true`` if accessibility features are supported by the OS and enabled in project settings.
 
 .. rst-class:: classref-item-separator
 
@@ -832,6 +883,8 @@ Sets a custom :ref:`MultiplayerAPI<class_MultiplayerAPI>` with the given ``root_
 
 \ **Note:** No :ref:`MultiplayerAPI<class_MultiplayerAPI>` must be configured for the subpath containing ``root_path``, nested custom multiplayers are not allowed. I.e. if one is configured for ``"/root/Foo"`` setting one for ``"/root/Foo/Bar"`` will cause an error.
 
+\ **Note:** :ref:`set_multiplayer()<class_SceneTree_method_set_multiplayer>` should be called *before* the child nodes are ready at the given ``root_path``. If multiplayer nodes like :ref:`MultiplayerSpawner<class_MultiplayerSpawner>` or :ref:`MultiplayerSynchronizer<class_MultiplayerSynchronizer>` are added to the tree before the custom multiplayer API is set, they will not work.
+
 .. rst-class:: classref-item-separator
 
 ----
@@ -845,6 +898,7 @@ Sets a custom :ref:`MultiplayerAPI<class_MultiplayerAPI>` with the given ``root_
 If a current scene is loaded, calling this method will unload it.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

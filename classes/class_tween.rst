@@ -33,8 +33,8 @@ A tween animation is created by adding :ref:`Tweener<class_Tweener>`\ s to the *
  .. code-tab:: gdscript
 
     var tween = get_tree().create_tween()
-    tween.tween_property($Sprite, "modulate", Color.RED, 1)
-    tween.tween_property($Sprite, "scale", Vector2(), 1)
+    tween.tween_property($Sprite, "modulate", Color.RED, 1.0)
+    tween.tween_property($Sprite, "scale", Vector2(), 1.0)
     tween.tween_callback($Sprite.queue_free)
 
  .. code-tab:: csharp
@@ -56,8 +56,8 @@ When a :ref:`Tweener<class_Tweener>` is created with one of the ``tween_*`` meth
  .. code-tab:: gdscript
 
     var tween = get_tree().create_tween()
-    tween.tween_property($Sprite, "modulate", Color.RED, 1).set_trans(Tween.TRANS_SINE)
-    tween.tween_property($Sprite, "scale", Vector2(), 1).set_trans(Tween.TRANS_BOUNCE)
+    tween.tween_property($Sprite, "modulate", Color.RED, 1.0).set_trans(Tween.TRANS_SINE)
+    tween.tween_property($Sprite, "scale", Vector2(), 1.0).set_trans(Tween.TRANS_BOUNCE)
     tween.tween_callback($Sprite.queue_free)
 
  .. code-tab:: csharp
@@ -77,8 +77,8 @@ Most of the **Tween** methods can be chained this way too. In the following exam
  .. code-tab:: gdscript
 
     var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_ELASTIC)
-    tween.tween_property($Sprite, "modulate", Color.RED, 1)
-    tween.tween_property($Sprite, "scale", Vector2(), 1)
+    tween.tween_property($Sprite, "modulate", Color.RED, 1.0)
+    tween.tween_property($Sprite, "scale", Vector2(), 1.0)
     tween.tween_callback($Sprite.queue_free)
 
  .. code-tab:: csharp
@@ -99,7 +99,7 @@ Another interesting use for **Tween**\ s is animating arbitrary sets of objects:
 
     var tween = create_tween()
     for sprite in get_children():
-        tween.tween_property(sprite, "position", Vector2(0, 0), 1)
+        tween.tween_property(sprite, "position", Vector2(0, 0), 1.0)
 
  .. code-tab:: csharp
 
@@ -127,7 +127,7 @@ You should avoid using more than one **Tween** per object's property. If two or 
  .. code-tab:: csharp
 
     private Tween _tween;
-    
+
     public void Animate()
     {
         if (_tween != null)
@@ -749,7 +749,7 @@ If ``parallel`` is ``true``, the :ref:`Tweener<class_Tweener>`\ s appended after
 
 :ref:`Tween<class_Tween>` **set_pause_mode**\ (\ mode\: :ref:`TweenPauseMode<enum_Tween_TweenPauseMode>`\ ) :ref:`🔗<class_Tween_method_set_pause_mode>`
 
-Determines the behavior of the **Tween** when the :ref:`SceneTree<class_SceneTree>` is paused. Check :ref:`TweenPauseMode<enum_Tween_TweenPauseMode>` for options.
+Determines the behavior of the **Tween** when the :ref:`SceneTree<class_SceneTree>` is paused.
 
 Default value is :ref:`TWEEN_PAUSE_BOUND<class_Tween_constant_TWEEN_PAUSE_BOUND>`.
 
@@ -817,14 +817,14 @@ Stops the tweening and resets the **Tween** to its initial state. This will not 
 ::
 
     var tween = create_tween()
-    
+
     # Will move from 0 to 500 over 1 second.
     position.x = 0.0
     tween.tween_property(self, "position:x", 500, 1.0)
-    
+
     # Will be at (about) 250 when the timer finishes.
     await get_tree().create_timer(0.5).timeout
-    
+
     # Will now move from (about) 250 to 500 over 1 second,
     # thus at half the speed as before.
     tween.stop()
@@ -852,7 +852,7 @@ Creates and appends a :ref:`CallbackTweener<class_CallbackTweener>`. This method
  .. code-tab:: gdscript
 
     var tween = get_tree().create_tween().set_loops()
-    tween.tween_callback(shoot).set_delay(1)
+    tween.tween_callback(shoot).set_delay(1.0)
 
  .. code-tab:: csharp
 
@@ -920,10 +920,10 @@ Creates and appends an :ref:`IntervalTweener<class_IntervalTweener>`. This metho
  .. code-tab:: gdscript
 
     var tween = create_tween().set_loops()
-    tween.tween_property($Sprite, "position:x", 200.0, 1).as_relative()
+    tween.tween_property($Sprite, "position:x", 200.0, 1.0).as_relative()
     tween.tween_callback(jump)
     tween.tween_interval(2)
-    tween.tween_property($Sprite, "position:x", -200.0, 1).as_relative()
+    tween.tween_property($Sprite, "position:x", -200.0, 1.0).as_relative()
     tween.tween_callback(jump)
     tween.tween_interval(2)
 
@@ -959,7 +959,7 @@ Creates and appends a :ref:`MethodTweener<class_MethodTweener>`. This method is 
  .. code-tab:: gdscript
 
     var tween = create_tween()
-    tween.tween_method(look_at.bind(Vector3.UP), Vector3(-1, 0, -1), Vector3(1, 0, -1), 1) # The look_at() method takes up vector as second argument.
+    tween.tween_method(look_at.bind(Vector3.UP), Vector3(-1, 0, -1), Vector3(1, 0, -1), 1.0) # The look_at() method takes up vector as second argument.
 
  .. code-tab:: csharp
 
@@ -977,8 +977,8 @@ Creates and appends a :ref:`MethodTweener<class_MethodTweener>`. This method is 
 
     func _ready():
         var tween = create_tween()
-        tween.tween_method(set_label_text, 0, 10, 1).set_delay(1)
-    
+        tween.tween_method(set_label_text, 0, 10, 1.0).set_delay(1.0)
+
     func set_label_text(value: int):
         $Label.text = "Counting " + str(value)
 
@@ -987,11 +987,11 @@ Creates and appends a :ref:`MethodTweener<class_MethodTweener>`. This method is 
     public override void _Ready()
     {
         base._Ready();
-    
+
         Tween tween = CreateTween();
         tween.TweenMethod(Callable.From<int>(SetLabelText), 0.0f, 10.0f, 1.0f).SetDelay(1.0f);
     }
-    
+
     private void SetLabelText(int value)
     {
         GetNode<Label>("Label").Text = $"Counting {value}";
@@ -1017,8 +1017,8 @@ Creates and appends a :ref:`PropertyTweener<class_PropertyTweener>`. This method
  .. code-tab:: gdscript
 
     var tween = create_tween()
-    tween.tween_property($Sprite, "position", Vector2(100, 200), 1)
-    tween.tween_property($Sprite, "position", Vector2(200, 300), 1)
+    tween.tween_property($Sprite, "position", Vector2(100, 200), 1.0)
+    tween.tween_property($Sprite, "position", Vector2(200, 300), 1.0)
 
  .. code-tab:: csharp
 
@@ -1040,8 +1040,8 @@ will move the sprite to position (100, 200) and then to (200, 300). If you use :
  .. code-tab:: gdscript
 
     var tween = create_tween()
-    tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().set_trans(Tween.TRANS_SINE)
-    tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
+    tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1.0).as_relative().set_trans(Tween.TRANS_SINE)
+    tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1.0).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
 
  .. code-tab:: csharp
 
@@ -1069,7 +1069,7 @@ Creates and appends a :ref:`SubtweenTweener<class_SubtweenTweener>`. This method
     var subtween = create_tween()
     subtween.tween_property(self, "rotation_degrees", 45.0, 1.0)
     subtween.tween_property(self, "rotation_degrees", 0.0, 1.0)
-    
+
     # Parent tween will execute the subtween as one of its steps.
     var tween = create_tween()
     tween.tween_property(self, "position:x", 500, 3.0)
@@ -1081,6 +1081,7 @@ Creates and appends a :ref:`SubtweenTweener<class_SubtweenTweener>`. This method
 \ **Note:** The pause and process modes set by :ref:`set_pause_mode()<class_Tween_method_set_pause_mode>` and :ref:`set_process_mode()<class_Tween_method_set_process_mode>` on ``subtween`` will be overridden by the parent **Tween**'s settings.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

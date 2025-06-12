@@ -10,6 +10,8 @@
 PackedDataContainer
 ===================
 
+**Deprecated:** Use :ref:`@GlobalScope.var_to_bytes()<class_@GlobalScope_method_var_to_bytes>` or :ref:`FileAccess.store_var()<class_FileAccess_method_store_var>` instead. To enable data compression, use :ref:`PackedByteArray.compress()<class_PackedByteArray_method_compress>` or :ref:`FileAccess.open_compressed()<class_FileAccess_method_open_compressed>`.
+
 **Inherits:** :ref:`Resource<class_Resource>` **<** :ref:`RefCounted<class_RefCounted>` **<** :ref:`Object<class_Object>`
 
 Efficiently packs and serializes :ref:`Array<class_Array>` or :ref:`Dictionary<class_Dictionary>`.
@@ -92,6 +94,7 @@ Packs the given container into a binary representation. The ``value`` must be ei
 Returns the size of the packed container (see :ref:`Array.size()<class_Array_method_size>` and :ref:`Dictionary.size()<class_Dictionary_method_size>`).
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

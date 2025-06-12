@@ -151,6 +151,8 @@ Methods
    +-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                           | :ref:`link_get_enter_cost<class_NavigationServer3D_method_link_get_enter_cost>`\ (\ link\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                  |
    +-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                               | :ref:`link_get_iteration_id<class_NavigationServer3D_method_link_get_iteration_id>`\ (\ link\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                              |
+   +-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`RID<class_RID>`                               | :ref:`link_get_map<class_NavigationServer3D_method_link_get_map>`\ (\ link\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                                |
    +-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                               | :ref:`link_get_navigation_layers<class_NavigationServer3D_method_link_get_navigation_layers>`\ (\ link\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                    |
@@ -310,6 +312,8 @@ Methods
    | :ref:`bool<class_bool>`                             | :ref:`region_get_enabled<class_NavigationServer3D_method_region_get_enabled>`\ (\ region\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                  |
    +-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`float<class_float>`                           | :ref:`region_get_enter_cost<class_NavigationServer3D_method_region_get_enter_cost>`\ (\ region\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                            |
+   +-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`int<class_int>`                               | :ref:`region_get_iteration_id<class_NavigationServer3D_method_region_get_iteration_id>`\ (\ region\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                        |
    +-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`RID<class_RID>`                               | :ref:`region_get_map<class_NavigationServer3D_method_region_get_map>`\ (\ region\: :ref:`RID<class_RID>`\ ) |const|                                                                                                                                                                                                                                                          |
    +-----------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1019,7 +1023,7 @@ Returns all created navigation map :ref:`RID<class_RID>`\ s on the NavigationSer
 
 :ref:`int<class_int>` **get_process_info**\ (\ process_info\: :ref:`ProcessInfo<enum_NavigationServer3D_ProcessInfo>`\ ) |const| :ref:`🔗<class_NavigationServer3D_method_get_process_info>`
 
-Returns information about the current state of the NavigationServer. See :ref:`ProcessInfo<enum_NavigationServer3D_ProcessInfo>` for a list of available states.
+Returns information about the current state of the NavigationServer.
 
 .. rst-class:: classref-item-separator
 
@@ -1080,6 +1084,20 @@ Returns the ending position of this ``link``.
 :ref:`float<class_float>` **link_get_enter_cost**\ (\ link\: :ref:`RID<class_RID>`\ ) |const| :ref:`🔗<class_NavigationServer3D_method_link_get_enter_cost>`
 
 Returns the enter cost of this ``link``.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_NavigationServer3D_method_link_get_iteration_id:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **link_get_iteration_id**\ (\ link\: :ref:`RID<class_RID>`\ ) |const| :ref:`🔗<class_NavigationServer3D_method_link_get_iteration_id>`
+
+Returns the current iteration ID of the navigation link. Every time the navigation link changes and synchronizes, the iteration ID increases. An iteration ID of ``0`` means the navigation link has never synchronized.
+
+\ **Note:** The iteration ID will wrap around to ``1`` after reaching its range limit.
 
 .. rst-class:: classref-item-separator
 
@@ -1282,6 +1300,8 @@ Create a new map.
 .. rst-class:: classref-method
 
 |void| **map_force_update**\ (\ map\: :ref:`RID<class_RID>`\ ) :ref:`🔗<class_NavigationServer3D_method_map_force_update>`
+
+**Deprecated:** This method is no longer supported, as it is incompatible with asynchronous updates. It can only be used in a single-threaded context, at your own risk.
 
 This function immediately forces synchronization of the specified navigation ``map`` :ref:`RID<class_RID>`. By default navigation maps are only synchronized at the end of each physics frame. This function can be used to immediately (re)calculate all the navigation meshes and region connections of the navigation map. This makes it possible to query a navigation path for a changed map immediately and in the same frame (multiple times if needed).
 
@@ -2067,6 +2087,20 @@ Returns the enter cost of this ``region``.
 
 ----
 
+.. _class_NavigationServer3D_method_region_get_iteration_id:
+
+.. rst-class:: classref-method
+
+:ref:`int<class_int>` **region_get_iteration_id**\ (\ region\: :ref:`RID<class_RID>`\ ) |const| :ref:`🔗<class_NavigationServer3D_method_region_get_iteration_id>`
+
+Returns the current iteration ID of the navigation region. Every time the navigation region changes and synchronizes, the iteration ID increases. An iteration ID of ``0`` means the navigation region has never synchronized.
+
+\ **Note:** The iteration ID will wrap around to ``1`` after reaching its range limit.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_NavigationServer3D_method_region_get_map:
 
 .. rst-class:: classref-method
@@ -2344,6 +2378,7 @@ Sets the ``callback`` :ref:`Callable<class_Callable>` for the specific source ge
 - ``node`` - The :ref:`Node<class_Node>` that is parsed.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

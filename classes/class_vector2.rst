@@ -669,13 +669,15 @@ Returns a new vector with all components rounded down (towards negative infinity
 
 :ref:`Vector2<class_Vector2>` **from_angle**\ (\ angle\: :ref:`float<class_float>`\ ) |static| :ref:`🔗<class_Vector2_method_from_angle>`
 
-Creates a unit **Vector2** rotated to the given ``angle`` in radians. This is equivalent to doing ``Vector2(cos(angle), sin(angle))`` or ``Vector2.RIGHT.rotated(angle)``.
+Creates a **Vector2** rotated to the given ``angle`` in radians. This is equivalent to doing ``Vector2(cos(angle), sin(angle))`` or ``Vector2.RIGHT.rotated(angle)``.
 
 ::
 
     print(Vector2.from_angle(0)) # Prints (1.0, 0.0)
     print(Vector2(1, 0).angle()) # Prints 0.0, which is the angle used above.
     print(Vector2.from_angle(PI / 2)) # Prints (0.0, 1.0)
+
+\ **Note:** The length of the returned **Vector2** is *approximately* ``1.0``, but is is not guaranteed to be exactly ``1.0`` due to floating-point precision issues. Call :ref:`normalized()<class_Vector2_method_normalized>` on the returned **Vector2** if you require a unit vector.
 
 .. rst-class:: classref-item-separator
 
@@ -1285,6 +1287,7 @@ Returns the same value as if the ``+`` was not there. Unary ``+`` does nothing, 
 Returns the negative value of the **Vector2**. This is the same as writing ``Vector2(-v.x, -v.y)``. This operation flips the direction of the vector while keeping the same magnitude. With floats, the number zero can be either positive or negative.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

@@ -70,7 +70,9 @@ Clears this stream, resetting the internal state.
 
 :ref:`Error<enum_@GlobalScope_Error>` **finish**\ (\ ) :ref:`🔗<class_StreamPeerGZIP_method_finish>`
 
-Finalizes the stream, compressing or decompressing any buffered chunk left.
+Finalizes the stream, compressing any buffered chunk left.
+
+You must call it only when you are compressing.
 
 .. rst-class:: classref-item-separator
 
@@ -97,6 +99,7 @@ Start the stream in compression mode with the given ``buffer_size``, if ``use_de
 Start the stream in decompression mode with the given ``buffer_size``, if ``use_deflate`` is ``true`` uses deflate instead of GZIP.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

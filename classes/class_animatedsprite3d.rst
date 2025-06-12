@@ -333,7 +333,7 @@ This method is a shorthand for :ref:`play()<class_AnimatedSprite3D_method_play>`
 
 |void| **set_frame_and_progress**\ (\ frame\: :ref:`int<class_int>`, progress\: :ref:`float<class_float>`\ ) :ref:`🔗<class_AnimatedSprite3D_method_set_frame_and_progress>`
 
-Sets :ref:`frame<class_AnimatedSprite3D_property_frame>` the :ref:`frame_progress<class_AnimatedSprite3D_property_frame_progress>` to the given values. Unlike setting :ref:`frame<class_AnimatedSprite3D_property_frame>`, this method does not reset the :ref:`frame_progress<class_AnimatedSprite3D_property_frame_progress>` to ``0.0`` implicitly.
+Sets :ref:`frame<class_AnimatedSprite3D_property_frame>` and :ref:`frame_progress<class_AnimatedSprite3D_property_frame_progress>` to the given values. Unlike setting :ref:`frame<class_AnimatedSprite3D_property_frame>`, this method does not reset the :ref:`frame_progress<class_AnimatedSprite3D_property_frame_progress>` to ``0.0`` implicitly.
 
 \ **Example:** Change the animation while keeping the same :ref:`frame<class_AnimatedSprite3D_property_frame>` and :ref:`frame_progress<class_AnimatedSprite3D_property_frame_progress>`:
 
@@ -362,6 +362,7 @@ Sets :ref:`frame<class_AnimatedSprite3D_property_frame>` the :ref:`frame_progres
 Stops the currently playing animation. The animation position is reset to ``0`` and the ``custom_speed`` is reset to ``1.0``. See also :ref:`pause()<class_AnimatedSprite3D_method_pause>`.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

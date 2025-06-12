@@ -29,16 +29,16 @@ Creating a dictionary:
  .. code-tab:: gdscript
 
     var my_dict = {} # Creates an empty dictionary.
-    
+
     var dict_variable_key = "Another key name"
     var dict_variable_value = "value2"
     var another_dict = {
         "Some key name": "value1",
         dict_variable_key: dict_variable_value,
     }
-    
+
     var points_dict = {"White": 50, "Yellow": 75, "Orange": 100}
-    
+
     # Alternative Lua-style syntax.
     # Doesn't require quotes around keys, but only string constants can be used as key names.
     # Additionally, key names must start with a letter or an underscore.
@@ -82,7 +82,7 @@ You can access a dictionary's value by referencing its corresponding key. In the
         {"Yellow", 75},
         {"Orange", 100}
     };
-    
+
     public override void _Ready()
     {
         int points = (int)_pointsDict[MyColor];
@@ -234,6 +234,8 @@ Methods
    | |void|                              | :ref:`clear<class_Dictionary_method_clear>`\ (\ )                                                                                                                        |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Dictionary<class_Dictionary>` | :ref:`duplicate<class_Dictionary_method_duplicate>`\ (\ deep\: :ref:`bool<class_bool>` = false\ ) |const|                                                                |
+   +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Dictionary<class_Dictionary>` | :ref:`duplicate_deep<class_Dictionary_method_duplicate_deep>`\ (\ deep_subresources_mode\: :ref:`int<class_int>` = 1\ ) |const|                                          |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`             | :ref:`erase<class_Dictionary_method_erase>`\ (\ key\: :ref:`Variant<class_Variant>`\ )                                                                                   |
    +-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -388,7 +390,25 @@ Clears the dictionary, removing all entries from it.
 
 :ref:`Dictionary<class_Dictionary>` **duplicate**\ (\ deep\: :ref:`bool<class_bool>` = false\ ) |const| :ref:`🔗<class_Dictionary_method_duplicate>`
 
-Creates and returns a new copy of the dictionary. If ``deep`` is ``true``, inner **Dictionary** and :ref:`Array<class_Array>` keys and values are also copied, recursively.
+Returns a new copy of the dictionary.
+
+By default, a **shallow** copy is returned: all nested :ref:`Array<class_Array>`, **Dictionary**, and :ref:`Resource<class_Resource>` keys and values are shared with the original dictionary. Modifying any of those in one dictionary will also affect them in the other.
+
+If ``deep`` is ``true``, a **deep** copy is returned: all nested arrays and dictionaries are also duplicated (recursively). Any :ref:`Resource<class_Resource>` is still shared with the original dictionary, though.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Dictionary_method_duplicate_deep:
+
+.. rst-class:: classref-method
+
+:ref:`Dictionary<class_Dictionary>` **duplicate_deep**\ (\ deep_subresources_mode\: :ref:`int<class_int>` = 1\ ) |const| :ref:`🔗<class_Dictionary_method_duplicate_deep>`
+
+Duplicates this dictionary, deeply, like :ref:`duplicate()<class_Dictionary_method_duplicate>`\ ``(true)``, with extra control over how subresources are handled.
+
+\ ``deep_subresources_mode`` must be one of the values from :ref:`ResourceDeepDuplicateMode<enum_Resource_ResourceDeepDuplicateMode>`. By default, only internal resources will be duplicated (recursively).
 
 .. rst-class:: classref-item-separator
 
@@ -535,7 +555,7 @@ Returns ``true`` if the dictionary contains an entry with the given ``key``.
         "Godot" : 4,
         210 : null,
     }
-    
+
     print(my_dict.has("Godot")) # Prints true
     print(my_dict.has(210))     # Prints true
     print(my_dict.has(4))       # Prints false
@@ -547,7 +567,7 @@ Returns ``true`` if the dictionary contains an entry with the given ``key``.
         { "Godot", 4 },
         { 210, default },
     };
-    
+
     GD.Print(myDict.ContainsKey("Godot")); // Prints True
     GD.Print(myDict.ContainsKey(210));     // Prints True
     GD.Print(myDict.ContainsKey(4));       // Prints False
@@ -599,14 +619,14 @@ Returns a hashed 32-bit integer value representing the dictionary contents.
 
     var dict1 = {"A": 10, "B": 2}
     var dict2 = {"A": 10, "B": 2}
-    
+
     print(dict1.hash() == dict2.hash()) # Prints true
 
  .. code-tab:: csharp
 
     var dict1 = new Godot.Collections.Dictionary{{"A", 10}, {"B", 2}};
     var dict2 = new Godot.Collections.Dictionary{{"A", 10}, {"B", 2}};
-    
+
     // Godot.Collections.Dictionary has no Hash() method. Use GD.Hash() instead.
     GD.Print(GD.Hash(dict1) == GD.Hash(dict2)); // Prints True
 
@@ -755,11 +775,11 @@ Adds entries from ``dictionary`` to this dictionary. By default, duplicate keys 
 
     var dict = { "item": "sword", "quantity": 2 }
     var other_dict = { "quantity": 15, "color": "silver" }
-    
+
     # Overwriting of existing keys is disabled by default.
     dict.merge(other_dict)
     print(dict)  # { "item": "sword", "quantity": 2, "color": "silver" }
-    
+
     # With overwriting of existing keys enabled.
     dict.merge(other_dict, true)
     print(dict)  # { "item": "sword", "quantity": 15, "color": "silver" }
@@ -771,17 +791,17 @@ Adds entries from ``dictionary`` to this dictionary. By default, duplicate keys 
         ["item"] = "sword",
         ["quantity"] = 2,
     };
-    
+
     var otherDict = new Godot.Collections.Dictionary
     {
         ["quantity"] = 15,
         ["color"] = "silver",
     };
-    
+
     // Overwriting of existing keys is disabled by default.
     dict.Merge(otherDict);
     GD.Print(dict); // { "item": "sword", "quantity": 2, "color": "silver" }
-    
+
     // With overwriting of existing keys enabled.
     dict.Merge(otherDict, true);
     GD.Print(dict); // { "item": "sword", "quantity": 15, "color": "silver" }
@@ -859,7 +879,20 @@ Returns the number of entries in the dictionary. Empty dictionaries (``{ }``) al
 
 |void| **sort**\ (\ ) :ref:`🔗<class_Dictionary_method_sort>`
 
-Sorts the dictionary in-place by key. This can be used to ensure dictionaries with the same contents produce equivalent results when getting the :ref:`keys()<class_Dictionary_method_keys>`, getting the :ref:`values()<class_Dictionary_method_values>`, and converting to a string. This is also useful when wanting a JSON representation consistent with what is in memory, and useful for storing on a database that requires dictionaries to be sorted.
+Sorts the dictionary in ascending order, by key. The final order is dependent on the "less than" (``<``) comparison between keys.
+
+
+.. tabs::
+
+ .. code-tab:: gdscript
+
+    var numbers = { "c": 2, "a": 0, "b": 1 }
+    numbers.sort()
+    print(numbers) # Prints { "a": 0, "b": 1, "c": 2 }
+
+
+
+This method ensures that the dictionary's entries are ordered consistently when :ref:`keys()<class_Dictionary_method_keys>` or :ref:`values()<class_Dictionary_method_values>` are called, or when the dictionary needs to be converted to a string through :ref:`@GlobalScope.str()<class_@GlobalScope_method_str>` or :ref:`JSON.stringify()<class_JSON_method_stringify>`.
 
 .. rst-class:: classref-item-separator
 
@@ -917,6 +950,7 @@ Returns ``true`` if the two dictionaries contain the same keys and values. The o
 Returns the corresponding value for the given ``key`` in the dictionary. If the entry does not exist, fails and returns ``null``. For safe access, use :ref:`get()<class_Dictionary_method_get>` or :ref:`has()<class_Dictionary_method_has>`.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

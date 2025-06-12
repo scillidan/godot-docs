@@ -44,6 +44,8 @@ Properties
    +----------------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------+
    | :ref:`FocusMode<enum_Control_FocusMode>`           | focus_mode             | ``2`` (overrides :ref:`Control<class_Control_property_focus_mode>`)                             |
    +----------------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                            | follow_focus           | ``true`` (overrides :ref:`ScrollContainer<class_ScrollContainer_property_follow_focus>`)        |
+   +----------------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------+
    | :ref:`ScrollMode<enum_ScrollContainer_ScrollMode>` | horizontal_scroll_mode | ``0`` (overrides :ref:`ScrollContainer<class_ScrollContainer_property_horizontal_scroll_mode>`) |
    +----------------------------------------------------+------------------------+-------------------------------------------------------------------------------------------------+
 
@@ -236,6 +238,7 @@ Gets the path of the currently selected property.
 Creates a property editor that can be used by plugin UI to edit the specified property of an ``object``.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

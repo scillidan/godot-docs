@@ -28,7 +28,7 @@ An array data structure that can contain a sequence of elements of any :ref:`Var
     print(array[0])  # Prints "First"
     print(array[2])  # Prints 3
     print(array[-1]) # Prints "Last"
-    
+
     array[1] = "Second"
     print(array[1])  # Prints "Second"
     print(array[-3]) # Prints "Second"
@@ -39,7 +39,7 @@ An array data structure that can contain a sequence of elements of any :ref:`Var
     GD.Print(array[0]); // Prints "First"
     GD.Print(array[2]); // Prints 3
     GD.Print(array[^1]); // Prints "Last"
-    
+
     array[1] = "Second";
     GD.Print(array[1]); // Prints "Second"
     GD.Print(array[^3]); // Prints "Second"
@@ -122,6 +122,8 @@ Methods
    | :ref:`int<class_int>`               | :ref:`count<class_Array_method_count>`\ (\ value\: :ref:`Variant<class_Variant>`\ ) |const|                                                                                                             |
    +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`Array<class_Array>`           | :ref:`duplicate<class_Array_method_duplicate>`\ (\ deep\: :ref:`bool<class_bool>` = false\ ) |const|                                                                                                    |
+   +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`Array<class_Array>`           | :ref:`duplicate_deep<class_Array_method_duplicate_deep>`\ (\ deep_subresources_mode\: :ref:`int<class_int>` = 1\ ) |const|                                                                              |
    +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | |void|                              | :ref:`erase<class_Array_method_erase>`\ (\ value\: :ref:`Variant<class_Variant>`\ )                                                                                                                     |
    +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -267,10 +269,10 @@ If ``type`` is not :ref:`@GlobalScope.TYPE_OBJECT<class_@GlobalScope_constant_TY
 
     class_name Sword
     extends Node
-    
+
     class Stats:
         pass
-    
+
     func _ready():
         var a = Array([], TYPE_INT, "", null)               # Array[int]
         var b = Array([], TYPE_OBJECT, "Node", null)        # Array[Node]
@@ -285,7 +287,7 @@ In GDScript, this constructor is usually not necessary, as it is possible to cre
 
     var numbers: Array[float] = []
     var children: Array[Node] = [$Node, $Sprite2D, $RigidBody3D]
-    
+
     var integers: Array[int] = [0.2, 4.5, -2.0]
     print(integers) # Prints [0, 4, -2]
 
@@ -425,13 +427,13 @@ The ``method`` should take one :ref:`Variant<class_Variant>` parameter (the curr
 
     func greater_than_5(number):
         return number > 5
-    
+
     func _ready():
         print([6, 10, 6].all(greater_than_5)) # Prints true (3/3 elements evaluate to true).
         print([4, 10, 4].all(greater_than_5)) # Prints false (1/3 elements evaluate to true).
         print([4, 4, 4].all(greater_than_5))  # Prints false (0/3 elements evaluate to true).
         print([].all(greater_than_5))         # Prints true (0/0 elements evaluate to true).
-    
+
         # Same as the first line above, but using a lambda function.
         print([6, 10, 6].all(func(element): return element > 5)) # Prints true
 
@@ -441,7 +443,7 @@ The ``method`` should take one :ref:`Variant<class_Variant>` parameter (the curr
     {
         return number > 5;
     }
-    
+
     public override void _Ready()
     {
         // Prints True (3/3 elements evaluate to true).
@@ -452,7 +454,7 @@ The ``method`` should take one :ref:`Variant<class_Variant>` parameter (the curr
         GD.Print(new Godot.Collections.Array>int< { 4, 4, 4 }.All(GreaterThan5));
         // Prints True (0/0 elements evaluate to true).
         GD.Print(new Godot.Collections.Array>int< { }.All(GreaterThan5));
-    
+
         // Same as the first line above, but using a lambda function.
         GD.Print(new Godot.Collections.Array>int< { 6, 10, 6 }.All(element => element > 5)); // Prints True
     }
@@ -483,13 +485,13 @@ The ``method`` should take one :ref:`Variant<class_Variant>` parameter (the curr
 
     func greater_than_5(number):
         return number > 5
-    
+
     func _ready():
         print([6, 10, 6].any(greater_than_5)) # Prints true (3 elements evaluate to true).
         print([4, 10, 4].any(greater_than_5)) # Prints true (1 elements evaluate to true).
         print([4, 4, 4].any(greater_than_5))  # Prints false (0 elements evaluate to true).
         print([].any(greater_than_5))         # Prints false (0 elements evaluate to true).
-    
+
         # Same as the first line above, but using a lambda function.
         print([6, 10, 6].any(func(number): return number > 5)) # Prints true
 
@@ -574,10 +576,10 @@ If ``before`` is ``true`` (as by default), the returned index comes before all e
 
     var numbers = [2, 4, 8, 10]
     var idx = numbers.bsearch(7)
-    
+
     numbers.insert(idx, 7)
     print(numbers) # Prints [2, 4, 7, 8, 10]
-    
+
     var fruits = ["Apple", "Lemon", "Lemon", "Orange"]
     print(fruits.bsearch("Lemon", true))  # Prints 1, points at the first "Lemon".
     print(fruits.bsearch("Lemon", false)) # Prints 3, points at "Orange".
@@ -606,18 +608,18 @@ If ``before`` is ``true`` (as by default), the returned index comes before all e
         if a[1] < b[1]:
             return true
         return false
-    
+
     func _ready():
         var my_items = [["Tomato", 2], ["Kiwi", 5], ["Rice", 9]]
-    
+
         var apple = ["Apple", 5]
         # "Apple" is inserted before "Kiwi".
         my_items.insert(my_items.bsearch_custom(apple, sort_by_amount, true), apple)
-    
+
         var banana = ["Banana", 5]
         # "Banana" is inserted after "Kiwi".
         my_items.insert(my_items.bsearch_custom(banana, sort_by_amount, false), banana)
-    
+
         # Prints [["Tomato", 2], ["Apple", 5], ["Kiwi", 5], ["Banana", 5], ["Rice", 9]]
         print(my_items)
 
@@ -661,9 +663,23 @@ To count how many elements in an array satisfy a condition, see :ref:`reduce()<c
 
 Returns a new copy of the array.
 
-By default, a **shallow** copy is returned: all nested **Array** and :ref:`Dictionary<class_Dictionary>` elements are shared with the original array. Modifying them in one array will also affect them in the other.
+By default, a **shallow** copy is returned: all nested **Array**, :ref:`Dictionary<class_Dictionary>`, and :ref:`Resource<class_Resource>` elements are shared with the original array. Modifying any of those in one array will also affect them in the other.
 
-If ``deep`` is ``true``, a **deep** copy is returned: all nested arrays and dictionaries are also duplicated (recursively).
+If ``deep`` is ``true``, a **deep** copy is returned: all nested arrays and dictionaries are also duplicated (recursively). Any :ref:`Resource<class_Resource>` is still shared with the original array, though.
+
+.. rst-class:: classref-item-separator
+
+----
+
+.. _class_Array_method_duplicate_deep:
+
+.. rst-class:: classref-method
+
+:ref:`Array<class_Array>` **duplicate_deep**\ (\ deep_subresources_mode\: :ref:`int<class_int>` = 1\ ) |const| :ref:`🔗<class_Array_method_duplicate_deep>`
+
+Duplicates this array, deeply, like :ref:`duplicate()<class_Array_method_duplicate>`\ ``(true)``, with extra control over how subresources are handled.
+
+\ ``deep_subresources_mode`` must be one of the values from :ref:`ResourceDeepDuplicateMode<enum_Resource_ResourceDeepDuplicateMode>`. By default, only internal resources will be duplicated (recursively).
 
 .. rst-class:: classref-item-separator
 
@@ -734,10 +750,10 @@ The ``method`` receives one of the array elements as an argument, and should ret
 
     func is_even(number):
         return number % 2 == 0
-    
+
     func _ready():
         print([1, 4, 5, 8].filter(is_even)) # Prints [4, 8]
-    
+
         # Same as above, but using a lambda function.
         print([1, 4, 5, 8].filter(func(number): return number % 2 == 0))
 
@@ -782,7 +798,7 @@ Returns the index of the **first** element in the array that causes ``method`` t
 
     func is_even(number):
         return number % 2 == 0
-    
+
     func _ready():
         print([1, 3, 4, 7].find_custom(is_even.bind())) # Prints 2
 
@@ -812,7 +828,9 @@ Returns the first element of the array. If the array is empty, fails and returns
 
 :ref:`Variant<class_Variant>` **get**\ (\ index\: :ref:`int<class_int>`\ ) |const| :ref:`🔗<class_Array_method_get>`
 
-Returns the element at the given ``index`` in the array. This is the same as using the ``[]`` operator (``array[index]``).
+Returns the element at the given ``index`` in the array. If ``index`` out-of-bounds or negative, this method fails and returns ``null``.
+
+This method is similar (but not identical) to the ``[]`` operator. Most notably, when this method fails, it doesn't pause project execution if run from the editor.
 
 .. rst-class:: classref-item-separator
 
@@ -916,7 +934,7 @@ Returns a hashed 32-bit integer value representing the array and its contents.
 
 :ref:`int<class_int>` **insert**\ (\ position\: :ref:`int<class_int>`, value\: :ref:`Variant<class_Variant>`\ ) :ref:`🔗<class_Array_method_insert>`
 
-Inserts a new element (``value``) at a given index (``position``) in the array. ``position`` should be between ``0`` and the array's :ref:`size()<class_Array_method_size>`.
+Inserts a new element (``value``) at a given index (``position``) in the array. ``position`` should be between ``0`` and the array's :ref:`size()<class_Array_method_size>`. If negative, ``position`` is considered relative to the end of the array.
 
 Returns :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>` on success, or one of the other :ref:`Error<enum_@GlobalScope_Error>` constants if this method fails.
 
@@ -1011,10 +1029,10 @@ The ``method`` should take one :ref:`Variant<class_Variant>` parameter (the curr
 
     func double(number):
         return number * 2
-    
+
     func _ready():
         print([1, 2, 3].map(double)) # Prints [2, 4, 6]
-    
+
         # Same as above, but using a lambda function.
         print([1, 2, 3].map(func(element): return element * 2))
 
@@ -1159,11 +1177,11 @@ The ``method`` takes two arguments: the current value of ``accum`` and the curre
 
     func sum(accum, number):
         return accum + number
-    
+
     func _ready():
         print([1, 2, 3].reduce(sum, 0))  # Prints 6
         print([1, 2, 3].reduce(sum, 10)) # Prints 16
-    
+
         # Same as above, but using a lambda function.
         print([1, 2, 3].reduce(func(accum, number): return accum + number, 10))
 
@@ -1173,10 +1191,10 @@ If :ref:`max()<class_Array_method_max>` is not desirable, this method may also b
 
     func _ready():
         var arr = [Vector2i(5, 0), Vector2i(3, 4), Vector2i(1, 2)]
-    
+
         var longest_vec = arr.reduce(func(max, vec): return vec if is_length_greater(vec, max) else max)
         print(longest_vec) # Prints (3, 4)
-    
+
     func is_length_greater(a, b):
         return a.length() > b.length()
 
@@ -1186,7 +1204,7 @@ This method can also be used to count how many elements in an array satisfy a ce
 
     func is_even(number):
         return number % 2 == 0
-    
+
     func _ready():
         var arr = [1, 2, 3, 4, 5]
         # If the current element is even, increment count, otherwise leave count the same.
@@ -1205,7 +1223,7 @@ See also :ref:`map()<class_Array_method_map>`, :ref:`filter()<class_Array_method
 
 |void| **remove_at**\ (\ position\: :ref:`int<class_int>`\ ) :ref:`🔗<class_Array_method_remove_at>`
 
-Removes the element from the array at the given index (``position``). If the index is out of bounds, this method fails.
+Removes the element from the array at the given index (``position``). If the index is out of bounds, this method fails. If the index is negative, ``position`` is considered relative to the end of the array.
 
 If you need to return the removed element, use :ref:`pop_at()<class_Array_method_pop_at>`. To remove an element by value, use :ref:`erase()<class_Array_method_erase>` instead.
 
@@ -1225,7 +1243,7 @@ If you need to return the removed element, use :ref:`pop_at()<class_Array_method
 
 Sets the array's number of elements to ``size``. If ``size`` is smaller than the array's current size, the elements at the end are removed. If ``size`` is greater, new default elements (usually ``null``) are added, depending on the array's type.
 
-Returns :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>` on success, or one of the other :ref:`Error<enum_@GlobalScope_Error>` constants if this method fails.
+Returns :ref:`@GlobalScope.OK<class_@GlobalScope_constant_OK>` on success, or one of the following :ref:`Error<enum_@GlobalScope_Error>` constants if this method fails: :ref:`@GlobalScope.ERR_LOCKED<class_@GlobalScope_constant_ERR_LOCKED>` if the array is read-only, :ref:`@GlobalScope.ERR_INVALID_PARAMETER<class_@GlobalScope_constant_ERR_INVALID_PARAMETER>` if the size is negative, or :ref:`@GlobalScope.ERR_OUT_OF_MEMORY<class_@GlobalScope_constant_ERR_OUT_OF_MEMORY>` if allocations fail. Use :ref:`size()<class_Array_method_size>` to find the actual size of the array after resize.
 
 \ **Note:** Calling this method once and assigning the new values is faster than calling :ref:`append()<class_Array_method_append>` for every new element.
 
@@ -1319,16 +1337,16 @@ If either ``begin`` or ``end`` are negative, their value is relative to the end 
 
 If ``step`` is negative, this method iterates through the array in reverse, returning a slice ordered backwards. For this to work, ``begin`` must be greater than ``end``.
 
-If ``deep`` is ``true``, all nested **Array** and :ref:`Dictionary<class_Dictionary>` elements in the slice are duplicated from the original, recursively. See also :ref:`duplicate()<class_Array_method_duplicate>`).
+If ``deep`` is ``true``, all nested **Array** and :ref:`Dictionary<class_Dictionary>` elements in the slice are duplicated from the original, recursively. See also :ref:`duplicate()<class_Array_method_duplicate>`.
 
 ::
 
     var letters = ["A", "B", "C", "D", "E", "F"]
-    
+
     print(letters.slice(0, 2))  # Prints ["A", "B"]
     print(letters.slice(2, -2)) # Prints ["C", "D"]
     print(letters.slice(-2, 6)) # Prints ["E", "F"]
-    
+
     print(letters.slice(0, 6, 2))  # Prints ["A", "C", "E"]
     print(letters.slice(4, 1, -1)) # Prints ["E", "D", "C"]
 
@@ -1383,12 +1401,12 @@ Sorts the array using a custom :ref:`Callable<class_Callable>`.
         if a[1] < b[1]:
             return true
         return false
-    
+
     func _ready():
         var my_items = [["Tomato", 5], ["Apple", 9], ["Rice", 4]]
         my_items.sort_custom(sort_ascending)
         print(my_items) # Prints [["Rice", 4], ["Tomato", 5], ["Apple", 9]]
-    
+
         # Sort descending, using a lambda function.
         my_items.sort_custom(func(a, b): return a[1] > b[1])
         print(my_items) # Prints [["Apple", 9], ["Tomato", 5], ["Rice", 4]]
@@ -1537,6 +1555,7 @@ If all searched elements are equal, returns ``true`` if this array's size is gre
 Returns the :ref:`Variant<class_Variant>` element at the specified ``index``. Arrays start at index 0. If ``index`` is greater or equal to ``0``, the element is fetched starting from the beginning of the array. If ``index`` is a negative value, the element is fetched starting from the end. Accessing an array out-of-bounds will cause a run-time error, pausing the project execution if run from the editor.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

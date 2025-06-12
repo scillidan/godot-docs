@@ -258,7 +258,7 @@ Gets a half-precision float from the stream.
 
 :ref:`Array<class_Array>` **get_partial_data**\ (\ bytes\: :ref:`int<class_int>`\ ) :ref:`🔗<class_StreamPeer_method_get_partial_data>`
 
-Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an :ref:`Error<enum_@GlobalScope_Error>` code, and a data array.
+Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the ``bytes`` argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values: an :ref:`Error<enum_@GlobalScope_Error>` code and a data array.
 
 .. rst-class:: classref-item-separator
 
@@ -573,6 +573,7 @@ Puts a Variant into the stream. If ``full_objects`` is ``true`` encoding objects
 Internally, this uses the same encoding mechanism as the :ref:`@GlobalScope.var_to_bytes()<class_@GlobalScope_method_var_to_bytes>` method.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

@@ -585,7 +585,7 @@ The pathfinding algorithm used in the path query.
 
 The radius of the avoidance agent. This is the "body" of the avoidance agent and not the avoidance maneuver starting radius (which is controlled by :ref:`neighbor_distance<class_NavigationAgent2D_property_neighbor_distance>`).
 
-Does not affect normal pathfinding. To change an actor's pathfinding radius bake :ref:`NavigationMesh<class_NavigationMesh>` resources with a different :ref:`NavigationMesh.agent_radius<class_NavigationMesh_property_agent_radius>` property and use different navigation maps for each actor size.
+Does not affect normal pathfinding. To change an actor's pathfinding radius bake :ref:`NavigationPolygon<class_NavigationPolygon>` resources with a different :ref:`NavigationPolygon.agent_radius<class_NavigationPolygon_property_agent_radius>` property and use different navigation maps for each actor size.
 
 .. rst-class:: classref-item-separator
 
@@ -948,6 +948,7 @@ Sets the :ref:`RID<class_RID>` of the navigation map this NavigationAgent node s
 Replaces the internal velocity in the collision avoidance simulation with ``velocity``. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

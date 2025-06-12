@@ -310,7 +310,7 @@ Signals
 
 **breakpoint_toggled**\ (\ line\: :ref:`int<class_int>`\ ) :ref:`🔗<class_CodeEdit_signal_breakpoint_toggled>`
 
-Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a removed is emitted at the old line.
+Emitted when a breakpoint is added or removed from a line. If the line is removed via backspace, a signal is emitted at the old line.
 
 .. rst-class:: classref-item-separator
 
@@ -827,7 +827,7 @@ If ``true``, lines can be folded. Otherwise, line folding methods like :ref:`fol
 - |void| **set_line_length_guidelines**\ (\ value\: :ref:`Array<class_Array>`\[:ref:`int<class_int>`\]\ )
 - :ref:`Array<class_Array>`\[:ref:`int<class_int>`\] **get_line_length_guidelines**\ (\ )
 
-Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is draw more prominently.
+Draws vertical lines at the provided columns. The first entry is considered a main hard guideline and is drawn more prominently.
 
 .. rst-class:: classref-item-separator
 
@@ -861,7 +861,7 @@ Set when a validated word from :ref:`symbol_validate<class_CodeEdit_signal_symbo
 - |void| **set_symbol_tooltip_on_hover_enabled**\ (\ value\: :ref:`bool<class_bool>`\ )
 - :ref:`bool<class_bool>` **is_symbol_tooltip_on_hover_enabled**\ (\ )
 
-Set when a word is hovered, the :ref:`symbol_hovered<class_CodeEdit_signal_symbol_hovered>` should be emitted.
+If ``true``, the :ref:`symbol_hovered<class_CodeEdit_signal_symbol_hovered>` signal is emitted when hovering over a word.
 
 .. rst-class:: classref-section-separator
 
@@ -2084,6 +2084,7 @@ Sets a custom :ref:`Texture2D<class_Texture2D>` to draw at the end of a folded l
 :ref:`StyleBox<class_StyleBox>` for the code completion popup.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

@@ -3052,7 +3052,7 @@ Since :ref:`OK<class_@GlobalScope_constant_OK>` has value ``0``, and all other e
     var error = method_that_returns_error()
     if error != OK:
         printerr("Failure!")
-    
+
     # Or, alternatively:
     if error:
         printerr("Still failing!")
@@ -3671,6 +3671,8 @@ If a property is :ref:`String<class_String>`, hints that the property represents
 
 If a property is :ref:`Array<class_Array>`, hints the editor how to show elements. The ``hint_string`` must encode nested types using ``":"`` and ``"/"``.
 
+If a property is :ref:`Dictionary<class_Dictionary>`, hints the editor how to show elements. The ``hint_string`` is the same as :ref:`Array<class_Array>`, with a ``";"`` separating the key and value.
+
 
 .. tabs::
 
@@ -3713,7 +3715,7 @@ If a property is :ref:`Array<class_Array>`, hints the editor how to show element
     hint_string = "%d/%d:Zero,One,Three:3,Six:6" % [TYPE_INT, PROPERTY_HINT_ENUM] # Array of integers (an enum).
     hint_string = "%d/%d:*.png" % [TYPE_STRING, PROPERTY_HINT_FILE] # Array of strings (file paths).
     hint_string = "%d/%d:Texture2D" % [TYPE_OBJECT, PROPERTY_HINT_RESOURCE_TYPE] # Array of textures.
-    
+
     hint_string = "%d:%d:" % [TYPE_ARRAY, TYPE_FLOAT] # Two-dimensional array of floats.
     hint_string = "%d:%d/%d:" % [TYPE_ARRAY, TYPE_STRING, PROPERTY_HINT_MULTILINE_TEXT] # Two-dimensional array of multiline strings.
     hint_string = "%d:%d/%d:-1,1,0.1" % [TYPE_ARRAY, TYPE_FLOAT, PROPERTY_HINT_RANGE] # Two-dimensional array of floats (in range from -1 to 1).
@@ -3726,7 +3728,7 @@ If a property is :ref:`Array<class_Array>`, hints the editor how to show element
     hintString = $"{Variant.Type.Int:D}/{PropertyHint.Enum:D}:Zero,One,Three:3,Six:6"; // Array of integers (an enum).
     hintString = $"{Variant.Type.String:D}/{PropertyHint.File:D}:*.png"; // Array of strings (file paths).
     hintString = $"{Variant.Type.Object:D}/{PropertyHint.ResourceType:D}:Texture2D"; // Array of textures.
-    
+
     hintString = $"{Variant.Type.Array:D}:{Variant.Type.Float:D}:"; // Two-dimensional array of floats.
     hintString = $"{Variant.Type.Array:D}:{Variant.Type.String:D}/{PropertyHint.MultilineText:D}:"; // Two-dimensional array of multiline strings.
     hintString = $"{Variant.Type.Array:D}:{Variant.Type.Float:D}/{PropertyHint.Range:D}:-1,1,0.1"; // Two-dimensional array of floats (in range from -1 to 1).
@@ -3802,7 +3804,9 @@ Hints that an :ref:`int<class_int>` property is a pointer. Used by GDExtension.
 
 :ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_ARRAY_TYPE** = ``31``
 
-Hints that a property is an :ref:`Array<class_Array>` with the stored type specified in the hint string.
+Hints that a property is an :ref:`Array<class_Array>` with the stored type specified in the hint string. The hint string contains the type of the array (e.g. ``"String"``).
+
+Use the hint string format from :ref:`PROPERTY_HINT_TYPE_STRING<class_@GlobalScope_constant_PROPERTY_HINT_TYPE_STRING>` for more control over the stored type.
 
 .. _class_@GlobalScope_constant_PROPERTY_HINT_DICTIONARY_TYPE:
 
@@ -3810,7 +3814,9 @@ Hints that a property is an :ref:`Array<class_Array>` with the stored type speci
 
 :ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_DICTIONARY_TYPE** = ``38``
 
-Hints that a property is a :ref:`Dictionary<class_Dictionary>` with the stored types specified in the hint string.
+Hints that a property is a :ref:`Dictionary<class_Dictionary>` with the stored types specified in the hint string. The hint string contains the key and value types separated by a semicolon (e.g. ``"int;String"``).
+
+Use the hint string format from :ref:`PROPERTY_HINT_TYPE_STRING<class_@GlobalScope_constant_PROPERTY_HINT_TYPE_STRING>` for more control over the stored types.
 
 .. _class_@GlobalScope_constant_PROPERTY_HINT_LOCALE_ID:
 
@@ -3875,11 +3881,33 @@ Hints that a :ref:`Callable<class_Callable>` property should be displayed as a c
 
 Hints that a property will be changed on its own after setting, such as :ref:`AudioStreamPlayer.playing<class_AudioStreamPlayer_property_playing>` or :ref:`GPUParticles3D.emitting<class_GPUParticles3D_property_emitting>`.
 
+.. _class_@GlobalScope_constant_PROPERTY_HINT_GROUP_ENABLE:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_GROUP_ENABLE** = ``42``
+
+Hints that a boolean property will enable the feature associated with the group that it occurs in. Only works within a group or subgroup. Use the optional hint string ``"feature"`` when the group only has variables that are meaningful when the feature is enabled.
+
+\ **Note:** The ``"feature"`` hint string does not modify or reset any values.
+
+.. _class_@GlobalScope_constant_PROPERTY_HINT_INPUT_NAME:
+
+.. rst-class:: classref-enumeration-constant
+
+:ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_INPUT_NAME** = ``43``
+
+Hints that a :ref:`String<class_String>` or :ref:`StringName<class_StringName>` property is the name of an input action. This allows the selection of any action name from the Input Map in the Project Settings. The hint string may contain two options separated by commas:
+
+- If it contains ``"show_builtin"``, built-in input actions are included in the selection.
+
+- If it contains ``"loose_mode"``, loose mode is enabled. This allows inserting any action name even if it's not present in the input map.
+
 .. _class_@GlobalScope_constant_PROPERTY_HINT_MAX:
 
 .. rst-class:: classref-enumeration-constant
 
-:ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_MAX** = ``42``
+:ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` **PROPERTY_HINT_MAX** = ``44``
 
 Represents the size of the :ref:`PropertyHint<enum_@GlobalScope_PropertyHint>` enum.
 
@@ -5261,19 +5289,19 @@ Returns the absolute value of a :ref:`Variant<class_Variant>` parameter ``x`` (i
 
     var a = abs(-1)
     # a is 1
-    
+
     var b = abs(-1.2)
     # b is 1.2
-    
+
     var c = abs(Vector2(-3.5, -4))
     # c is (3.5, 4)
-    
+
     var d = abs(Vector2i(-5, -6))
     # d is (5, 6)
-    
+
     var e = abs(Vector3(-7, 8.5, -3.8))
     # e is (7, 8.5, 3.8)
-    
+
     var f = abs(Vector3i(-7, -8, -9))
     # f is (7, 8, 9)
 
@@ -5346,7 +5374,7 @@ Returns the hyperbolic arc (also called inverse) cosine of ``x``, returning a va
 
     var a = acosh(2) # Returns 1.31695789692482
     cosh(a) # Returns 2
-    
+
     var b = acosh(-1) # Returns 0
 
 .. rst-class:: classref-item-separator
@@ -5451,7 +5479,7 @@ In mathematics, the inverse hyperbolic tangent is only defined for -1 < ``x`` < 
 
     var a = atanh(0.9) # Returns 1.47221948958322
     tanh(a) # Returns 0.9
-    
+
     var b = atanh(-2) # Returns -inf
     tanh(b) # Returns -1
 
@@ -5572,7 +5600,7 @@ Clamps the ``value``, returning a :ref:`Variant<class_Variant>` not less than ``
 
     var a = clamp(-10, -1, 5)
     # a is -1
-    
+
     var b = clamp(8.1, 0.9, 5.5)
     # b is 5.5
 
@@ -5596,7 +5624,7 @@ Clamps the ``value``, returning a :ref:`float<class_float>` not less than ``min`
 
     var speed = 42.1
     var a = clampf(speed, 1.0, 20.5) # a is 20.5
-    
+
     speed = -10.0
     var b = clampf(speed, -1.0, 1.0) # b is -1.0
 
@@ -5616,7 +5644,7 @@ Clamps the ``value``, returning an :ref:`int<class_int>` not less than ``min`` a
 
     var speed = 42
     var a = clampi(speed, 1, 20) # a is 20
-    
+
     speed = -10
     var b = clampi(speed, -1, 1) # b is -1
 
@@ -5943,7 +5971,7 @@ Returns the :ref:`Object<class_Object>` that corresponds to ``instance_id``. All
  .. code-tab:: gdscript
 
     var drink = "water"
-    
+
     func _ready():
         var id = get_instance_id()
         var instance = instance_from_id(id)
@@ -5954,7 +5982,7 @@ Returns the :ref:`Object<class_Object>` that corresponds to ``instance_id``. All
     public partial class MyNode : Node
     {
         public string Drink { get; set; } = "water";
-    
+
         public override void _Ready()
         {
             ulong id = GetInstanceId();
@@ -5982,7 +6010,7 @@ Returns an interpolation or extrapolation factor considering the range specified
     # The interpolation ratio in the `lerp()` call below is 0.75.
     var middle = lerp(20, 30, 0.75)
     # middle is now 27.5.
-    
+
     # Now, we pretend to have forgotten the original ratio and want to get it back.
     var ratio = inverse_lerp(20, 30, 27.5)
     # ratio is now 0.75.
@@ -6015,7 +6043,7 @@ Infinity values of the same sign are considered equal.
 
 :ref:`bool<class_bool>` **is_finite**\ (\ x\: :ref:`float<class_float>`\ ) :ref:`🔗<class_@GlobalScope_method_is_finite>`
 
-Returns whether ``x`` is a finite value, i.e. it is not :ref:`@GDScript.NAN<class_@GDScript_constant_NAN>`, positive infinity, or negative infinity.
+Returns whether ``x`` is a finite value, i.e. it is not :ref:`@GDScript.NAN<class_@GDScript_constant_NAN>`, positive infinity, or negative infinity. See also :ref:`is_inf()<class_@GlobalScope_method_is_inf>` and :ref:`is_nan()<class_@GlobalScope_method_is_nan>`.
 
 .. rst-class:: classref-item-separator
 
@@ -6027,7 +6055,7 @@ Returns whether ``x`` is a finite value, i.e. it is not :ref:`@GDScript.NAN<clas
 
 :ref:`bool<class_bool>` **is_inf**\ (\ x\: :ref:`float<class_float>`\ ) :ref:`🔗<class_@GlobalScope_method_is_inf>`
 
-Returns ``true`` if ``x`` is either positive infinity or negative infinity.
+Returns ``true`` if ``x`` is either positive infinity or negative infinity. See also :ref:`is_finite()<class_@GlobalScope_method_is_finite>` and :ref:`is_nan()<class_@GlobalScope_method_is_nan>`.
 
 .. rst-class:: classref-item-separator
 
@@ -6063,7 +6091,7 @@ Returns ``true`` if ``instance`` is a valid Object (e.g. has not been deleted fr
 
 :ref:`bool<class_bool>` **is_nan**\ (\ x\: :ref:`float<class_float>`\ ) :ref:`🔗<class_@GlobalScope_method_is_nan>`
 
-Returns ``true`` if ``x`` is a NaN ("Not a Number" or invalid) value.
+Returns ``true`` if ``x`` is a NaN ("Not a Number" or invalid) value. This method is needed as :ref:`@GDScript.NAN<class_@GDScript_constant_NAN>` is not equal to itself, which means ``x == NAN`` can't be used to check whether a value is a NaN.
 
 .. rst-class:: classref-item-separator
 
@@ -6086,7 +6114,7 @@ Returns ``true``, for value types, if ``a`` and ``b`` share the same value. Retu
     is_same(vec2_a, vec2_a)  # true
     is_same(vec2_a, vec2_b)  # true
     is_same(vec2_a, vec2_c)  # false
-    
+
     # Array is a reference type
     var arr_a = []
     var arr_b = []
@@ -6357,7 +6385,7 @@ Returns the smallest integer power of 2 that is greater than or equal to ``value
     nearest_po2(3) # Returns 4
     nearest_po2(4) # Returns 4
     nearest_po2(5) # Returns 8
-    
+
     nearest_po2(0)  # Returns 0 (this may not be expected)
     nearest_po2(-1) # Returns 0 (this may not be expected)
 
@@ -6499,8 +6527,6 @@ When printing to standard output, the supported subset of BBCode is converted to
 
 
 \ **Note:** Consider using :ref:`push_error()<class_@GlobalScope_method_push_error>` and :ref:`push_warning()<class_@GlobalScope_method_push_warning>` to print error and warning messages instead of :ref:`print()<class_@GlobalScope_method_print>` or :ref:`print_rich()<class_@GlobalScope_method_print_rich>`. This distinguishes them from print messages used for debugging purposes, while also displaying a stack trace when an error or warning is printed.
-
-\ **Note:** On Windows, only Windows 10 and later correctly displays ANSI escape codes in standard output.
 
 \ **Note:** Output displayed in the editor supports clickable ``[url=address]text[/url]`` tags. The ``[url]`` tag's ``address`` value is handled by :ref:`OS.shell_open()<class_OS_method_shell_open>` when clicked.
 
@@ -6711,7 +6737,7 @@ Given a ``seed``, returns a :ref:`PackedInt64Array<class_PackedInt64Array>` of s
 ::
 
     var a = rand_from_seed(4)
-    
+
     print(a[0]) # Prints 2879024997
     print(a[1]) # Prints 4
 
@@ -7018,7 +7044,7 @@ Supported types: :ref:`int<class_int>`, :ref:`float<class_float>`, :ref:`Vector2
     sign(0.0)  # Returns 0
     sign(6.0)  # Returns 1
     sign(NAN)  # Returns 0
-    
+
     sign(Vector3(-6.0, 0.0, 6.0)) # Returns (-1, 0, 1)
 
 \ **Note:** For better type safety, use :ref:`signf()<class_@GlobalScope_method_signf>`, :ref:`signi()<class_@GlobalScope_method_signi>`, :ref:`Vector2.sign()<class_Vector2_method_sign>`, :ref:`Vector2i.sign()<class_Vector2i_method_sign>`, :ref:`Vector3.sign()<class_Vector3_method_sign>`, :ref:`Vector3i.sign()<class_Vector3i_method_sign>`, :ref:`Vector4.sign()<class_Vector4_method_sign>`, or :ref:`Vector4i.sign()<class_Vector4i_method_sign>`.
@@ -7143,7 +7169,7 @@ The returned value is the same type of :ref:`Variant<class_Variant>` as ``step``
 
     snapped(100, 32)  # Returns 96
     snapped(3.14159, 0.01)  # Returns 3.14
-    
+
     snapped(Vector2(34, 70), Vector2(8, 8))  # Returns (32, 72)
 
 See also :ref:`ceil()<class_@GlobalScope_method_ceil>`, :ref:`floor()<class_@GlobalScope_method_floor>`, and :ref:`round()<class_@GlobalScope_method_round>`.
@@ -7206,7 +7232,7 @@ Returns the square root of ``x``, where ``x`` is a non-negative number.
     sqrt(10.24) # Returns 3.2
     sqrt(-1)    # Returns NaN
 
-\ **Note:** Negative values of ``x`` return NaN ("Not a Number"). in C#, if you need negative inputs, use ``System.Numerics.Complex``.
+\ **Note:** Negative values of ``x`` return NaN ("Not a Number"). In C#, if you need negative inputs, use ``System.Numerics.Complex``.
 
 .. rst-class:: classref-item-separator
 
@@ -7467,18 +7493,18 @@ A weak reference to an object is not enough to keep the object alive: when the o
 
 :ref:`Variant<class_Variant>` **wrap**\ (\ value\: :ref:`Variant<class_Variant>`, min\: :ref:`Variant<class_Variant>`, max\: :ref:`Variant<class_Variant>`\ ) :ref:`🔗<class_@GlobalScope_method_wrap>`
 
-Wraps the :ref:`Variant<class_Variant>` ``value`` between ``min`` and ``max``. Can be used for creating loop-alike behavior or infinite surfaces.
+Wraps the :ref:`Variant<class_Variant>` ``value`` between ``min`` and ``max``. ``min`` is *inclusive* while ``max`` is *exclusive*. This can be used for creating loop-like behavior or infinite surfaces.
 
-Variant types :ref:`int<class_int>` and :ref:`float<class_float>` are supported. If any of the arguments is :ref:`float<class_float>` this function returns a :ref:`float<class_float>`, otherwise it returns an :ref:`int<class_int>`.
+Variant types :ref:`int<class_int>` and :ref:`float<class_float>` are supported. If any of the arguments is :ref:`float<class_float>`, this function returns a :ref:`float<class_float>`, otherwise it returns an :ref:`int<class_int>`.
 
 ::
 
     var a = wrap(4, 5, 10)
     # a is 9 (int)
-    
+
     var a = wrap(7, 5, 10)
     # a is 7 (int)
-    
+
     var a = wrap(10.5, 5, 10)
     # a is 5.5 (float)
 
@@ -7492,7 +7518,7 @@ Variant types :ref:`int<class_int>` and :ref:`float<class_float>` are supported.
 
 :ref:`float<class_float>` **wrapf**\ (\ value\: :ref:`float<class_float>`, min\: :ref:`float<class_float>`, max\: :ref:`float<class_float>`\ ) :ref:`🔗<class_@GlobalScope_method_wrapf>`
 
-Wraps the float ``value`` between ``min`` and ``max``. Can be used for creating loop-alike behavior or infinite surfaces.
+Wraps the float ``value`` between ``min`` and ``max``. ``min`` is *inclusive* while ``max`` is *exclusive*. This can be used for creating loop-like behavior or infinite surfaces.
 
 ::
 
@@ -7509,9 +7535,7 @@ Wraps the float ``value`` between ``min`` and ``max``. Can be used for creating 
     # Infinite rotation (in radians)
     angle = wrapf(angle + 0.1, -PI, PI)
 
-\ **Note:** If ``min`` is ``0``, this is equivalent to :ref:`fposmod()<class_@GlobalScope_method_fposmod>`, so prefer using that instead.
-
-\ :ref:`wrapf()<class_@GlobalScope_method_wrapf>` is more flexible than using the :ref:`fposmod()<class_@GlobalScope_method_fposmod>` approach by giving the user control over the minimum value.
+\ **Note:** If ``min`` is ``0``, this is equivalent to :ref:`fposmod()<class_@GlobalScope_method_fposmod>`, so prefer using that instead. :ref:`wrapf()<class_@GlobalScope_method_wrapf>` is more flexible than using the :ref:`fposmod()<class_@GlobalScope_method_fposmod>` approach by giving the user control over the minimum value.
 
 .. rst-class:: classref-item-separator
 
@@ -7523,7 +7547,7 @@ Wraps the float ``value`` between ``min`` and ``max``. Can be used for creating 
 
 :ref:`int<class_int>` **wrapi**\ (\ value\: :ref:`int<class_int>`, min\: :ref:`int<class_int>`, max\: :ref:`int<class_int>`\ ) :ref:`🔗<class_@GlobalScope_method_wrapi>`
 
-Wraps the integer ``value`` between ``min`` and ``max``. Can be used for creating loop-alike behavior or infinite surfaces.
+Wraps the integer ``value`` between ``min`` and ``max``. ``min`` is *inclusive* while ``max`` is *exclusive*. This can be used for creating loop-like behavior or infinite surfaces.
 
 ::
 
@@ -7536,6 +7560,7 @@ Wraps the integer ``value`` between ``min`` and ``max``. Can be used for creatin
     var result = wrapi(-6, -5, -1)
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`

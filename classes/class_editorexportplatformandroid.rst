@@ -58,7 +58,7 @@ Properties
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`String<class_String>`                       | :ref:`gradle_build/android_source_template<class_EditorExportPlatformAndroid_property_gradle_build/android_source_template>`                     |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-   | :ref:`bool<class_bool>`                           | :ref:`gradle_build/compress_native_libraries<class_EditorExportPlatformAndroid_property_gradle_build/compress_native_libraries>`                 |
+   | :ref:`Dictionary<class_Dictionary>`               | :ref:`gradle_build/custom_theme_attributes<class_EditorExportPlatformAndroid_property_gradle_build/custom_theme_attributes>`                     |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`gradle_build/export_format<class_EditorExportPlatformAndroid_property_gradle_build/export_format>`                                         |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -426,6 +426,8 @@ Properties
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`screen/support_xlarge<class_EditorExportPlatformAndroid_property_screen/support_xlarge>`                                                   |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+   | :ref:`bool<class_bool>`                           | :ref:`shader_baker/enabled<class_EditorExportPlatformAndroid_property_shader_baker/enabled>`                                                     |
+   +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`bool<class_bool>`                           | :ref:`user_data_backup/allow<class_EditorExportPlatformAndroid_property_user_data_backup/allow>`                                                 |
    +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
    | :ref:`int<class_int>`                             | :ref:`version/code<class_EditorExportPlatformAndroid_property_version/code>`                                                                     |
@@ -598,15 +600,19 @@ Path to a ZIP file holding the source for the export template used in a Gradle b
 
 ----
 
-.. _class_EditorExportPlatformAndroid_property_gradle_build/compress_native_libraries:
+.. _class_EditorExportPlatformAndroid_property_gradle_build/custom_theme_attributes:
 
 .. rst-class:: classref-property
 
-:ref:`bool<class_bool>` **gradle_build/compress_native_libraries** :ref:`🔗<class_EditorExportPlatformAndroid_property_gradle_build/compress_native_libraries>`
+:ref:`Dictionary<class_Dictionary>` **gradle_build/custom_theme_attributes** :ref:`🔗<class_EditorExportPlatformAndroid_property_gradle_build/custom_theme_attributes>`
 
-If ``true``, native libraries are compressed when performing a Gradle build.
+A dictionary of custom theme attributes to include in the exported Android project. Each entry defines a theme attribute name and its value, and will be added to the **GodotAppMainTheme**.
 
-\ **Note:** Although your binary may be smaller, your application may load slower because the native libraries are not loaded directly from the binary at runtime.
+For example, the key ``android:windowSwipeToDismiss`` with the value ``false`` is resolved to ``<item name="android:windowSwipeToDismiss">false</item>``.
+
+\ **Note:** To add a custom attribute to the **GodotAppSplashTheme**, prefix the attribute name with ``[splash]``.
+
+\ **Note:** Reserved attributes configured via other export options or project settings cannot be overridden by ``custom_theme_attributes`` and are skipped during export.
 
 .. rst-class:: classref-item-separator
 
@@ -2788,7 +2794,7 @@ Allows an application to write to the user dictionary.
 
 :ref:`bool<class_bool>` **screen/immersive_mode** :ref:`🔗<class_EditorExportPlatformAndroid_property_screen/immersive_mode>`
 
-If ``true``, hides navigation and status bar. See :ref:`DisplayServer.window_set_mode()<class_DisplayServer_method_window_set_mode>` to toggle it at runtime.
+If ``true``, hides the navigation and status bar. Set :ref:`DisplayServer.window_set_mode()<class_DisplayServer_method_window_set_mode>` to change this at runtime.
 
 .. rst-class:: classref-item-separator
 
@@ -2842,6 +2848,18 @@ Indicates whether the application supports extra large screen form-factors.
 
 ----
 
+.. _class_EditorExportPlatformAndroid_property_shader_baker/enabled:
+
+.. rst-class:: classref-property
+
+:ref:`bool<class_bool>` **shader_baker/enabled** :ref:`🔗<class_EditorExportPlatformAndroid_property_shader_baker/enabled>`
+
+If ``true``, shaders will be compiled and embedded in the application. This option is only supported when using the Forward+ or Mobile renderers.
+
+.. rst-class:: classref-item-separator
+
+----
+
 .. _class_EditorExportPlatformAndroid_property_user_data_backup/allow:
 
 .. rst-class:: classref-property
@@ -2887,6 +2905,7 @@ Application version visible to the user. Falls back to :ref:`ProjectSettings.app
 The extended reality (XR) mode for this application.
 
 .. |virtual| replace:: :abbr:`virtual (This method should typically be overridden by the user to have any effect.)`
+.. |required| replace:: :abbr:`required (This method is required to be overridden when extending its base class.)`
 .. |const| replace:: :abbr:`const (This method has no side effects. It doesn't modify any of the instance's member variables.)`
 .. |vararg| replace:: :abbr:`vararg (This method accepts any number of arguments after the ones described here.)`
 .. |constructor| replace:: :abbr:`constructor (This method is used to construct a type.)`
